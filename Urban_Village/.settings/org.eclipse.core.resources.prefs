@@ -1,8 +1,2 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/test/Urban_Village/MainController.java=UTF-8
-encoding//src/main/java/com/test/Urban_Village/member/controller/MemberController.java=UTF-8
-encoding//src/main/java/com/test/Urban_Village/member/controller/MemberControllerImpl.java=UTF-8
-encoding//src/main/java/com/test/Urban_Village/member/dao/MemberDAO.java=UTF-8
-encoding//src/main/java/com/test/Urban_Village/member/dao/MemberDAOImpl.java=UTF-8
-encoding//src/main/java/com/test/Urban_Village/member/service/MemberService.java=UTF-8
-encoding//src/main/java/com/test/Urban_Village/member/service/MemberServiceImpl.java=UTF-8

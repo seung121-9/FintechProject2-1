@@ -37,5 +37,8 @@
 		<priority value="warn" />
 		<appender-ref ref="console" />
 	</root>
+	<logger name="org.mybatis" level="debug">
+    <appender-ref ref="console"/>
+</logger>
 	
 </log4j:configuration>

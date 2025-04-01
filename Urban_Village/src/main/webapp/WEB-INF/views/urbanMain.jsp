@@ -123,7 +123,7 @@
         <div class="accommodations">
             <%-- 이미지 기반 숙소 데이터 --%>
             <div class="accommodation">
-                <img src="resource/image/image1.jpg" alt="숙소 이미지">
+                <img src="resources/image/image1.jpg" alt="숙소 이미지">
                 <div class="details">
                     <h3>한국 Sudong-myeon, Namyan...</h3>
                     <p>★ 4.93 한국 가평군</p>
@@ -132,7 +132,7 @@
                 </div>
             </div>
             <div class="accommodation">
-                <img src="resource/image/image2.jpg" alt="숙소 이미지">
+                <img src="resources/image/image2.jpg" alt="숙소 이미지">
                 <div class="details">
                     <h3>한국 Gangha-myeon, Yangpy...</h3>
                     <p>★ 5.0 한국 가평군</p>
@@ -142,7 +142,7 @@
                 </div>
             </div>
             <div class="accommodation">
-                <img src="resource/image/image3.jpg" alt="숙소 이미지">
+                <img src="resources/image/image3.jpg" alt="숙소 이미지">
                 <div class="details">
                     <h3>한국 Gapyeong-eup, Gapyeo...</h3>
                     <p>★ 4.6 한국 가평군</p>
@@ -152,7 +152,7 @@
                 </div>
             </div>
             <div class="accommodation">
-                <img src="resource/image/image4.jpg" alt="숙소 이미지">
+                <img src="resources/image/image4.jpg" alt="숙소 이미지">
                 <div class="details">
                     <h3>한국 Okcheon-myeon, Yangp...</h3>
                     <p>★ 4.86 한국 가평군</p>
@@ -161,7 +161,7 @@
                 </div>
             </div>
             <div class="accommodation">
-                <img src="resource/image/image5.jpg" alt="숙소 이미지">
+              <img src="resources/image/image5.jpg" alt="숙소 이미지">
                 <div class="details">
                     <h3>한국 Gangha-myeon, Yangpy...</h3>
                     <p>★ 4.95 한국 가평군</p>
@@ -170,7 +170,7 @@
                 </div>
             </div>
             <div class="accommodation">
-                <img src="resource/image/image6.jpg" alt="숙소 이미지">
+                <img src="resources/image/image6.jpg" alt="숙소 이미지">
                 <div class="details">
                     <h3>한국 Gangha-myeon, Yangpy...</h3>
                     <p>★ 4.95 한국 가평군</p>

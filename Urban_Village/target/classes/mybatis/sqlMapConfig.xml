@@ -5,7 +5,7 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.test.Urban_Village.dto.MemberDTO"
+		<typeAlias type="com.test.Urban_Village.member.dto.MemberDTO"
 			alias="memberDTO" />
 	</typeAliases>
 </configuration>

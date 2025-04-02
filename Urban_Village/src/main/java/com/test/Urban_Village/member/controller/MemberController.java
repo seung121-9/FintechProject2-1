@@ -8,5 +8,6 @@ public interface MemberController {
 	 public ModelAndView listMembers();
 	 public ModelAndView login();
 	 public ModelAndView login(@RequestParam("id") String id, @RequestParam("pwd") String pwd);
+	 public ModelAndView joinMember();
 	 
 }

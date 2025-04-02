@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class AccommodationDAOImpl implements AccommodationDAO {
-@Autowired SqlSession session;
+@Autowired 
+SqlSession session;
 
 }

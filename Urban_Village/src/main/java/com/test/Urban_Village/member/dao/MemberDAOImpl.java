@@ -11,15 +11,16 @@ import com.test.Urban_Village.member.dto.MemberDTO;
 public class MemberDAOImpl implements MemberDAO {
 	
 @Autowired
-public  SqlSession sqlSession;
-
+SqlSession sqlSession;
+	
+	@Override
 	public List<MemberDTO> listMembers() {
 		// TODO Auto-generated method stub
 		List<MemberDTO> membersList = sqlSession.selectList("mapper.member.selectAllMemberList");
 		return membersList;
 	}
 
-
+	@Override
 	public MemberDTO login(MemberDTO member) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("mapper.member.login", member);

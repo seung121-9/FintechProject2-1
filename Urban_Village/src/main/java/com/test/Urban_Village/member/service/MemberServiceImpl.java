@@ -11,15 +11,15 @@ import com.test.Urban_Village.member.dto.MemberDTO;
 @Service
 public class MemberServiceImpl implements MemberService {
 		@Autowired
-		private MemberDAOImpl dao;
+		MemberDAOImpl dao;
 		
-	
+		@Override
 		public List<MemberDTO> listMembers() {
 			// TODO Auto-generated method stub
 			return dao.listMembers();
 		}
 
-
+		@Override
 		public MemberDTO login(String id, String pwd) {
 		    MemberDTO member = new MemberDTO();
 		    member.setId(id);

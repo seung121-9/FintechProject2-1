@@ -8,5 +8,6 @@ import com.test.Urban_Village.admin.service.AdminServiceImpl;
 
 @Controller
 public class AdminControllerImpl implements AdminController {
-@Autowired AdminServiceImpl service;
+@Autowired 
+AdminServiceImpl service;
 }

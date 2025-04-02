@@ -7,6 +7,7 @@ import com.test.Urban_Village.accommodation.dao.AccommodationDAOImpl;
 
 @Service
 public class AccommodationServiceImpl implements AccommodationService {
-@Autowired AccommodationDAOImpl dao;
+@Autowired 
+AccommodationDAOImpl dao;
 	
 }

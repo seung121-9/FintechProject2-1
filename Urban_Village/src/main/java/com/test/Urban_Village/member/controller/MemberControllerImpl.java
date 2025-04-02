@@ -24,11 +24,13 @@ public class MemberControllerImpl implements MemberController {
 	@Autowired
 	MemberServiceImpl service;
     
+	@Override
     @RequestMapping("/main")
     public ModelAndView main() {
         ModelAndView mav = new ModelAndView("urbanMain");
     	return mav; 
     }
+	@Override
     @RequestMapping("/memberList")
     public ModelAndView listMembers() {
         List<MemberDTO> membersList = service.listMembers();
@@ -36,11 +38,13 @@ public class MemberControllerImpl implements MemberController {
 		mav.addObject("membersList", membersList);
 		return mav;
     }
+	@Override
     @RequestMapping("/loginForm")
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView("urbanLogin");
     	return mav; 
     }
+	@Override
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(@RequestParam("id") String id, @RequestParam("pwd") String pwd) {
         ModelAndView mav = new ModelAndView();
@@ -54,6 +58,13 @@ public class MemberControllerImpl implements MemberController {
         }
         return mav;
     }
+	
+	@Override
+	@RequestMapping("/urbanJoin")
+	public ModelAndView joinMember() {
+		ModelAndView mav = new ModelAndView("urbanJoin");
+		return	mav;
+	}
 
 
 }

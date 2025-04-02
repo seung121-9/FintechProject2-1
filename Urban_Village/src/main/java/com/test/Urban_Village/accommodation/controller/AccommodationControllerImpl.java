@@ -7,7 +7,8 @@ import com.test.Urban_Village.accommodation.service.AccommodationServiceImpl;
 
 @Controller
 public class AccommodationControllerImpl implements AccommodationController {
-@Autowired AccommodationServiceImpl service;
+@Autowired
+AccommodationServiceImpl service;
 
 
 }

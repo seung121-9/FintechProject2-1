@@ -7,5 +7,6 @@ import com.test.Urban_Village.admin.dao.AdminDAOImpl;
 
 @Service
 public class AdminServiceImpl implements AdminService {
-@Autowired AdminDAOImpl dao;
+@Autowired 
+AdminDAOImpl dao;
 }

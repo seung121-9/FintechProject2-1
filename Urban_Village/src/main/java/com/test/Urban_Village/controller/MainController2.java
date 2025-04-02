@@ -44,15 +44,20 @@ public class MainController2 {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(@RequestParam("id") String id, @RequestParam("pwd") String pwd) {
         ModelAndView mav = new ModelAndView();
-        // ·Î±×ÀÎ ¼­ºñ½º¿¡¼­ ¾ÆÀÌµð¿Í ºñ¹Ð¹øÈ£ È®ÀÎ
+        // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ñ½º¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ È®ï¿½ï¿½
         MemberDTO member = service.login(id, pwd);
         if (member != null) {
             mav.setViewName("redirect:/urban/memberList"); 
         } else {
             mav.setViewName("urbanLogin");
-            mav.addObject("error", "Àß¸øµÈ ·Î±×ÀÎ Á¤º¸ÀÔ´Ï´Ù.");
+            mav.addObject("error", "ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
         }
         return mav;
+    }
+    
+    @RequestMapping("/joinMember")
+    public ModelAndView joinMember(HttpServletRequest request, HttpServletResponse response) {
+    	return new ModelAndView("joinMember");
     }
 
 

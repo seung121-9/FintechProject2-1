@@ -25,13 +25,13 @@ public class MemberControllerImpl implements MemberController {
 	MemberServiceImpl service;
     
 	@Override
-    @RequestMapping("/main")
+    @RequestMapping("/main.do")
     public ModelAndView main() {
         ModelAndView mav = new ModelAndView("urbanMain");
     	return mav; 
     }
 	@Override
-    @RequestMapping("/memberList")
+    @RequestMapping("/memberList.do")
     public ModelAndView listMembers() {
         List<MemberDTO> membersList = service.listMembers();
         ModelAndView mav = new ModelAndView("urbanMemberList");
@@ -39,13 +39,13 @@ public class MemberControllerImpl implements MemberController {
 		return mav;
     }
 	@Override
-    @RequestMapping("/loginForm")
+    @RequestMapping("/loginForm.do")
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView("urbanLogin");
     	return mav; 
     }
 	@Override
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login.do", method = RequestMethod.POST)
     public ModelAndView login(@RequestParam("id") String id, @RequestParam("pwd") String pwd) {
         ModelAndView mav = new ModelAndView();
         // 로그인 서비스에서 아이디와 비밀번호 확인
@@ -60,9 +60,10 @@ public class MemberControllerImpl implements MemberController {
     }
 	
 	@Override
-	@RequestMapping("/urbanJoin")
+	@RequestMapping("/memberJoin.do")
 	public ModelAndView joinMember() {
 		ModelAndView mav = new ModelAndView("urbanJoin");
+		
 		return	mav;
 	}
 

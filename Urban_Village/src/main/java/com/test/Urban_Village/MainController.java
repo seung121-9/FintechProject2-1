@@ -9,6 +9,6 @@ public class MainController {
 	@RequestMapping(value= {"/", "/main"}) 
 	public String main() {
 		// (WEB-INF/views/main.jsp)
-		return "urbanMain";
+		return "main";
 	}
 }

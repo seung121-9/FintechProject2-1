@@ -1,5 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	request.setCharacterEncoding("utf-8");
+%>
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,7 +137,11 @@
                 <button>검색</button>
             </div>
             <div class="user-links"> <a href="#">로그인</a>
+<<<<<<< HEAD
                 <a href="/Urban_Village/urban/urbanJoin">회원가입</a>
+=======
+                <a href="${context }/Urban_Village/urban/joinMember">회원가입</a>
+>>>>>>> refs/heads/대중
             </div>
         </div>
         <div class="categories">

@@ -19,6 +19,14 @@
 	</bean> 
 	<context:component-scan base-package="com.test.Urban_Village" />
 	
+	<!-- 뷰네임 설정하는 빈 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*/*.do" />
+			<bean
+				class="com.test.Urban_Village.common.interceptor.ViewNameInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>
 
 

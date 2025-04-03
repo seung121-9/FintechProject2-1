@@ -11,13 +11,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.test.Urban_Village.accommodation.service.AccommodationService;
 
 @Controller
-@RequestMapping("/accommdation")
+@RequestMapping("/accommodation")
 public class AccommodationControllerImpl implements AccommodationController {
 @Autowired
 AccommodationService service;
 
 @Override
-@RequestMapping("/accommdationPage.do")
+@RequestMapping("/accommodationPage.do")
 public ModelAndView accommodationpage(HttpServletResponse response, HttpServletRequest request) {
 	ModelAndView mav = new ModelAndView();
 	String viewName = (String)request.getAttribute("viewName");

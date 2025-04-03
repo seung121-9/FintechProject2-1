@@ -21,8 +21,8 @@
 <body>
 	<div class="container">
 		<div class="accommodations">
-			<div class="accommodation" onclick="${pageContext.request.contextPath}/accommodation/accommodationPage.do">
-				<span class="heart-icon" onclick="toggleHeart(this)">&#9825;</span>
+			<div class="accommodation" onclick="location.href='${pageContext.request.contextPath}/accommodation/accommodationPage.do'">
+				<span class="heart-icon" onclick="event.stopPropagation(); toggleHeart(this)">&#9825;</span>
 				<img
 					src="${pageContext.request.contextPath}/resources/image/image2.jpg"
 					alt="숙소 이미지">

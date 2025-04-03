@@ -54,13 +54,24 @@
 	</servlet-mapping>
 
 
-	<!-- <servlet>
-		<servlet-name>urbanMain</servlet-name>
-		<jsp-file>/WEB-INF/views/urbanMain.jsp</jsp-file>
+	<!-- <servlet> <servlet-name>urbanMain</servlet-name> <jsp-file>/WEB-INF/views/urbanMain.jsp</jsp-file> 
+		</servlet> <servlet-mapping> <servlet-name>urbanMain</servlet-name> <url-pattern>/urbanMain</url-pattern> 
+		</servlet-mapping> -->
+
+
+	<servlet>
+		<servlet-name>tilesConfigurer</servlet-name>
+		<servlet-class>org.apache.tiles.web.startup.TilesConfigurer</servlet-class>
+		<init-param>
+			<param-name>definitionsConfig</param-name>
+			<param-value>/WEB-INF/tiles.xml</param-value>
+		</init-param>
 	</servlet>
+
 	<servlet-mapping>
-		<servlet-name>urbanMain</servlet-name>
-		<url-pattern>/urbanMain</url-pattern>
-	</servlet-mapping> -->
+		<servlet-name>tilesConfigurer</servlet-name>
+		<url-pattern>/tiles/*</url-pattern>
+	</servlet-mapping>
+
 
 </web-app>

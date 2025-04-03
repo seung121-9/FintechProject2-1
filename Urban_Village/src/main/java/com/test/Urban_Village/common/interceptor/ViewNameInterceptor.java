@@ -20,15 +20,15 @@ public class ViewNameInterceptor extends HandlerInterceptorAdapter {
 		}
 		return true;
 	}
-
 	private String getViewName(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		int start = request.getContextPath().length();
-		String uri = request.getRequestURI();
-		int end = uri.lastIndexOf(".");
-		
-		return uri.substring(start, end);
+	    int start = request.getContextPath().length();
+	    String uri = request.getRequestURI();
+	    int end = uri.lastIndexOf(".");
+	    
+	    return uri.substring(start, end);  // ¿¹: "/urban/joinMember" -> "urban/joinMember"
 	}
+
+
 	
 	
 

@@ -1,6 +1,6 @@
 package com.test.Urban_Village.member.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class MemberDTO {
     

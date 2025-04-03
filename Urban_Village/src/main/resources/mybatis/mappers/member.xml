@@ -20,5 +20,9 @@
 	<select id="login" parameterType="memberDTO" resultMap="memResult">
 		select * from member where id=#{id} and pwd=#{pwd}
 	</select>
-
+	
+	<insert id="join">
+      INSERT INTO member (id, pwd, email, birth, gender, phonenumber, name,regdate)
+        VALUES (#{id}, #{pwd}, #{email}, #{birth}, #{gender}, #{phonenumber}, #{name},sysdate)
+   </insert>
 </mapper> 

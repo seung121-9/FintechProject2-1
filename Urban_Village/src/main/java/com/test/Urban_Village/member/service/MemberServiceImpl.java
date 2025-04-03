@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.test.Urban_Village.member.dao.MemberDAO;
 import com.test.Urban_Village.member.dao.MemberDAOImpl;
 import com.test.Urban_Village.member.dto.MemberDTO;
 
 @Service
 public class MemberServiceImpl implements MemberService {
 		@Autowired
-		MemberDAOImpl dao;
+		MemberDAO dao;
 		
 		@Override
 		public List<MemberDTO> listMembers() {
@@ -27,7 +28,11 @@ public class MemberServiceImpl implements MemberService {
 		    return dao.login(member); // DB에서 해당 정보를 조회
 		}
 
-
+		@Override
+	      public int addMember(MemberDTO member) {
+	         // TODO Auto-generated method stub
+	         return dao.addMember(member);
+	      }
 	
 
 	}

@@ -40,9 +40,11 @@ public class MemberControllerImpl implements MemberController {
     }
 	@Override
     @RequestMapping("/loginForm.do")
-    public ModelAndView loginForm(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView loginForm(@RequestParam(value="action", required=false) String action, HttpServletRequest request, HttpServletResponse response) {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		session.setAttribute("action", action);
 		mav.setViewName(viewName);
 		mav.addObject("viewName",viewName);
 		System.out.println("viewName"+viewName);
@@ -50,18 +52,43 @@ public class MemberControllerImpl implements MemberController {
     }
 	@Override
     @RequestMapping(value = "/login.do", method = RequestMethod.POST)
-    public ModelAndView login(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView login(RedirectAttributes rAttr, @RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mav = new ModelAndView();
-       
+        HttpSession session = request.getSession();
         MemberDTO member = service.login(id, pwd);
         if (member != null) {
             mav.setViewName("redirect:/member/urbanMemberList.do"); 
+            session.setAttribute("member", member);
+			session.setAttribute("loginId", member.getId());
+			session.setAttribute("isLogin", true);
+			String action = (String) session.getAttribute("action");
+			session.removeAttribute("action");
+			if(action != null) {
+				mav.setViewName("redirect:"+action);
+			} 
         } else {
             mav.setViewName("/member/loginForm.do");
             mav.addObject("error", "잘못된 로그인 정보입니다.");
+            rAttr.addAttribute("result", "loginFailed");
         }
         return mav;
     }
+	@Override
+	@RequestMapping("/logout.do")
+	public ModelAndView logout(RedirectAttributes rAttr,HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession(false);
+		ModelAndView mav = new ModelAndView();
+		Boolean isLogin = (Boolean) session.getAttribute("isLogin");
+		if(session != null && isLogin != null) {
+			session.invalidate();
+			rAttr.addAttribute("result", "logout");
+		} else {
+			rAttr.addAttribute("result", "notLogin");
+		}
+		mav.setViewName("redirect:/member/loginForm.do");
+		return mav;
+	}
 	
 	@Override
 	@RequestMapping("/joinMember.do")

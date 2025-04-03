@@ -1,9 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>A Login</title>
+    <c:choose>
+	<c:when test='${param.result == "loginFailed"}'>
+		<script>
+			alert('아이디나 비밀번호가 틀립니다. 다시 로그인 하세요.');
+		</script>
+	</c:when>
+	<c:when test="${param.result == 'logout' }">
+		<script>
+			alert('로그아웃 되었습니다. 다시 로그인 하세요.');
+		</script>
+	</c:when>
+	<c:when test="${param.result == 'notLogin' }">
+		<script>
+			alert('로그인이 되어 있지 않습니다. 로그인 하세요.');
+		</script>
+	</c:when>
+</c:choose>
     <style>
         body {
             font-family: sans-serif;

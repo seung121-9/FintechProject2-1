@@ -21,7 +21,7 @@
 <body>
 	<div class="container">
 		<div class="accommodations">
-			<div class="accommodation">
+			<div class="accommodation" onclick="${pageContext.request.contextPath}/accommodation/accommodationPage.do">
 				<span class="heart-icon" onclick="toggleHeart(this)">&#9825;</span>
 				<img
 					src="${pageContext.request.contextPath}/resources/image/image2.jpg"

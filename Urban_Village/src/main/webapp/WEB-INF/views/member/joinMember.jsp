@@ -149,7 +149,6 @@
                 opacity: 0;
             }
         }
-/* header부분 */
          body {
             font-family: sans-serif;
             margin: 0;
@@ -161,67 +160,7 @@
             margin: 0 auto;
         }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .header .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .header .user-links {
-            display: flex;
-            align-items: center;
-        }
-
-        .header .user-links a {
-            text-decoration: none;
-            color: #333;
-            margin-left: 10px;
-        }
-
-        .search-bar {
-            display: flex;
-            align-items: center;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-           margin-left:600px;
-            padding: 5px;
-        }
-
-        .search-bar input[type="text"] {
-            border: none;
-            padding: 8px;
-            margin-right: 5px;
-            flex-grow: 1;
-        }
-
-        .search-bar button {
-            background-color: #ff5a5f;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .categories {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-        }
-
-        .categories a {
-            text-decoration: none;
-            color: #333;
-            padding: 8px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
+     
 
         .accommodations {
             display: flex;

@@ -16,7 +16,7 @@
 	<c:choose>
 				<c:when test="${isLogin == true }">
 					<td>
-						<h3>${loginId }님</h3>
+						<h3><a href="/Urban_Village/member/getUserInfo.do?id=${loginId}" id="user-info-link">${loginId }님</a></h3>
 						<h3><a href="/Urban_Village/member/logout.do">로그아웃</a></h3>
 					</td>
 				</c:when>

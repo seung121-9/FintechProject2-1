@@ -9,4 +9,5 @@ public interface MemberDAO {
 	public MemberDTO login(MemberDTO member);
 	public int addMember(MemberDTO member);
 	boolean checkIfUserIdExists(String userId);
+	public List<MemberDTO> getUserInfoById(String id);
 }

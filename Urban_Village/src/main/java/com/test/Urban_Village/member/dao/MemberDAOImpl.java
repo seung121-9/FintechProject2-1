@@ -36,4 +36,11 @@ SqlSession sqlSession;
         return count > 0;
     }
 
+	@Override
+	public List<MemberDTO> getUserInfoById(String id) {
+		// TODO Auto-generated method stub
+		List<MemberDTO> memberList = sqlSession.selectList("mapper.member.getUserInfoById",id);
+		return memberList;
+	}
+
 }

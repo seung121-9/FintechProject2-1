@@ -9,4 +9,5 @@ public interface MemberService {
 	public MemberDTO login(String id, String pwd);
 	public int addMember(MemberDTO member);
 	boolean checkIfUserIdExists(String userId);
+	public List<MemberDTO> getUserInfoById(String id);
 }

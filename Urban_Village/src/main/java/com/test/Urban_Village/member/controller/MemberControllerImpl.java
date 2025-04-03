@@ -67,8 +67,8 @@ public class MemberControllerImpl implements MemberController {
 				mav.setViewName("redirect:"+action);
 			} 
         } else {
-            mav.setViewName("/member/loginForm.do");
-            mav.addObject("error", "Àß¸øµÈ ·Î±×ÀÎ Á¤º¸ÀÔ´Ï´Ù.");
+            mav.setViewName("redirect:/member/loginForm.do");
+            mav.addObject("error", "ì˜ëª»ëœ ë¡œê·¸ì¸ ì •ë³´ì…ë‹ˆë‹¤.");
             rAttr.addAttribute("result", "loginFailed");
         }
         return mav;
@@ -110,12 +110,12 @@ public class MemberControllerImpl implements MemberController {
 
 	       if (result == 1) {
 	           out.write("<script>");
-	           out.write("alert('È¸¿ø °¡ÀÔ¿¡ ¼º°øÇß½À´Ï´Ù!');");
+	           out.write("alert('íšŒì› ê°€ì…ì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤!');");
 	           out.write("location.href='/Urban_Village/member/urbanLogin.do';");
 	           out.write("</script>");
 	       } else {
 	           out.write("<script>");
-	           out.write("alert('È¸¿ø °¡ÀÔ¿¡ ½ÇÆĞÇß½À´Ï´Ù. ´Ù½Ã ½ÃµµÇØÁÖ¼¼¿ä.');");
+	           out.write("alert('íšŒì› ê°€ì…ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì‹œë„í•´ì£¼ì„¸ìš”.');");
 	           out.write("location.href='/Urban_Village/member/joinMember.do';");
 	           out.write("</script>");
 	       }
@@ -145,7 +145,13 @@ public class MemberControllerImpl implements MemberController {
 			return mav;
 	}
 	
-	
+	@RequestMapping("/getUserInfo.do")
+    public ModelAndView getUserInfo(@RequestParam("id") String id) {
+        List<MemberDTO> memberList = service.getUserInfoById(id);
+        ModelAndView mav = new ModelAndView("member/myInfo");
+        mav.addObject("memberList", memberList);
+        return mav;
+    }
 	
 
 }

@@ -1,11 +1,11 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title></title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css">
 <script>
 	function toggleHeart(icon) {
 		if (icon.classList.contains("liked")) {
@@ -20,9 +20,21 @@
 </head>
 <body>
 	<div class="container">
+
+		<div class="categories-container">
+			<div class="categories">
+				<a href="#">최고의 전망</a> <a href="#">호잇</a> <a href="#">유량</a> <a
+					href="#">한적</a> <a href="#">최고</a> <a href="#">공원</a> <a href="#">한옥</a>
+				<a href="#">소형주택</a> <a href="#">인기급상</a> <a href="#">Luxe</a> <a
+					href="#">독채</a>
+			</div>
+		</div>
+
 		<div class="accommodations">
-			<div class="accommodation" onclick="location.href='${pageContext.request.contextPath}/accommodation/accommodationPage.do'">
-				<span class="heart-icon" onclick="event.stopPropagation(); toggleHeart(this)">&#9825;</span>
+			<div class="accommodation"
+				onclick="location.href='${pageContext.request.contextPath}/accommodation/accommodationPage.do'">
+				<span class="heart-icon"
+					onclick="event.stopPropagation(); toggleHeart(this)">&#9825;</span>
 				<img
 					src="${pageContext.request.contextPath}/resources/image/image2.jpg"
 					alt="숙소 이미지">

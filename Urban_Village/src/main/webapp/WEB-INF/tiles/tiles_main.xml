@@ -36,4 +36,9 @@
     <put-attribute name="body" value="/WEB-INF/views/accommodation/accommodationPage1.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="/member/reservation" extends="mainLayout">
+    <put-attribute name="title" value="Urban Member List"></put-attribute>
+    <put-attribute name="body" value="/WEB-INF/views/member/reservation.jsp"></put-attribute>
+	</definition>
+	
 </tiles-definitions>

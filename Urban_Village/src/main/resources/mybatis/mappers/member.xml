@@ -25,4 +25,7 @@
       INSERT INTO member (id, pwd, email, birth, gender, phonenumber, name,regdate)
         VALUES (#{id}, #{pwd}, #{email}, #{birth}, #{gender}, #{phonenumber}, #{name},sysdate)
    </insert>
+   <select id="countMemberById" parameterType="string" resultType="int">
+        SELECT COUNT(*) FROM member WHERE id = #{id}
+    </select>
 </mapper> 

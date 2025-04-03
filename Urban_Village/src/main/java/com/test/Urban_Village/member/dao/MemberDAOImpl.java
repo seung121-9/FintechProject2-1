@@ -30,4 +30,10 @@ SqlSession sqlSession;
 	      // TODO Auto-generated method stub
 	      return sqlSession.insert("mapper.member.join",member);
 	   }
+	@Override
+    public boolean checkIfUserIdExists(String userId) {
+        int count = sqlSession.selectOne("mapper.member.countMemberById", userId);
+        return count > 0;
+    }
+
 }

@@ -33,6 +33,9 @@ public class MemberServiceImpl implements MemberService {
 	         // TODO Auto-generated method stub
 	         return dao.addMember(member);
 	      }
-	
-
+		@Override
+	       public boolean checkIfUserIdExists(String userId) {
+	           return dao.checkIfUserIdExists(userId);
+	       }
+		
 	}

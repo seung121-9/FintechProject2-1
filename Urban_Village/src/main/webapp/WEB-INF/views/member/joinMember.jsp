@@ -10,7 +10,7 @@
 <head>
     <title>A Register</title>
     <style>
-        /* From Uiverse.io by ammarsaa */ 
+        /* From Uiverse.io by ammarsaa */
         .form {
             display: flex;
             flex-direction: column;
@@ -58,7 +58,7 @@
             background-color: #ff5a5f;
         }
 
-        .message, 
+        .message,
         .signin {
             font-size: 14.5px;
             color: rgba(51, 51, 51, 0.7); /* 텍스트 색상 변경 */
@@ -149,7 +149,8 @@
                 opacity: 0;
             }
         }
-         body {
+        /* header부분 */
+        body {
             font-family: sans-serif;
             margin: 0;
             padding: 0;
@@ -160,7 +161,67 @@
             margin: 0 auto;
         }
 
-     
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header .user-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .user-links a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 10px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-left: 600px;
+            padding: 5px;
+        }
+
+        .search-bar input[type="text"] {
+            border: none;
+            padding: 8px;
+            margin-right: 5px;
+            flex-grow: 1;
+        }
+
+        .search-bar button {
+            background-color: #ff5a5f;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .categories a {
+            text-decoration: none;
+            color: #333;
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
 
         .accommodations {
             display: flex;
@@ -173,7 +234,7 @@
             margin: 20px;
             border: 1px solid #ddd;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box; 
+            box-sizing: border-box;
         }
 
         .accommodation img {
@@ -206,19 +267,48 @@
             }
         }
     </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+function fn_checkId() {
+    var userId = $("#id").val();
+    if (userId === "") {
+        alert("아이디를 입력하세요.");
+        return;
+    }
+
+    $.ajax({
+        url: "${contextPath}/member/checkId.do",
+        method: "POST",
+        data: { id: userId },
+        success: function(response) {
+            if (response.exists) {
+                alert("아이디가 이미 존재합니다.");
+            } else {
+                alert("사용 가능한 아이디입니다.");
+            }
+        },
+        error: function() {
+            alert("아이디 중복 체크 중 오류가 발생했습니다.");
+        }
+    });
+}
+</script>
 </head>
 <body>
    <div class="container">
-      
-    <!-- From Uiverse.io by ammarsaa --> 
+     
+    <!-- From Uiverse.io by ammarsaa -->
     <form class="form" action="${contextPath }/member/addMember.do" method="post">
         <p class="title">회원가입창</p>
         <p class="message">회원가입후 즐겨보세요!</p>
         
-        <label>
-            <input class="input" type="text" name="id" required>
-            <span>아이디</span>
-        </label>
+        <div class="flex">
+            <label style="flex: 1;">
+                <input class="input" type="text" name="id" id="id" required>
+                <span>아이디</span>
+            </label>
+            <button type="button" class="submit" style="flex: 0 1 100px;" onclick="fn_checkId()">중복체크</button>
+        </div>
         
         <label>
             <input class="input" type="password" name="pwd" required>
@@ -257,5 +347,7 @@
         <p class="signin">이미 계정이 있으신가요? <a href="${contextPath }/member/loginForm.do">로그인</a></p>
     </form>
    </div>
+
+
 </body>
 </html>

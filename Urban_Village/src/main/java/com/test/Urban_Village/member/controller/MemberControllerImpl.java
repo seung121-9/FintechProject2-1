@@ -1,5 +1,6 @@
 package com.test.Urban_Village.member.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -18,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.test.Urban_Village.member.dto.MemberDTO;
 import com.test.Urban_Village.member.service.MemberService;
-import com.test.Urban_Village.member.service.MemberServiceImpl;
 
 @Controller
 @RequestMapping("/member")
@@ -122,6 +122,28 @@ public class MemberControllerImpl implements MemberController {
 	       return null;
 	   }
 
+	   @Override
+	   @RequestMapping("/checkId.do")
+	    public void checkId(HttpServletRequest request, HttpServletResponse response) {
+	        String userId = request.getParameter("id");
+	        boolean exists = service.checkIfUserIdExists(userId);
+
+	        response.setContentType("application/json");
+	        try (PrintWriter out = response.getWriter()) {
+	            out.print("{\"exists\": " + exists + "}");
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	@Override
+	@RequestMapping("/reservation.do")
+	public ModelAndView reservation(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		 ModelAndView mav = new ModelAndView();
+	        String viewName = (String) request.getAttribute("viewName");
+			mav.setViewName(viewName);
+			return mav;
+	}
 	
 	
 	

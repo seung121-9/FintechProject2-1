@@ -18,5 +18,6 @@ public interface MemberController {
 
 	public ModelAndView addMember(@ModelAttribute MemberDTO member,HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView logout(RedirectAttributes rAttr,HttpServletRequest request, HttpServletResponse response) throws Exception;
-
+	public void checkId(HttpServletRequest request, HttpServletResponse response);
+	public ModelAndView reservation(HttpServletRequest request, HttpServletResponse response);
 }

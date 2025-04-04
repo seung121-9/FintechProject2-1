@@ -1,5 +1,7 @@
 package com.test.Urban_Village.member.controller;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.test.Urban_Village.member.dto.MemberDTO;
+import com.test.Urban_Village.member.dto.PayDTO;
 
 public interface MemberController {
 	public ModelAndView urbanMemberList(HttpServletRequest request, HttpServletResponse response);
@@ -19,5 +22,7 @@ public interface MemberController {
 	public ModelAndView addMember(@ModelAttribute MemberDTO member,HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView logout(RedirectAttributes rAttr,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public void checkId(HttpServletRequest request, HttpServletResponse response);
-	public ModelAndView reservation(HttpServletRequest request, HttpServletResponse response);
+	public ModelAndView reservationForm(HttpServletRequest request, HttpServletResponse response);
+	public ModelAndView reservationEnd(HttpServletRequest request, HttpServletResponse response);
+	public ModelAndView reservation(PayDTO payDTO, HttpServletRequest request, HttpServletResponse response);
 }

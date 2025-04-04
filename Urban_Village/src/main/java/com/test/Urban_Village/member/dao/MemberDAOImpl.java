@@ -1,11 +1,16 @@
 package com.test.Urban_Village.member.dao;
 
+import java.sql.Date;
 import java.util.List;
+
+import javax.naming.spi.DirStateFactory.Result;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.test.Urban_Village.member.dto.MemberDTO;
+import com.test.Urban_Village.member.dto.PayDTO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -36,4 +41,11 @@ SqlSession sqlSession;
         return count > 0;
     }
 
+	@Override
+	public void addPay(PayDTO payDto) {
+		// TODO Auto-generated method stub
+		sqlSession.insert("mapper.member.addPay", payDto);
+	}
+	
+	
 }

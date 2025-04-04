@@ -32,13 +32,23 @@
 	</definition>
 	
 	<definition name="/accommodation/accommodationPage" extends="mainLayout">
-    <put-attribute name="title" value="Urban Member List"></put-attribute>
+    <put-attribute name="title" value="상세페이지"></put-attribute>
     <put-attribute name="body" value="/WEB-INF/views/accommodation/accommodationPage1.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="/member/reservation" extends="mainLayout">
-    <put-attribute name="title" value="Urban Member List"></put-attribute>
-    <put-attribute name="body" value="/WEB-INF/views/member/reservation.jsp"></put-attribute>
+	<definition name="/accommodation/accommodationForm" extends="mainLayout">
+    <put-attribute name="title" value="숙소등록페이지"></put-attribute>
+    <put-attribute name="body" value="/WEB-INF/views/accommodation/accommodationForm.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="/member/reservationForm" extends="mainLayout">
+    <put-attribute name="title" value="예약페이지"></put-attribute>
+    <put-attribute name="body" value="/WEB-INF/views/member/reservationForm.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="/member/reservationEnd" extends="mainLayout">
+ 	<put-attribute name="title" value="예약내역"></put-attribute>
+    <put-attribute name="body" value="/WEB-INF/views/member/reservationEnd.jsp"></put-attribute>
+</definition>
 	
 </tiles-definitions>

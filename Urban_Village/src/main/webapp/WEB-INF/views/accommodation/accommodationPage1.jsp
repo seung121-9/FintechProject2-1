@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page import="java.util.Random"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -73,23 +75,9 @@
 				<p class="fw-bold">
 					총 금액: <span id="totalPrice">₩0</span>
 				</p>
-				<form id="reservationForm"
-					action="/Urban_Village/member/reservation.do" method="POST">
-					<input type="hidden" name="checkin" id="hiddenCheckin"> 
-					<input type="hidden" name="checkout" id="hiddenCheckout"> 
-					<input type="hidden" name="guests" id="hiddenGuests">
-					<button type="submit" class="btn btn-danger w-100">예약하기</button>
-				</form>
-
-				<script>
-    				document.getElementById("reservationForm").addEventListener("submit", function(event) {
-       				document.getElementById("hiddenCheckin").value = document.getElementById("checkin").value;
-      				document.getElementById("hiddenCheckout").value = document.getElementById("checkout").value;
-       				document.getElementById("hiddenGuests").value = document.getElementById("guests").value;
-   					});
-				</script>
-
-
+					<a href="/Urban_Village/member/reservationForm.do">
+					<button type="button" class="btn btn-danger w-100">예약하기</button>
+					</a>
 			</div>
 
 			<div class="col-md-6">

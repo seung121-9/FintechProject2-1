@@ -1,5 +1,6 @@
 package com.test.Urban_Village.member.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.test.Urban_Village.member.dao.MemberDAO;
 import com.test.Urban_Village.member.dao.MemberDAOImpl;
 import com.test.Urban_Village.member.dto.MemberDTO;
+import com.test.Urban_Village.member.dto.PayDTO;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -37,5 +39,13 @@ public class MemberServiceImpl implements MemberService {
 	       public boolean checkIfUserIdExists(String userId) {
 	           return dao.checkIfUserIdExists(userId);
 	       }
+
+
+		@Override
+		public void addPay(PayDTO payDto) {
+			// TODO Auto-generated method stub
+			dao.addPay(payDto);
+			
+		}
 		
 	}

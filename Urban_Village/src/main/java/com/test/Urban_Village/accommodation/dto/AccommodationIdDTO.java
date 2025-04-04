@@ -3,22 +3,20 @@ package com.test.Urban_Village.accommodation.dto;
 
 public class AccommodationIdDTO {
     
-    private String adminId;           // 관리자의 ID
-    private String accommodationId;   // 숙소의 고유 ID
+    private String admin_id;           // 관리자의 ID
+    private String accommodation_id;   // 숙소의 고유 ID
+	public String getAdmin_id() {
+		return admin_id;
+	}
+	public void setAdmin_id(String admin_id) {
+		this.admin_id = admin_id;
+	}
+	public String getAccommodation_id() {
+		return accommodation_id;
+	}
+	public void setAccommodation_id(String accommodation_id) {
+		this.accommodation_id = accommodation_id;
+	}
     
-    public String getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(String adminId) {
-        this.adminId = adminId;
-    }
-
-    public String getAccommodationId() {
-        return accommodationId;
-    }
-
-    public void setAccommodationId(String accommodationId) {
-        this.accommodationId = accommodationId;
-    }
+    
 }

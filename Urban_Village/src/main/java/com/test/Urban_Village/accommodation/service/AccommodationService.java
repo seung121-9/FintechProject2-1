@@ -9,7 +9,7 @@ public interface AccommodationService {
 
 
 	List<AccommodationDTO> accList();
-	AccommodationDTO findAccommodationById();
+	AccommodationDTO findAccommodationId(String accommodationId);
 	String addAccommodation(AccommodationDTO dto);
 
 

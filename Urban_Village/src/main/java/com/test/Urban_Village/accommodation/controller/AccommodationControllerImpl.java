@@ -6,12 +6,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.Urban_Village.accommodation.dto.AccommodationDTO;
@@ -22,16 +24,32 @@ import com.test.Urban_Village.accommodation.service.AccommodationService;
 public class AccommodationControllerImpl implements AccommodationController {
 @Autowired
 AccommodationService service;
+@Autowired
+HttpSession session;
+
 
 @Override
 @RequestMapping("/accommodationPage.do")
-public ModelAndView accommodationpage (HttpServletResponse response, HttpServletRequest request) {
+public ModelAndView accommodationPage (@RequestParam("accommodation_id")String accommodation_id, HttpServletResponse response, HttpServletRequest request) {
 	ModelAndView mav = new ModelAndView();
+	System.out.println("ì•„ì´ë”” ê°€ì ¸ì˜¨ê±° ì¶œë ¥" + accommodation_id);
+	//String viewName = (String)request.getAttribute("viewName");
+	//mav.setViewName(viewName);
 	String viewName = (String)request.getAttribute("viewName");
 	mav.setViewName(viewName);
+	//mav.setViewName("accommodation/accommodationPage");
+	
+	System.out.println(viewName);
+	
+	AccommodationDTO accommodation = service.findAccommodationId(accommodation_id);
+	session.setAttribute("accommodation", accommodation);
 	List<AccommodationDTO> accList = service.accList();
-	mav.addObject("accList",accList);
-	System.out.println("¾ÆÀÌµğ : " + accList.size());
+	System.out.println("ì•„ì´ë”” ê°¯ìˆ˜: " + accList.size()); //ì•„ì´ë”” ê°¯ìˆ˜ ë³´ë ¤ê³  ì ì–´ë‘”ê±°   î°³                  
+	
+	System.out.println(accommodation.getPrice());
+	for (AccommodationDTO acc : accList) {
+	    System.out.println(acc);
+	}
 	return mav;
 }
 @Override
@@ -51,20 +69,19 @@ public ModelAndView accommodation(@ModelAttribute("dto") AccommodationDTO dto, H
     String generatedId = service.addAccommodation(dto);
     boolean isSuccess = (generatedId != null && !generatedId.isEmpty());
 
-    // ¼º°ø ¿©ºÎ¿¡ µû¶ó ¸Ş½ÃÁö Ãâ·Â
-    response.setContentType("text/html; charset=UTF-8");
+    //ì´ê±° ì•ŒëŸ¬íŠ¸ë¡œ ëœ¨ëŠ” ê±´ë° ë‚˜ì¤‘ì— ë‹¤ ëª¨ë‹¬ë¡œ ë°”ê¿”ì•¼
     PrintWriter out = response.getWriter();
     
-    out.write("<script>");
     if (isSuccess) {
-        out.write("alert('¼÷¼Ò µî·Ï¿¡ ¼º°øÇß½À´Ï´Ù. ID: " + generatedId + "');");
+        out.write("alert('íšŒì› ê°€ì…ì´ ì„±ê³µì ìœ¼ë¡œ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤. ID: " + generatedId + "');");
     } else {
-        out.write("alert('¼÷¼Ò µî·Ï¿¡ ½ÇÆĞÇß½À´Ï´Ù.');");
+        out.write("alert('íšŒì› ê°€ì…ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.');");
     }
-    out.write("location.href='accommodationList.do';"); //ÀÌ°Å ¾ÆÁ÷ ¾È¸¸µé¾úÀ½.. ³ªÁß¿¡ °ü¸®ÀÚ°¡ ¿­¾îºÁ¾ß ÇÒ °Í°°¾Æ¼­
+    out.write("location.href='accommodationList.do';"); // ê°€ì… ì™„ë£Œ í›„ ìˆ™ì†Œ ëª©ë¡ í˜ì´ì§€ë¡œ ì´ë™
     out.write("</script>");
-
+    mav.setViewName("urbanMain");
     return mav;
+
 }
 
 

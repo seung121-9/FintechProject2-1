@@ -24,5 +24,7 @@ public interface MemberController {
 	public void checkId(HttpServletRequest request, HttpServletResponse response);
 	public ModelAndView reservationForm(HttpServletRequest request, HttpServletResponse response);
 	public ModelAndView reservationEnd(HttpServletRequest request, HttpServletResponse response);
-	public ModelAndView reservation(PayDTO payDTO, HttpServletRequest request, HttpServletResponse response);
+	public ModelAndView payList(HttpServletRequest request, HttpServletResponse response);
+	public ModelAndView reservation(String accommodation_id, PayDTO payDTO, HttpServletRequest request,
+			HttpServletResponse response);
 }

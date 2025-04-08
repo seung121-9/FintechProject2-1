@@ -91,15 +91,13 @@ body {
 
 			<div class="mb-3">
 				<h5>예약 정보</h5>
-				<label for="checkin" class="form-label">체크인 날짜</label> <input
-					type="date" class="form-control" id="checkin" value="2025-04-13"
-					name="checkin_date"> <label for="checkout"
-					class="form-label">체크아웃 날짜</label> <input type="date"
-					class="form-control" id="checkout" value="2025-04-18"
-					name="checkout_date"> <label for="guests"
-					class="form-label">게스트 수</label> <input type="number"
-					class="form-control" id="guests" value="1" min="1"
-					name="guest_count">
+				<label for="checkin" class="form-label">체크인 날짜</label> 
+				<input type="date" class="form-control" id="checkin" value="2025-04-13" name="checkin_date"> 
+				<label for="checkout"	class="form-label">체크아웃 날짜</label> 
+				<input type="date"	class="form-control" id="checkout" value="2025-04-18" name="checkout_date"> 
+				<label for="guests"	class="form-label">게스트 수</label> 
+				<input type="number"	class="form-control" id="guests" value="1" min="1" name="guest_count">
+				<input name="accommodation_id" value="${sessionScope.accommodation.accommodation_id }">
 			</div>
 
 			<div class="mb-3">
@@ -128,15 +126,10 @@ body {
         <input type="hidden" name="checkout_date" id="checkout_date_hidden">
         <input type="hidden" name="guest_count" id="guest_count_hidden">
         <input type="hidden" name="total_price" id="total_price_hidden">
+        <input type="hidden" name="accommodation_id" id="accommodation_id" value="${sessionScope.accommodation.accommodation_id }">
         <input type="hidden" id="randomValue" name="reservation_id"
             value="<%= randomNumber %>">
-	<!-- 여기서 컨트롤러에 적어둔 숙소 아이디 가져온거여 근데 계속 널이라서 if문 추가 해봤는데 의미없어서 지워도 될거여-->
-        <c:if test="${not empty acc}">
-             <input type="hidden" name="accommodation_id" value="${acc.accommodation_id}">
-        </c:if>
-        <c:if test="${empty acc}">
-            <input type="hidden" name="accommodation_id" value="ㅗ">
-        </c:if>
+	
 
         <button type="submit" class="btn btn-primary btn-lg">확인 및
             결제</button>
@@ -289,8 +282,16 @@ body {
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"
 								data-bs-dismiss="modal">취소</button>
-							<button type="button" class="btn btn-primary" id="confirmPayment"
-								disabled>확인</button>
+								<form action="/Urban_Village/member/reservationEnd.do" method="POST">
+								<label for="checkin" class="form-label">체크인 날짜</label> 
+								<input type="date" class="form-control" id="checkin" value="2025-04-13" name="checkin_date"> 
+								<label for="checkout"	class="form-label">체크아웃 날짜</label> 
+								<input type="date"	class="form-control" id="checkout" value="2025-04-18" name="checkout_date"> 
+								<label for="guests"	class="form-label">게스트 수</label> 
+								<input type="number"	class="form-control" id="guests" value="1" min="1" name="guest_count">
+								<input name="accommodation_id" value="${sessionScope.accommodation.accommodation_id }">
+							<button type="submit" class="btn btn-primary" id="confirmPayment"
+								disabled>확인</button></form>
 						</div>
 					</div>
 				</div>
@@ -316,7 +317,7 @@ body {
 		</div>
 
 		<div class="right-section">
-			<h4>[New채이네] 에어비앤비 최고의 전망 No1. 파고라 리뉴얼 감성불멍 bar new open</h4>
+			<h4> ${sessionScope.accommodation.accommodation_name } </h4>
 			<p>
 				<strong>별장 전체</strong>
 			</p>
@@ -324,12 +325,12 @@ body {
 
 			<h5>요금 세부정보</h5>
 			<p>
-				₩296,000 x <span id="nights">5</span>박 = ₩<span id="room-price">1,480,000</span>
+				<a>₩ ${sessionScope.accommodation.price }</a> x <span id="nights">0</span>박 = ₩<span id="room-price">0</span>
 			</p>
 			<div class="mb-3 total-price">
 				<h5>총액</h5>
 				<p>
-					₩<span id="totalPriceDisplay">1,709,836</span> (KRW)
+					₩<span id="totalPriceDisplay">0</span> (KRW)
 				</p>
 				<p class="small-text">해외에서 결제가 처리되기 때문에 카드 발행사에서 추가 수수료를 부과할 수
 					있습니다.</p>
@@ -338,28 +339,23 @@ body {
 	</div>
 
 	<script>
-		/* function copyValues() {
-		    document.getElementById("checkin_date_hidden").value = document.getElementById("checkin").value;
-		    document.getElementById("checkout_date_hidden").value = document.getElementById("checkout").value;
-		    document.getElementById("guest_count_hidden").value = document.getElementById("guests").value;
-		} */
+		
 		function copyValues() {
 		    let checkin = document.getElementById("checkin").value;
 		    let checkout = document.getElementById("checkout").value;
 		    let guests = document.getElementById("guests").value;
 		    let totalPriceDisplay = document.getElementById("totalPriceDisplay").innerText.replace(/[^0-9]/g, "");
-		    let accommodationId = document.querySelector('input[name="accommodation_id"]').value;
-
+			let accommodation_id = document.getElementById("accommodation_id").value;
 		    document.getElementById("checkin_date_hidden").value = checkin;
 		    document.getElementById("checkout_date_hidden").value = checkout;
 		    document.getElementById("guest_count_hidden").value = guests;
 		    document.getElementById("total_price_hidden").value = totalPriceDisplay; // 총액을 숨겨진 price 필드에 설정
-
+			document.getElementById("accommodation_id").value = accommodation_id;
 		    console.log("체크인 날짜:", checkin);
 		    console.log("체크아웃 날짜:", checkout);
 		    console.log("게스트 수:", guests);
 		    console.log("price", totalPriceDisplay);
-		    console.log("accommodationId", accommodationId); 
+		    console.log("accommodation_id : ", accommodation_id);
 		}
 
 		$(document)
@@ -427,6 +423,27 @@ body {
 								$('#successModal').modal('show');
 							});
 						});
+		
+		//이전페이지에서 결제 정보 받아오는건데 로컬세션에 저장함
+		document.addEventListener('DOMContentLoaded', function() {
+			const storedCheckin = localStorage.getItem('reservationCheckin');
+		    const storedCheckout = localStorage.getItem('reservationCheckout');
+		    const storedGuests = localStorage.getItem('reservationGuests');
+		    const storedTotalPrice = localStorage.getItem('reservationTotalPrice');
+
+		    if (storedCheckin) {
+		        $('#checkin').val(storedCheckin);
+		    }
+		    if (storedCheckout) {
+		        $('#checkout').val(storedCheckout);
+		    }
+		    if (storedGuests) {
+		        $('#guests').val(storedGuests);
+		    }
+		    if (storedTotalPrice) {
+		        $('#totalPriceDisplay').text('₩' + Number(storedTotalPrice).toLocaleString());
+		    }
+		});
 	</script>
 
 	<script

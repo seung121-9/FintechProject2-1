@@ -27,7 +27,7 @@ public class MemberServiceImpl implements MemberService {
 		    MemberDTO member = new MemberDTO();
 		    member.setId(id);
 		    member.setPwd(pwd);
-		    return dao.login(member); // DB¿¡¼­ ÇØ´ç Á¤º¸¸¦ Á¶È¸
+		    return dao.login(member); // DBï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
 		}
 
 		@Override
@@ -46,6 +46,12 @@ public class MemberServiceImpl implements MemberService {
 			// TODO Auto-generated method stub
 			dao.addPay(payDto);
 			
+		}
+
+		@Override
+		public List<PayDTO> payList() {
+			// TODO Auto-generated method stub
+			return dao.payList();
 		}
 		
 	}

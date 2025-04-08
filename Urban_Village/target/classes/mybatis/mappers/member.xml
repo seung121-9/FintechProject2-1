@@ -42,11 +42,17 @@
         SELECT COUNT(*) FROM member WHERE id = #{id}
     </select>
     
-    <insert id="addAccommodation" parameterType="com.test.Urban_Village.accommodation.dto.AccommodationDTO">
-    INSERT INTO accommodation 
-    (admin_id, accommodation_name, accommodation_photo, cleaner_admin_id, capacity, room_count, bathroom_count, bed_count) 
-    VALUES 
-    (#{adminId, jdbcType=VARCHAR}, #{accommodationName, jdbcType=VARCHAR}, #{accommodationPhoto, jdbcType=VARCHAR}, #{cleanerAdminId, jdbcType=VARCHAR}, #{capacity, jdbcType=INTEGER}, #{roomCount, jdbcType=INTEGER}, #{bathroomCount, jdbcType=INTEGER}, #{bedCount, jdbcType=INTEGER})
-</insert>
-
+    <insert id="addPay" parameterType="payDTO">
+    	INSERT INTO pay 
+        (accommodation_id, id, reservation_id, checkin_date, checkout_date, guest_count, total_price)
+        VALUES 
+        (#{accommodation_id},#{id}, #{reservation_id},
+         #{checkin_date}, #{checkout_date}, 
+         #{guest_count}, #{total_price}) 
+    </insert>
+    <select id="payList" resultMap="payResult">
+		select * from pay order by reservation_id desc
+	</select>
+    
+     
 </mapper> 

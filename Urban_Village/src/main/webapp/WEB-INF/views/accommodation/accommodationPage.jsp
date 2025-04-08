@@ -1,7 +1,15 @@
+<%@page
+	import="com.test.Urban_Village.accommodation.dto.AccommodationDTO"%>
 <%@page import="java.util.Random"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <%
+HttpSession session2 = request.getSession(); //1쓰고 있음
 
+
+
+%> --%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -35,11 +43,15 @@
 
 	<main class="container mt-4">
 		<div class="d-flex justify-content-between align-items-center">
-			<h1 class="fw-bold">🌟 남양주 최고의 전망! 감성 숙소</h1>
+
+			<h1 class="fw-bold">🌟
+				${sessionScope.accommodation.accommodation_name}</h1>
 			<span class="heart" onclick="toggleHeart()">❤️</span>
 		</div>
-		<p class="text-muted">Sudong-myeon, Namyangju-si, 한국의 별장 전체</p>
-
+		<p class="text-muted">${sessionScope.accommodation.capacity},한국의
+			별장 전체</p>
+		<p name="commodation_id">숙소 ID
+			:${sessionScope.accommodation.accommodation_id}</p>
 		<div class="container mt-4">
 			<h3 class="fw-bold">숙소 이미지</h3>
 			<div class="row">
@@ -59,14 +71,15 @@
 
 		<div class="row">
 			<div class="col-md-6">
-				<h3 class="fw-bold">₩296,000 / 박</h3>
+				<h3 class="fw-bold">${sessionScope.accommodation.price}원 / 박</h3>
 				<p>
 					<strong>⭐ 4.93 후기 294개</strong>
 				</p>
 				<label>체크인:</label> <input type="date" id="checkin"
-					class="form-control mb-2"> <label>체크아웃:</label> <input
-					type="date" id="checkout" class="form-control mb-2"> <label>인원:</label>
-				<select id="guests" class="form-control mb-2">
+					class="form-control mb-2" onchange="calculatePrice()"> <label>체크아웃:</label>
+				<input type="date" id="checkout" class="form-control mb-2"
+					onchange="calculatePrice()"> <label>인원:</label> <select
+					id="guests" class="form-control mb-2">
 					<option value="1">1명</option>
 					<option value="2">2명</option>
 					<option value="3">3명</option>
@@ -75,9 +88,9 @@
 				<p class="fw-bold">
 					총 금액: <span id="totalPrice">₩0</span>
 				</p>
-					<a href="/Urban_Village/member/reservationForm.do">
+				<a href="/Urban_Village/member/reservationForm.do">
 					<button type="button" class="btn btn-danger w-100">예약하기</button>
-					</a>
+				</a>
 			</div>
 
 			<div class="col-md-6">
@@ -123,6 +136,7 @@
 			<button class="btn btn-outline-secondary mt-2"
 				onclick="toggleReviews()">후기 더보기</button>
 		</div>
+
 	</main>
 
 
@@ -151,18 +165,55 @@
     }
 
     // 총 숙박 금액 계산
-    function calculatePrice() {
-        let checkin = new Date(document.getElementById("checkin").value);
-        let checkout = new Date(document.getElementById("checkout").value);
-        let nights = (checkout - checkin) / (1000 * 60 * 60 * 24);
-        let pricePerNight = 296000;
-        
-        if (nights > 0) {
-            document.getElementById("totalPrice").innerText = "₩" + Number(nights * pricePerNight).toLocaleString();
-        } else {
-            alert("체크인과 체크아웃 날짜를 올바르게 선택하세요!");
-        }
+    /* function calculatePrice() {
+    let checkin = new Date(document.getElementById("checkin").value);
+    let checkout = new Date(document.getElementById("checkout").value);
+    let nights = (checkout - checkin) / (1000 * 60 * 60 * 24);
+    let pricePerNight = ${sessionScope.accommodation.price}; // JSP에서 가격 불러오기
+	
+    if (nights > 0) {
+        document.getElementById("totalPrice").innerText = "₩" + Number(nights * pricePerNight).toLocaleString();
+    } else {
+        document.getElementById("totalPrice").innerText = "₩0";
     }
+} */
+function calculatePrice() {
+    let checkin = document.getElementById("checkin").value;
+    let checkout = document.getElementById("checkout").value;
+    let guests = document.getElementById("guests").value;
+    let pricePerNight = ${sessionScope.accommodation.price};
+    let nights = (new Date(checkout) - new Date(checkin)) / (1000 * 60 * 60 * 24);
+    let totalPrice = nights > 0 ? nights * pricePerNight : 0;
+    document.getElementById("totalPrice").innerText = "₩" + Number(totalPrice).toLocaleString();
+
+    // 로컬 스토리지에 값 저장
+    localStorage.setItem('reservationCheckin', checkin);
+    localStorage.setItem('reservationCheckout', checkout);
+    localStorage.setItem('reservationGuests', guests);
+    localStorage.setItem('reservationTotalPrice', totalPrice);
+}
+
+// 페이지 로드 시 초기값설정인데 없어도 작동으 ㄴ됨
+document.addEventListener('DOMContentLoaded', function() {
+    const checkinInput = document.getElementById('checkin');
+    const checkoutInput = document.getElementById('checkout');
+    const guestsInput = document.getElementById('guests');
+
+    const storedCheckin = localStorage.getItem('reservationCheckin');
+    const storedCheckout = localStorage.getItem('reservationCheckout');
+    const storedGuests = localStorage.getItem('reservationGuests');
+
+    if (storedCheckin && checkinInput) {
+        checkinInput.value = storedCheckin;
+    }
+    if (storedCheckout && checkoutInput) {
+        checkoutInput.value = storedCheckout;
+    }
+    if (storedGuests && guestsInput) {
+        guestsInput.value = storedGuests;
+    }
+});
+
 
     // 후기 더보기 기능
     function toggleReviews() {
@@ -172,6 +223,5 @@
     // 페이지 로드 시 지도 표시
     window.onload = initKakaoMap;
 </script>
-
 </body>
 </html>

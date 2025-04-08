@@ -11,5 +11,7 @@
 			alias="payDTO" />
 			<typeAlias type="com.test.Urban_Village.accommodation.dto.AccommodationDTO"
 			alias="accDTO" />
+			<typeAlias type="com.test.Urban_Village.admin.dto.AdminDTO" alias="AdminDTO"/>
 	</typeAliases>
+	
 </configuration>

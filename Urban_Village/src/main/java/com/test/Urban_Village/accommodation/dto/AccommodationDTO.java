@@ -2,18 +2,29 @@ package com.test.Urban_Village.accommodation.dto;
 
 public class AccommodationDTO {
 
-    private String accommodation_id;     // ¼÷¼Ò °íÀ¯¹øÈ£
-    private String admin_id;             // °ü¸®ÀÚ ID
-    private String accommodation_name;   // ¼÷¼Ò ÀÌ¸§
-    private String accommodation_photo;  // ¼÷¼Ò »çÁø °æ·Î
-    private String cleaner_admin_id;     // Ã»¼Ò °ü¸®ÀÚ ID
-    private int capacity;                // ÃÖ´ë ÀÎ¿ø ¼ö
-    private int room_count;              // ¹æ °³¼ö
-    private int bathroom_count;          // È­Àå½Ç °³¼ö
-    private int bed_count;               // Ä§´ë ¼ö
-    private String wifi_avail;           // ¿ÍÀÌÆÄÀÌ À¯¹«
-    private String review_data;          // ¸®ºä µ¥ÀÌÅÍ
-    private int price;
+    private String accommodation_id;     // ìˆ™ì†Œ ê³ ìœ ë²ˆí˜¸
+    private String admin_id;             // ê´€ë¦¬ì ID
+    private String accommodation_name;   // ìˆ™ì†Œ ì´ë¦„
+    private String accommodation_photo;  // ìˆ™ì†Œ ëŒ€í‘œ ì‚¬ì§„
+    private String cleaner_admin_id;     // ì²­ì†Œ ê´€ë¦¬ì ID
+    private int capacity;                // ìµœëŒ€ ìˆ˜ìš© ì¸ì›
+    private int room_count;              // ë°© ê°œìˆ˜
+    private int bathroom_count;          // ìš•ì‹¤ ê°œìˆ˜
+    private int bed_count;               // ì¹¨ëŒ€ ê°œìˆ˜
+    private String wifi_avail;           // ì™€ì´íŒŒì´ ì—¬ë¶€
+    private String review_data;          // ë¦¬ë·° ë°ì´í„°
+    private int price;                   // ê°€ê²©
+
+    @Override
+    public String toString() {
+        return "AccommodationDTO{" +
+                "accommodation_id='" + accommodation_id + '\'' +
+                ", accommodation_name='" + accommodation_name + '\'' +
+                ", price=" + price +
+                ", accommodation_photo='" + accommodation_photo + '\'' +
+                ", room_count=" + room_count +
+                '}';
+    }
 
     public String getAccommodation_id() {
         return accommodation_id;

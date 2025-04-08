@@ -12,4 +12,5 @@ public interface MemberService {
 	public int addMember(MemberDTO member);
 	boolean checkIfUserIdExists(String userId);
 	public void addPay(PayDTO payDto);
+	public List<PayDTO> payList();
 }

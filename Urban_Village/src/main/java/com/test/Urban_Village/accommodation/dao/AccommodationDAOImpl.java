@@ -21,8 +21,8 @@ public List<AccommodationDTO> accList() {
 	return accList;
 }
 @Override
-public AccommodationDTO findAccommodationById() {
-    return session.selectOne("mapper.accommodation.findAccommodationById"); // Ãß°¡
+public AccommodationDTO findAccommodationId(String accommodationId) {
+    return session.selectOne("mapper.accommodation.findAccommodationId", accommodationId);
 }
 @Override
 public int addAcommodation(AccommodationDTO dto) {

@@ -3,8 +3,8 @@ package com.test.Urban_Village.accommodation.dto;
 
 public class AccommodationIdDTO {
     
-    private String admin_id;           // 관리자의 ID
-    private String accommodation_id;   // 숙소의 고유 ID
+    private String admin_id;           
+    private String accommodation_id;  
 	public String getAdmin_id() {
 		return admin_id;
 	}

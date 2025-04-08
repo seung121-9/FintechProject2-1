@@ -33,7 +33,7 @@
 	
 	<definition name="/accommodation/accommodationPage" extends="mainLayout">
     <put-attribute name="title" value="상세페이지"></put-attribute>
-    <put-attribute name="body" value="/WEB-INF/views/accommodation/accommodationPage1.jsp"></put-attribute>
+    <put-attribute name="body" value="/WEB-INF/views/accommodation/accommodationPage.jsp"></put-attribute>
 	</definition>
 	
 	<definition name="/accommodation/accommodationForm" extends="mainLayout">

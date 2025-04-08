@@ -8,7 +8,7 @@ public interface AccommodationDAO {
 
 	List<AccommodationDTO> accList();
 
-	AccommodationDTO findAccommodationById();
+	AccommodationDTO findAccommodationId(String accommodationId);
 
 	int addAcommodation(AccommodationDTO dto);
 

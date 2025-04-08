@@ -4,15 +4,15 @@ import java.sql.Date;
 
 public class MemberDTO {
     
-    private String id;                // È¸¿ø ID
-    private String pwd;               // ºñ¹Ğ¹øÈ£
-    private String email;             // ÀÌ¸ŞÀÏ
-    private Date birth;               // »ı³â¿ùÀÏ
-    private String gender;            // ¼ºº°
-    private String phonenumber;       // ÀüÈ­¹øÈ£
-    private String name;              // ÀÌ¸§
-    private Date regdate;             // °¡ÀÔÀÏ
-    private Date moddate;             // ¼öÁ¤ÀÏ
+    private String id;                // íšŒì› ID
+    private String pwd;               // ë¹„ë°€ë²ˆí˜¸
+    private String email;             // ì´ë©”ì¼
+    private Date birth;               // ìƒë…„ì›”ì¼
+    private String gender;            // ì„±ë³„
+    private String phonenumber;      // ì „í™”ë²ˆí˜¸
+    private String name;              // ì´ë¦„
+    private Date regdate;             // ë“±ë¡ì¼
+    private Date moddate;            // ìˆ˜ì •ì¼
     
     public String getId() {
         return id;
@@ -86,4 +86,3 @@ public class MemberDTO {
         this.moddate = moddate;
     }
 }
-

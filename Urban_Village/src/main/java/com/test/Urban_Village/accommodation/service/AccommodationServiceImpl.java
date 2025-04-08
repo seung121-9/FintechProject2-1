@@ -20,8 +20,8 @@ public List<AccommodationDTO> accList() {
 	return dao.accList();
 }
 @Override
-public AccommodationDTO findAccommodationById() {
-    return dao.findAccommodationById(); // 추가
+public AccommodationDTO findAccommodationId(String accommodationId) {
+    return dao.findAccommodationId(accommodationId);
 }
 @Override
 public String addAccommodation(AccommodationDTO dto) {
@@ -29,7 +29,7 @@ public String addAccommodation(AccommodationDTO dto) {
     int result = dao.addAcommodation(dto);
     String generatedId = dao.getLastInsertedAccommodationId();
     
-    // 삽입 성공하면 생성된 ID 반환, 실패하면 null 반환
+ 
     return (result > 0) ? generatedId : null;
 }
 

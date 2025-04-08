@@ -2,13 +2,13 @@ package com.test.Urban_Village.admin.dto;
 
 public class AdminDTO {
 
-	    private String admin_id;           // °ü¸®ÀÚ ID
-	    private String pwd;               // ºñ¹Ğ¹øÈ£
-	    private String email;             // ÀÌ¸ŞÀÏ
-	    private String name;              // °ü¸®ÀÚ ÀÌ¸§
-	    private String phone_number;       // °ü¸®ÀÚ ÀüÈ­¹øÈ£
-	    private String organization;      // ¼Ò¼Ó ±â°ü
-	    private String location;          // ¼Ò¼Ó À§Ä¡
+	    private String admin_id;           // ê´€ë¦¬ì ID
+	    private String pwd;               // ë¹„ë°€ë²ˆí˜¸
+	    private String email;             // ì´ë©”ì¼
+	    private String name;              // ê´€ë¦¬ì ì´ë¦„
+	    private String phone_number;       // ê´€ë¦¬ì ì „í™”ë²ˆí˜¸
+	    private String organization;      // ì†Œì† ê¸°ê´€
+	    private String location;          // ì†Œì† ìœ„ì¹˜
 		public String getAdmin_id() {
 			return admin_id;
 		}

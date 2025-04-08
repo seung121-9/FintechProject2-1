@@ -34,7 +34,7 @@
 	</select>
 
 
-	<select id="findAccommodationById" parameterType="string"
+	<select id="findAccommodationId" parameterType="string"
 		resultMap="accResult">
 		SELECT * FROM accommodation	WHERE accommodation_id = #{accommodation_id}
 	</select>

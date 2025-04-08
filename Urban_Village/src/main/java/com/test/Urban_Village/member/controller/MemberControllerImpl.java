@@ -47,7 +47,7 @@ public class MemberControllerImpl implements MemberController {
 
 	
 		@Override
-		@RequestMapping("/urbanMemberList.do")
+		@RequestMapping("urbanMemberList.do")
 		public ModelAndView urbanMemberList(HttpServletRequest request, HttpServletResponse response) {
 			ModelAndView mav = new ModelAndView();
 			String viewName = (String) request.getAttribute("viewName");
@@ -76,13 +76,14 @@ public class MemberControllerImpl implements MemberController {
 			@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 			public ModelAndView login(RedirectAttributes rAttr, @RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpServletRequest request, HttpServletResponse response) {
 				ModelAndView mav = new ModelAndView();
-				HttpSession session = request.getSession();
+				session = request.getSession();
 
 				// 관리자 로그인 시도
 				AdminDTO admin = adminService.login(id, pwd);
 				if (admin != null) {
 					session.setAttribute("isAdmin", true);
 					session.setAttribute("adminInfo", admin);
+					session.setAttribute("adminId", admin.getAdmin_id());
 					String action = (String) session.getAttribute("action");
 					session.removeAttribute("action");
 					if(action != null) {
@@ -168,6 +169,40 @@ public class MemberControllerImpl implements MemberController {
 			}
 			return null;
 		}
+		@Override
+		@RequestMapping("/myInfo.do")
+	    public ModelAndView myInfo(@RequestParam("id") String id,HttpServletRequest request, HttpServletResponse response) {
+	        List<MemberDTO> memberList = service.getUserInfoById(id);
+	        ModelAndView mav = new ModelAndView();
+	        String viewName = (String) request.getAttribute("viewName");
+			mav.setViewName(viewName);
+	        mav.addObject("memberList", memberList);
+	        return mav;
+	    }
+		
+		@Override
+		@RequestMapping("/updateUserInfo.do")
+		   public ModelAndView updateUserInfo(@ModelAttribute() MemberDTO member,
+		         @RequestParam("id") String id,
+		         HttpServletRequest request,
+		         HttpServletResponse response) throws IOException {
+		      int result = service.updateUserInfo(member);
+		      response.setContentType("text/html;charset=utf-8");
+		       PrintWriter out = response.getWriter();
+		      if (result == 1) {
+		              out.write("<script>");
+		              out.write("alert('수정성공!');");
+		              out.write("location.href='" + request.getContextPath() + "/member/loginForm.do';");
+		              out.write("</script>");
+		          } else {
+		              out.write("<script>");
+		              out.write("alert('수정실패');");
+		              out.write("location.href='" + request.getContextPath() + "/member/getUserInfo.do';");
+		              out.write("</script>");
+		          }
+		      
+		      return null;
+		   }
 
 		// 아이디 중복 체크 (AJAX 사용 가능)
 		@Override
@@ -199,7 +234,7 @@ public class MemberControllerImpl implements MemberController {
 	        HttpServletRequest request, HttpServletResponse response) {
 
 		//여기 진입은 가능함
-	    System.out.println(" 컨트롤러 진입ㅗㅗㅗ");
+	    System.out.println(" 컨트롤러 진입");
 
 	    ModelAndView mav = new ModelAndView();
 
@@ -234,19 +269,30 @@ public class MemberControllerImpl implements MemberController {
 	    mav.setViewName(viewName);
 	    return mav;
 	}
+
 	@Override
-	@RequestMapping("/reservationEnd.do")
-	public ModelAndView reservationEnd(HttpServletRequest request, HttpServletResponse response) {
-		String viewName = (String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);
-		//이거 마지막에 예약 완료 화면 만들려고 한건데 하나도 안꾸밈
-		mav.addObject("viewName",viewName);
-		System.out.println("viewName"+viewName);
-		PayDTO payDto = new PayDTO();
-		String reservation_id = payDto.getReservation_id();
-		mav.addObject("reservation_id", reservation_id);
-		return	mav;
+	@RequestMapping("/reservationHistory.do")
+	public ModelAndView reservationHistory(HttpServletRequest request, HttpServletResponse response) {
+	    String viewName = (String) request.getAttribute("viewName");
+	    ModelAndView mav = new ModelAndView();
+	    session = request.getSession(false);
+	    if (session == null || session.getAttribute("loginId") == null) {
+	        mav.setViewName("redirect:/member/loginForm.do");
+	        System.out.println("로그인되지 않은 사용자");
+	        return mav;
+	    }
+	    String loginId = (String) session.getAttribute("loginId");
+	    System.out.println("로그인 아이디: " + loginId);
+	    System.out.println("viewName: " + viewName);
+
+	    if (loginId != null) {
+	        List<PayDTO> userReservations = service.reservationGetUserId(loginId);
+	        System.out.println("예약 정보: " + userReservations);
+	        mav.addObject("reservations", userReservations);
+	        mav.setViewName(viewName);
+	    }
+
+	    return mav;
 	}
 	@Override
 	@RequestMapping("/payList.do")

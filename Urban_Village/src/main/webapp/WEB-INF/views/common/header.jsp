@@ -2,6 +2,7 @@
    pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -25,6 +26,8 @@
                 }
             }
         };
+        
+        console.log("로그인 아이디 :", ${loginId});
     </script>
 <style>
 /* 헤더 스타일 */
@@ -169,44 +172,46 @@
       <!-- 사용자 메뉴 -->
       <div class="user-menu">
          <c:choose>
-            <c:when test="${isLogin == true}">
-               <!-- 로그인 상태 -->
+             <c:when test="${isLogin == true }">
+                  
                <div class="profile-menu">
-                  <img src="/Urban_Village/resources/images/profile.png"
+                  <img src="${contextPath }/resources/images/profile.png"
                      class="profile-img" alt="프로필 이미지">
+                     <h3>${loginId }님</h3>
                   <button class="menu-btn" onclick="toggleDropdown()">☰</button>
                </div>
 
                <!-- 드롭다운 메뉴 -->
                <div id="dropdownMenu" class="dropdown-content">
-                  <a href="#">여행(예약확인)</a> <a href="#">위시리스트</a>
+                  <a href="${contextPath}/member/reservationHistory.do">여행(예약확인)</a> <a href="#">위시리스트</a>
                   <hr>
-                  <a href="#">호스트 추천하기</a> <a href="#">계정</a> <a href="#">직원채용</a>
+                  <a href="#">호스트 추천하기</a> <a href="${contextPath }/member/myInfo.do?id=${loginId}">계정</a> <a href="#">직원채용</a>
                   <hr>
-                  <a href="#">도움말 센터</a> <a href="/Urban_Village/member/logout.do">로그아웃</a>
+                  <a href="#">도움말 센터</a> <a href="${contextPath }/member/logout.do">로그아웃</a>
                </div>
             </c:when>
             <c:when test="${isAdmin == true}">
                <!-- 로그인 상태 -->
                <div class="profile-menu">
-                  <img src="/Urban_Village/resources/images/profile.png"
+                  <img src="${contextPath }/resources/images/profile.png"
                      class="profile-img" alt="프로필 이미지">
+                     <h3>${adminId }님</h3>
                   <button class="menu-btn" onclick="toggleDropdown()">☰</button>
                </div>
 
                <!-- 드롭다운 메뉴 -->
                <div id="dropdownMenu" class="dropdown-content">
-                  <a href="#">숙소 추가</a> <a href="#">지원자 현황</a>
+                  <a href="${contextPath }/accommodation/accommodationForm.do">숙소 추가</a> <a href="#">지원자 현황</a>
                   <hr>
-                  <a href="#">직원 배정</a> <a href="#">계정</a> <a href="#">매출</a>
+                  <a href="#">직원 배정</a> <a href="${contextPath }/member/urbanMemberList.do">계정</a> <a href="#">매출</a>
                   <hr>
-                  <a href="#">회원 관리</a> <a href="/Urban_Village/member/logout.do">로그아웃</a>
+                  <a href="#">회원 관리</a> <a href="${contextPath }/member/logout.do">로그아웃</a>
                </div>
             </c:when>
             <c:otherwise>
                <!-- 로그아웃 상태 -->
-               <a href="/Urban_Village/member/loginForm.do">로그인</a>
-               <a href="/Urban_Village/member/joinMember.do">회원가입</a>
+               <a href="${contextPath }/member/loginForm.do">로그인</a>
+               <a href="${contextPath }/member/joinMember.do">회원가입</a>
             </c:otherwise>
          </c:choose>
       </div>

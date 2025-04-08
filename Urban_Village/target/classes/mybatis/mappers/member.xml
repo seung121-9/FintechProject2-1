@@ -24,35 +24,72 @@
 		<result property="guest_count" column="guest_count"></result>
 		<result property="total_price" column="total_price"></result>
 	</resultMap>
-	
-	
+
+
 
 	<select id="selectAllMemberList" resultMap="memResult">
-		select * from member order by id desc
+		select * from member
+		order by id desc
 	</select>
-	<select id="login" parameterType="memberDTO" resultMap="memResult">
+	<select id="login" parameterType="memberDTO"
+		resultMap="memResult">
 		select * from member where id=#{id} and pwd=#{pwd}
 	</select>
-	
+
 	<insert id="join">
-      INSERT INTO member (id, pwd, email, birth, gender, phonenumber, name,regdate)
-        VALUES (#{id}, #{pwd}, #{email}, #{birth}, #{gender}, #{phonenumber}, #{name},sysdate)
-   </insert>
-   <select id="countMemberById" parameterType="string" resultType="int">
-        SELECT COUNT(*) FROM member WHERE id = #{id}
-    </select>
-    
-    <insert id="addPay" parameterType="payDTO">
-    	INSERT INTO pay 
-        (accommodation_id, id, reservation_id, checkin_date, checkout_date, guest_count, total_price)
-        VALUES 
-        (#{accommodation_id},#{id}, #{reservation_id},
-         #{checkin_date}, #{checkout_date}, 
-         #{guest_count}, #{total_price}) 
-    </insert>
-    <select id="payList" resultMap="payResult">
-		select * from pay order by reservation_id desc
+		INSERT INTO member (id, pwd, email, birth, gender, phonenumber,
+		name,regdate)
+		VALUES (#{id}, #{pwd}, #{email}, #{birth}, #{gender}, #{phonenumber},
+		#{name},sysdate)
+	</insert>
+	<select id="countMemberById" parameterType="string"
+		resultType="int">
+		SELECT COUNT(*) FROM member WHERE id = #{id}
 	</select>
-    
-     
+
+	<insert id="addPay" parameterType="payDTO">
+		INSERT INTO pay
+		(accommodation_id, id, reservation_id, checkin_date, checkout_date, guest_count,
+		total_price)
+		VALUES
+		(#{accommodation_id},#{id}, #{reservation_id},
+		#{checkin_date}, #{checkout_date},
+		#{guest_count}, #{total_price})
+	</insert>
+	<select id="payList" resultMap="payResult">
+		select * from pay order by
+		reservation_id desc
+	</select>
+	<select id="reservationGetUserId" parameterType="string" resultType="payDTO">
+SELECT
+    p.reservation_id,
+    p.id,
+    p.accommodation_id,
+    a.accommodation_name, -- 숙소 이름 추가
+    p.checkin_date,
+    p.checkout_date,
+    p.guest_count,
+    p.total_price
+FROM
+    pay p
+JOIN
+    accommodation a ON p.accommodation_id = a.accommodation_id
+WHERE
+    p.id = #{loginId}
+</select>
+	<select id="getUserInfoById" parameterType="String"
+		resultType="memberDTO">
+		SELECT id, pwd, email, birth, gender, phonenumber, name
+		FROM member
+		WHERE id = #{id}
+	</select>
+	<update id="modMember" parameterType="memberDTO">
+		UPDATE member
+		SET pwd=#{pwd},
+		email=#{email},
+		phonenumber=#{phonenumber},
+		name=#{name}
+		WHERE id=#{id}
+	</update>
+	
 </mapper> 

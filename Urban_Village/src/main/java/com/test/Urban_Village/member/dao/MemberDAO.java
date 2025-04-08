@@ -10,7 +10,10 @@ public interface MemberDAO {
 	public List<MemberDTO> listMembers();
 	public MemberDTO login(MemberDTO member);
 	public int addMember(MemberDTO member);
-	boolean checkIfUserIdExists(String userId);
+	public boolean checkIfUserIdExists(String userId);
 	public void addPay(PayDTO payDto);
 	public List<PayDTO> payList();
+	public List<MemberDTO> getUserInfoById(String id);
+	public int updateUserInfo(MemberDTO member);
+	public List<PayDTO> reservationGetUserId(String loginId);
 }

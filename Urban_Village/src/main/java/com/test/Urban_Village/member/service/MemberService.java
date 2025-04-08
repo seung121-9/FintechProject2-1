@@ -13,4 +13,7 @@ public interface MemberService {
 	boolean checkIfUserIdExists(String userId);
 	public void addPay(PayDTO payDto);
 	public List<PayDTO> payList();
+	public List<MemberDTO> getUserInfoById(String id);
+	int updateUserInfo(MemberDTO member);
+	public List<PayDTO> reservationGetUserId(String loginId);
 }

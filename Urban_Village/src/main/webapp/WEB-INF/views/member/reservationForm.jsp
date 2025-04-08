@@ -282,7 +282,7 @@ body {
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"
 								data-bs-dismiss="modal">취소</button>
-								<form action="/Urban_Village/member/reservationEnd.do" method="POST">
+								<form action="/Urban_Village/member/reservationHistory.do" method="POST">
 								<label for="checkin" class="form-label">체크인 날짜</label> 
 								<input type="date" class="form-control" id="checkin" value="2025-04-13" name="checkin_date"> 
 								<label for="checkout"	class="form-label">체크아웃 날짜</label> 

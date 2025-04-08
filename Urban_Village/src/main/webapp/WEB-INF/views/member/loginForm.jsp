@@ -182,7 +182,7 @@
             <img src="/Urban_Village/resources/images/ad1.jpg" class="advertisement-slide active" alt="광고1">
             <img src="/Urban_Village/resources/images/ad2.jpg" class="advertisement-slide" alt="광고2">
         </div>
-
+		
         <div class="login-container">
             <form action="/Urban_Village/member/login.do" method="post" class="login-form">
                 <h2>로그인</h2>

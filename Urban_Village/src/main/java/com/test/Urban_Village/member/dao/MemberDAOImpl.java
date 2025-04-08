@@ -35,6 +35,19 @@ public class MemberDAOImpl implements MemberDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("mapper.member.join",member);
 	}
+	
+	@Override
+	   public List<MemberDTO> getUserInfoById(String id) {
+	      // TODO Auto-generated method stub
+	      List<MemberDTO> memberList = sqlSession.selectList("mapper.member.getUserInfoById",id);
+	      return memberList;
+	   }
+	
+	@Override
+	   public int updateUserInfo(MemberDTO member) {
+	      // TODO Auto-generated method stub
+	      return sqlSession.update("mapper.member.modMember",member);
+	   }
 
 	@Override
 	public boolean checkIfUserIdExists(String userId) {
@@ -52,6 +65,12 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<PayDTO> payList() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("mapper.member.payList") ;
+	}
+
+	@Override
+	public List<PayDTO> reservationGetUserId(String loginId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.member.reservationGetUserId", loginId);
 	}
 
 

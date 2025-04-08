@@ -1,5 +1,6 @@
 package com.test.Urban_Village.member.controller;
 
+import java.io.IOException;
 import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +24,11 @@ public interface MemberController {
 	public ModelAndView logout(RedirectAttributes rAttr,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public void checkId(HttpServletRequest request, HttpServletResponse response);
 	public ModelAndView reservationForm(HttpServletRequest request, HttpServletResponse response);
-	public ModelAndView reservationEnd(HttpServletRequest request, HttpServletResponse response);
 	public ModelAndView payList(HttpServletRequest request, HttpServletResponse response);
 	public ModelAndView reservation(String accommodation_id, PayDTO payDTO, HttpServletRequest request,
 			HttpServletResponse response);
+	public ModelAndView myInfo(String id, HttpServletRequest request, HttpServletResponse response);
+	public ModelAndView updateUserInfo(MemberDTO member, String id, HttpServletRequest request, HttpServletResponse response)
+			throws IOException;
+	public ModelAndView reservationHistory(HttpServletRequest request, HttpServletResponse response);
 }

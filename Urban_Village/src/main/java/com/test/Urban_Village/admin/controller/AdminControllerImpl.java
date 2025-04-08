@@ -21,6 +21,8 @@ import com.test.Urban_Village.admin.service.AdminServiceImpl;
 public class AdminControllerImpl implements AdminController {
 	@Autowired
 	AdminService adminService; // AdminService로 인터페이스 타입 주입
+	@Autowired
+	HttpSession session;
 
 	@Override
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
@@ -29,7 +31,7 @@ public class AdminControllerImpl implements AdminController {
 			HttpServletRequest request,
 			HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
+		session = request.getSession();
 		AdminDTO admin = adminService.login(id, pwd); // AdminService의 login 메서드 사용
 		if (admin != null) {
 			System.out.println("로그인 성공");

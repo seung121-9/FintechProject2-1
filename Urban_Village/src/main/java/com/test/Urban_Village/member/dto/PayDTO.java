@@ -11,6 +11,14 @@ private Date checkout_date;
 private int guest_count;
 private double total_price;
 
+public String getAccommodation_name() {
+	return accommodation_name;
+}
+public void setAccommodation_name(String accommodation_name) {
+	this.accommodation_name = accommodation_name;
+}
+private String accommodation_name;
+
 public String getReservation_id() {
 	return reservation_id;
 }

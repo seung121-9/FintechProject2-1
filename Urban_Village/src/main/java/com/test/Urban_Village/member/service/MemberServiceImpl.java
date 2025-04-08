@@ -35,6 +35,19 @@ public class MemberServiceImpl implements MemberService {
 	         // TODO Auto-generated method stub
 	         return dao.addMember(member);
 	      }
+		
+		@Override
+	      public List<MemberDTO> getUserInfoById(String id) {
+	         // TODO Auto-generated method stub
+	         return dao.getUserInfoById(id);
+	      }
+		
+		@Override
+	      public int updateUserInfo(MemberDTO member) {
+	         // TODO Auto-generated method stub
+	         return dao.updateUserInfo(member);
+	      }
+		
 		@Override
 	       public boolean checkIfUserIdExists(String userId) {
 	           return dao.checkIfUserIdExists(userId);
@@ -52,6 +65,12 @@ public class MemberServiceImpl implements MemberService {
 		public List<PayDTO> payList() {
 			// TODO Auto-generated method stub
 			return dao.payList();
+		}
+
+		@Override
+		public List<PayDTO> reservationGetUserId(String loginId) {
+			// TODO Auto-generated method stub
+			return dao.reservationGetUserId(loginId);
 		}
 		
 	}

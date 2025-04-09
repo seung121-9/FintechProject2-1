@@ -53,18 +53,18 @@
 			value="/WEB-INF/views/accommodation/accommodationForm.jsp"></put-attribute>
 	</definition>
 
-	<definition name="/member/reservationForm"
+	<definition name="/reservation/reservationForm"
 		extends="mainLayout">
 		<put-attribute name="title" value="예약페이지"></put-attribute>
 		<put-attribute name="body"
-			value="/WEB-INF/views/member/reservationForm.jsp"></put-attribute>
+			value="/WEB-INF/views/reservation/reservationForm.jsp"></put-attribute>
 	</definition>
 
-	<definition name="/member/reservationHistory"
+	<definition name="/reservation/reservationHistory"
 		extends="mainLayout">
 		<put-attribute name="title" value="예약내역"></put-attribute>
 		<put-attribute name="body"
-			value="/WEB-INF/views/member/reservationHistory.jsp"></put-attribute>
+			value="/WEB-INF/views/reservation/reservationHistory.jsp"></put-attribute>
 	</definition>
 
 	<definition name="/member/myInfo" extends="mainLayout">
@@ -72,10 +72,15 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/member/myInfo.jsp"></put-attribute>
 	</definition>
-	<definition name="/wishList/wishListadd"
-		extends="mainLayout">
-		<put-attribute name="title" value="위시리스트" />
+	<definition name="/admin/cleanerList" extends="mainLayout">
+		<put-attribute name="title" value="지원자현황"></put-attribute>
 		<put-attribute name="body"
-			value="/WEB-INF/views/wishList/wishListadd.jsp" />
+			value="/WEB-INF/views/admin/cleanerList.jsp"></put-attribute>
 	</definition>
+	<definition name="/admin/cleanerDetail" extends="mainLayout">
+		<put-attribute name="title" value="지원자정보"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/cleanerDetail.jsp"></put-attribute>
+	</definition>
+	
 </tiles-definitions>

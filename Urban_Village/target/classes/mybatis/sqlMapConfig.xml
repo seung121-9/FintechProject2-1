@@ -7,12 +7,14 @@
 	<typeAliases>
 		<typeAlias type="com.test.Urban_Village.member.dto.MemberDTO"
 			alias="memberDTO" />
-			<typeAlias type="com.test.Urban_Village.member.dto.PayDTO"
+			<typeAlias type="com.test.Urban_Village.reservation.dto.PayDTO"
 			alias="payDTO" />
 			<typeAlias type="com.test.Urban_Village.accommodation.dto.AccommodationDTO"
 			alias="accDTO" />
 			<typeAlias type="com.test.Urban_Village.admin.dto.AdminDTO" alias="AdminDTO"/>
-			<typeAlias type="com.test.Urban_Village.wishList.dto.WishListDTO" alias="WishListDTO"/>
+			<!-- <typeAlias type="com.test.Urban_Village.wishList.dto.WishListDTO" alias="WishListDTO"/> -->
+			<typeAlias type="com.test.Urban_Village.cleaner.dto.CleanerDTO" alias="cleanerDTO"/>
+			
 	</typeAliases>
 	
 </configuration>

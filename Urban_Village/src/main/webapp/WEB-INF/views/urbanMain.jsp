@@ -1,9 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+   request.setCharacterEncoding("utf-8");
+%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
 <title></title>
 <%-- <link rel="stylesheet"
     href="${pageContext.request.contextPath}/resources/css/style.css"> --%>
@@ -44,9 +54,12 @@
             <a href="${pageContext.request.contextPath}/accommodation/accommodationPage.do?accommodation_id=${accommodation.accommodation_id}">
                 <span class="heart-icon"
                         onclick="event.stopPropagation(); toggleHeart(this)">&#9825;</span>
-                <img src="${accommodation.accommodation_photo}"
-                        alt="${accommodation.accommodation_name}">
-                <div class="details">
+                 <!-- DB에 저장된 콤마로 구분된 이미지 파일명을 배열로 변환하고 첫 번째 이미지만 출력 -->
+                    <c:set var="imageStr" value="${accommodation.accommodation_photo}" />
+                    <c:set var="images" value="${fn:split(imageStr, ',')}" />
+                    <img src="${contextPath}/download.do?imageFileName=${images[0]}&accommodation_id=${accommodation.accommodation_id}&timestamp=<%= System.currentTimeMillis() %>" 
+                         alt="${accommodation.accommodation_name}" style="max-width: 200px; margin: 5px;">
+                    <div class="details">
                     <h3>${accommodation.accommodation_name}</h3>
                     <p>★ 5.0 ${accommodation.capacity}</p>
                     <p>₩ ${accommodation.price} / 박</p>

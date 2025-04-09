@@ -1,11 +1,14 @@
 package com.test.Urban_Village.admin.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.test.Urban_Village.admin.dto.AdminDTO;
 import com.test.Urban_Village.admin.service.AdminService;
 import com.test.Urban_Village.admin.service.AdminServiceImpl;
+import com.test.Urban_Village.cleaner.dto.CleanerDTO;
+import com.test.Urban_Village.cleaner.service.CleanerService;
 
 @Controller
 @RequestMapping("/admin")
@@ -23,6 +28,8 @@ public class AdminControllerImpl implements AdminController {
 	AdminService adminService; // AdminService로 인터페이스 타입 주입
 	@Autowired
 	HttpSession session;
+	@Autowired
+    CleanerService cleanerService;
 
 	@Override
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
@@ -86,4 +93,28 @@ public class AdminControllerImpl implements AdminController {
 		System.out.println("viewName"+viewName);
 		return	mav;
 	}
+	
+
+    @RequestMapping("/cleanerList.do")
+    public ModelAndView cleanerList(HttpServletRequest request,
+			HttpServletResponse response) {
+    	String viewName = (String) request.getAttribute("viewName");
+    	ModelAndView mav = new ModelAndView();
+    	System.out.println(viewName);
+        List<CleanerDTO> cleanerList = adminService.getCleanerList();
+        mav.setViewName(viewName);
+        mav.addObject("cleanerList", cleanerList);
+        return mav;
+    }
+
+    @RequestMapping("/cleanerDetail.do")
+    public ModelAndView cleanerDetail(@RequestParam("member_id") String memberId, HttpServletRequest request,
+			HttpServletResponse response) {
+    	String viewName = (String) request.getAttribute("viewName");
+    	ModelAndView mav = new ModelAndView();
+        CleanerDTO cleaner = adminService.getCleanerDetail(memberId);
+    	mav.setViewName(viewName);
+    	mav.addObject("cleaner", cleaner);
+        return mav;
+    }
 }

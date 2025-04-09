@@ -1,6 +1,7 @@
 package com.test.Urban_Village.accommodation.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,21 @@ public int addAcommodation(AccommodationDTO dto) {
 }
 
 @Override
+public String getLastInsertedAccommodationId2() {
+	// TODO Auto-generated method stub
+	  return session.selectOne("mapper.accommodation.getLastInsertedAccommodationId2");
+}
+
+@Override
 public String getLastInsertedAccommodationId() {
 	// TODO Auto-generated method stub
 	  return session.selectOne("mapper.accommodation.getLastInsertedAccommodationId");
 }
+
+@Override
+public int insertAccommodation(Map<String, Object> accommodationMap) {
+    return session.insert("mapper.accommodation.insertAccommodation", accommodationMap);
+}
+
+
 }

@@ -11,24 +11,23 @@
 <title>Urban&Village</title>
 <link rel="stylesheet" href="/Urban_Village/resources/css/style.css">
 <script>
-        // 드롭다운 메뉴 토글
-        function toggleDropdown() {
-            let dropdown = document.getElementById("dropdownMenu");
-            dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
-        }
+    // 드롭다운 메뉴 토글
+    function toggleDropdown() {
+        let dropdown = document.getElementById("dropdownMenu");
+        dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
+    }
 
-        // 드롭다운 외부 클릭 시 닫기
-        window.onclick = function(event) {
-            if (!event.target.matches('.menu-btn') && !event.target.matches('.profile-img')) {
-                let dropdown = document.getElementById("dropdownMenu");
-                if (dropdown.style.display === "block") {
-                    dropdown.style.display = "none";
-                }
+    // 드롭다운 외부 클릭 시 닫기
+    window.onclick = function(event) {
+        if (!event.target.matches('.menu-btn') && !event.target.matches('.profile-img')) {
+            let dropdown = document.getElementById("dropdownMenu");
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
             }
-        };
-        
-        console.log("로그인 아이디 :", ${loginId});
-    </script>
+        }
+    };
+</script>
+
 <style>
 /* 헤더 스타일 */
 .header {
@@ -183,7 +182,7 @@
 
                <!-- 드롭다운 메뉴 -->
                <div id="dropdownMenu" class="dropdown-content">
-                  <a href="${contextPath}/member/reservationHistory.do">여행(예약확인)</a> <a href="#">위시리스트</a>
+                  <a href="${contextPath}/reservation/reservationHistory.do">여행(예약확인)</a> <a href="#">위시리스트</a>
                   <hr>
                   <a href="#">호스트 추천하기</a> <a href="${contextPath }/member/myInfo.do?id=${loginId}">계정</a> <a href="#">직원채용</a>
                   <hr>

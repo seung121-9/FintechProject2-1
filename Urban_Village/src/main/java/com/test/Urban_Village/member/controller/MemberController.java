@@ -25,10 +25,12 @@ public interface MemberController {
 	public void checkId(HttpServletRequest request, HttpServletResponse response);
 	public ModelAndView reservationForm(HttpServletRequest request, HttpServletResponse response);
 	public ModelAndView payList(HttpServletRequest request, HttpServletResponse response);
-	public ModelAndView reservation(String accommodation_id, PayDTO payDTO, HttpServletRequest request,
-			HttpServletResponse response);
+	//public ModelAndView reservation(String accommodation_id, PayDTO payDTO, HttpServletRequest request,
+			//HttpServletResponse response);
 	public ModelAndView myInfo(String id, HttpServletRequest request, HttpServletResponse response);
 	public ModelAndView updateUserInfo(MemberDTO member, String id, HttpServletRequest request, HttpServletResponse response)
 			throws IOException;
 	public ModelAndView reservationHistory(HttpServletRequest request, HttpServletResponse response);
+	ModelAndView reservation(String accommodation_id, String reservation_id, Date checkin_date, Date checkout_date,
+			int guest_count, double total_price, HttpServletRequest request, HttpServletResponse response);
 }

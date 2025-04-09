@@ -1,11 +1,14 @@
 package com.test.Urban_Village.admin.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.test.Urban_Village.admin.dao.AdminDAO;
 import com.test.Urban_Village.admin.dao.AdminDAOImpl;
 import com.test.Urban_Village.admin.dto.AdminDTO;
+import com.test.Urban_Village.cleaner.dto.CleanerDTO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -26,4 +29,15 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.checkIfUserIdExists(adminId);
 	}
+
+	@Override
+	public List<CleanerDTO> getCleanerList() {
+	    return dao.selectCleanerList();
+	}
+
+	@Override
+	public CleanerDTO getCleanerDetail(String member_id) {
+	    return dao.selectCleanerDetail(member_id);
+	}
+
 }

@@ -1,5 +1,7 @@
 package com.test.Urban_Village.accommodation.dto;
 
+import java.util.List;
+
 public class AccommodationDTO {
 
     private String accommodation_id;     // 숙소 고유번호
@@ -14,8 +16,17 @@ public class AccommodationDTO {
     private String wifi_avail;           // 와이파이 여부
     private String review_data;          // 리뷰 데이터
     private int price;                   // 가격
+    private List<String> imageList;
+    
+    public List<String> getImageList() {
+		return imageList;
+	}
 
-    @Override
+	public void setImageList(List<String> imageList) {
+		this.imageList = imageList;
+	}
+
+	@Override
     public String toString() {
         return "AccommodationDTO{" +
                 "accommodation_id='" + accommodation_id + '\'' +

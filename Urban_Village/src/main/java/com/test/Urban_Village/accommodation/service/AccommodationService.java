@@ -13,6 +13,9 @@ public interface AccommodationService {
 	AccommodationDTO findAccommodationId(String accommodationId);
 	String addAccommodation(AccommodationDTO dto);
 	String addNewAccommodation(Map<String, Object> accommodationMap);
+	int delAccommodation(String accommodation_id);
+	List<AccommodationDTO> idFindByAccList(String accommodation_id);
+	void updateAccommodation(Map<String, Object> accommodationMap);
 
 
 }

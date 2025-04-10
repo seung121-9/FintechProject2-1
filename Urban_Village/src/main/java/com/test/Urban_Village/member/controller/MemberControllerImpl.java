@@ -146,7 +146,6 @@ public class MemberControllerImpl implements MemberController {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
-		mav.addObject("viewName",viewName);
 		System.out.println("viewName"+viewName);
 		return mav;
 	}

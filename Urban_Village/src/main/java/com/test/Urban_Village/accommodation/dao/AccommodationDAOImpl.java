@@ -47,6 +47,22 @@ public String getLastInsertedAccommodationId() {
 public int insertAccommodation(Map<String, Object> accommodationMap) {
     return session.insert("mapper.accommodation.insertAccommodation", accommodationMap);
 }
+@Override
+public int delAccommodation(String accommodation_id) {
+	// TODO Auto-generated method stub
+	return session.delete("mapper.accommodation.delAccommodation", accommodation_id);
+}
+@Override
+public List<AccommodationDTO> idFindByAccList(String accommodation_id) {
+	// TODO Auto-generated method stub
+	return session.selectList("mapper.accommodation.idFindByAccList", accommodation_id);
+}
+
+@Override
+public void updateAccommodation(Map<String, Object> accommodationMap) {
+	// TODO Auto-generated method stub
+	session.update("mapper.accommodation.updateAccommodation", accommodationMap);
+}
 
 
 }

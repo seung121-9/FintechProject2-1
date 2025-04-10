@@ -200,9 +200,9 @@
 
                <!-- 드롭다운 메뉴 -->
                <div id="dropdownMenu" class="dropdown-content">
-                  <a href="${contextPath }/accommodation/accommodationForm.do">숙소 추가</a> <a href="${contextPath }/admin/cleanerList.do">지원자 현황</a>
+                  <a href="${contextPath }/accommodation/accommodationForm.do">숙소 추가</a> <a href="${contextPath }/accommodation/accommodationList.do">숙소 수정/삭제</a>  <a href="${contextPath }/admin/cleanerList.do">지원자 현황</a>
                   <hr>
-                  <a href="#">직원 배정</a> <a href="${contextPath }/member/urbanMemberList.do">계정</a> <a href="#">매출</a>
+                  <a href="${contextPath }/member/joinMember.do">계정</a> <a href="#">매출</a>
                   <hr>
                   <a href="#">회원 관리</a> <a href="${contextPath }/member/logout.do">로그아웃</a>
                </div>

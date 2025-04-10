@@ -25,6 +25,14 @@ public interface AccommodationController {
 	ResponseEntity<String> addNewAccommodation(MultipartHttpServletRequest mRequest, HttpServletResponse response)
 			throws Exception;
 
+	ModelAndView accommodationPage(String accommodationId);
+
+	ModelAndView main(HttpServletResponse response, HttpServletRequest request);
+
+	ModelAndView accommodationList(HttpServletResponse response, HttpServletRequest request);
+
+	ModelAndView delAccommodation(String accommodation_id, HttpServletResponse response, HttpServletRequest request)throws IOException;
+
 
 
 }

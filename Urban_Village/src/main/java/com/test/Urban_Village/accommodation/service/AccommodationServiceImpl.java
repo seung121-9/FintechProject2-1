@@ -40,6 +40,22 @@ public String addNewAccommodation(Map<String, Object> accommodationMap) {
     }
     return null;
 }
+@Override
+public int delAccommodation(String accommodation_id) {
+	// TODO Auto-generated method stub
+	return dao.delAccommodation(accommodation_id);
+}
+@Override
+public List<AccommodationDTO> idFindByAccList(String accommodation_id) {
+	// TODO Auto-generated method stub
+	return dao.idFindByAccList(accommodation_id);
+}
+
+@Override
+public void updateAccommodation(Map<String, Object> accommodationMap) {
+	// TODO Auto-generated method stub
+	dao.updateAccommodation(accommodationMap);
+}
 
 
 }

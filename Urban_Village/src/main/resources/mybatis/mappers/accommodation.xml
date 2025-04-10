@@ -56,4 +56,31 @@
         )
         WHERE ROWNUM = 1
     </select>
+    
+    <delete id="delAccommodation" parameterType="string">
+    DELETE FROM accommodation WHERE accommodation_id = #{accommodation_id}
+	</delete>
+	
+	<select id="idFindByAccList" parameterType="accDTO"
+		resultMap="accResult">
+		SELECT * FROM accommodation	WHERE accommodation_id = #{accommodation_id}
+	</select>
+	
+	<update id="updateAccommodation" parameterType="map">
+        UPDATE accommodation
+        SET
+          admin_id = #{admin_id},
+          accommodation_name = #{accommodation_name},
+          <if test="accommodation_photo != null and accommodation_photo != ''">
+            accommodation_photo = #{accommodation_photo},
+          </if>
+          cleaner_admin_id = #{cleaner_admin_id},
+          capacity = #{capacity},
+          room_count = #{room_count},
+          bathroom_count = #{bathroom_count},
+          bed_count = #{bed_count},
+          price = #{price},
+          wifi_avail = #{wifi_avail}
+        WHERE accommodation_id = #{accommodation_id}
+    </update>
 </mapper>

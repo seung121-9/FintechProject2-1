@@ -20,6 +20,12 @@ public interface AccommodationDAO {
 
 	String getLastInsertedAccommodationId2();
 
+	int delAccommodation(String accommodation_id);
+
+	List<AccommodationDTO> idFindByAccList(String accommodation_id);
+
+	void updateAccommodation(Map<String, Object> accommodationMap);
+
 	
 
 

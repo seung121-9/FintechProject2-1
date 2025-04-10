@@ -72,20 +72,29 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/member/myInfo.jsp"></put-attribute>
 	</definition>
+	
 	<definition name="/admin/cleanerList" extends="mainLayout">
 		<put-attribute name="title" value="지원자현황"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/cleanerList.jsp"></put-attribute>
 	</definition>
+	
 	<definition name="/admin/cleanerDetail" extends="mainLayout">
 		<put-attribute name="title" value="지원자정보"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/cleanerDetail.jsp"></put-attribute>
 	</definition>
+	
 	<definition name="/cleaner/cleanerForm" extends="mainLayout">
 		<put-attribute name="title" value="지원자정보"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/cleaner/cleanerForm.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="/accommodation/accommodationList" extends="mainLayout">
+		<put-attribute name="title" value="지원자정보"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/accommodationList.jsp"></put-attribute>
 	</definition>
 	
 </tiles-definitions>

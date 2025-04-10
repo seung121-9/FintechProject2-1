@@ -42,10 +42,10 @@
 
         <div class="categories-container">
             <div class="categories">
-                <a href="#">최고의 전망</a> <a href="#">호잇</a> <a href="#">유량</a> <a
-                    href="#">한적</a> <a href="#">최고</a> <a href="#">공원</a> <a href="#">한옥</a>
-                <a href="#">소형주택</a> <a href="#">인기급상</a> <a href="#">Luxe</a> <a
-                    href="#">독채</a>
+                <a href="#">김천 ㆍ 칠곡 ㆍ 고령 ㆍ 성주</a> <a href="#">구미 ㆍ 상주 ㆍ 의성 ㆍ 문경</a> <a
+                    href="#">예천 ㆍ 안동 ㆍ 영주 ㆍ 봉화</a> <a href="#">영양 ㆍ 울진 ㆍ 영덕 ㆍ 청송</a> <a href="#">포항 ㆍ 영천 ㆍ 경주 ㆍ 경산</a>
+                <a href="#">울릉 ㆍ 청도 ㆍ 독도</a>
+                   
             </div>
         </div>
             <div class="accommodations">

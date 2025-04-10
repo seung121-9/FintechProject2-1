@@ -8,12 +8,18 @@
 <head>
 <meta charset="UTF-8">
 <title>클리너 등록</title>
+<style>
+.container {
+		width: 70%;
+		margin: 50px auto; /* 가운데 정렬 + 상하 여백 */
+	}
+</style>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body class="p-5">
 	<div class="container">
-		<h2>클리너 등록 폼</h2>
+		<h2>지역 연계 일자리 지원 양식</h2>
 		<form action="${contextPath}/cleaner/joinCleaner.do" method="post"
 			enctype="multipart/form-data">
 			<!-- member 정보는 출력만 하고 수정 불가 -->

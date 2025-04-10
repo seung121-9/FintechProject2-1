@@ -139,8 +139,25 @@
 
 
 	<script>
-    // 카카오맵 초기화 함수
+	function calculatePrice() {
+	    let checkin = document.getElementById("checkin").value;
+	    let checkout = document.getElementById("checkout").value;
+	    let pricePerNight = Number("<c:out value='${sessionScope.accommodation.price}' />");
+
+	    if (checkin && checkout) {
+	        let nights = (new Date(checkout) - new Date(checkin)) / (1000 * 60 * 60 * 24);
+	        if (nights > 0) {
+	            let totalPrice = nights * pricePerNight;
+	            document.getElementById("totalPrice").textContent = "₩" + totalPrice.toLocaleString();
+
+	        } else {
+	            document.getElementById("totalPrice").textContent = "₩0";
+	        }
+	    }
+	}
+
     
+    // 카카오맵 초기화 함수
     function initKakaoMap() {
         var container = document.getElementById('map'); // 지도 표시 영역
         var options = {
@@ -161,7 +178,9 @@
         heart.classList.toggle("active");
         alert(heart.classList.contains("active") ? "찜 목록에 추가되었습니다!" : "찜 목록에서 제거되었습니다.");
     }
-
+	
+    
+    
     document.addEventListener('DOMContentLoaded', function() {
         const checkinInput = document.getElementById('checkin');
         const checkoutInput = document.getElementById('checkout');
@@ -183,7 +202,7 @@
         let checkin = document.getElementById("checkin").value;
         let checkout = document.getElementById("checkout").value;
         let guests = document.getElementById("guests").value;
-        let pricePerNight = ${sessionScope.accommodation.price};
+        let pricePerNight = Number("<c:out value='${sessionScope.accommodation.price}' />");
         let nights = (new Date(checkout) - new Date(checkin)) / (1000 * 60 * 60 * 24);
         let totalPrice = nights > 0 ? nights * pricePerNight : 0;
 
@@ -196,7 +215,6 @@
         // 예약 페이지로 이동
         window.location.href = "/Urban_Village/reservation/reservationForm.do";
     }
-
 
 
 

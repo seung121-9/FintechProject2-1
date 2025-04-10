@@ -82,5 +82,10 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/cleanerDetail.jsp"></put-attribute>
 	</definition>
+	<definition name="/cleaner/cleanerForm" extends="mainLayout">
+		<put-attribute name="title" value="지원자정보"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/cleaner/cleanerForm.jsp"></put-attribute>
+	</definition>
 	
 </tiles-definitions>

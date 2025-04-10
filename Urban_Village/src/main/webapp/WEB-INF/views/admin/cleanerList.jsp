@@ -9,7 +9,6 @@
 <title>클리너 지원자 목록</title>
 <style>
 	body {
-		font-family: '맑은 고딕', sans-serif;
 		background-color: #fff;
 		margin: 0;
 		padding: 0;

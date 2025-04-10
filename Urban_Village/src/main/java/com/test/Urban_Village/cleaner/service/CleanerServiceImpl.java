@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.test.Urban_Village.accommodation.dto.AccommodationDTO;
 import com.test.Urban_Village.cleaner.dao.CleanerDAO;
 import com.test.Urban_Village.cleaner.dto.CleanerDTO;
 
@@ -19,6 +20,20 @@ public class CleanerServiceImpl implements CleanerService {
 	@Override
 	public void addCleaner(Map<String, Object> cleanerMap) {
 	    dao.insertCleaner(cleanerMap);
+	}
+
+
+	@Override
+	public List<AccommodationDTO> findAccByNullCleanerId() {
+		// TODO Auto-generated method stub
+		return dao.findAccByNullCleanerId();
+	}
+
+
+	@Override
+	public int addCleanerId(String cleaner_admin_id) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

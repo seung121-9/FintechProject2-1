@@ -56,6 +56,25 @@
 		JOIN member m ON c.member_id = m.id
 		WHERE c.member_id = #{member_id}
 	</select>
-
+	
+	<select id="findAccByNullCleanerId" resultType="accDTO">
+	 	<!-- SELECT
+	 	accommodation_id,
+        admin_id,
+        accommodation_name,
+        accommodation_photo,
+        cleaner_admin_id,
+        capacity,
+        room_count,
+        bathroom_count,
+        bed_count,
+        wifi_avail,
+        review_data
+        price
+    FROM accommodation
+    WHERE cleaner_admin_id IS NULL -->
+     SELECT * FROM accommodation
+    WHERE cleaner_admin_id IS NULL
+	</select>
 
 </mapper>

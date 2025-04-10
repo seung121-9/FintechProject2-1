@@ -12,5 +12,9 @@ public interface CleanerDAO {
 
 	List<AccommodationDTO> findAccByNullCleanerId();
 
+	int addCleanerId(AccommodationDTO accDTO);
+
+	int cleanerIdDelete(String cleaner_admin_id);
+
 
 }

@@ -10,4 +10,5 @@ public interface AdminService {
 	boolean checkIfUserIdExists(String adminId);
 	public List<CleanerDTO> getCleanerList();
 	public CleanerDTO getCleanerDetail(String memberId);
+	public List<String> getAccCleanerId();
 }

@@ -55,7 +55,7 @@ public class CleanerControllerImpl implements CleanerController{
 		String viewName = (String) request.getAttribute("viewName");
 		return new ModelAndView(viewName);
 	}
-
+	@Override
 	@RequestMapping(value="/joinCleaner.do", method=RequestMethod.POST)
 	public ResponseEntity<String> addCleaner(
 	        MultipartHttpServletRequest request, 
@@ -123,8 +123,7 @@ public class CleanerControllerImpl implements CleanerController{
 	}
 
 
-	private List<String> upload
-	(MultipartHttpServletRequest request) throws Exception {
+	private List<String> upload (MultipartHttpServletRequest request) throws Exception {
 		List<String> fileList = new ArrayList<String>();
 		Iterator<String> fileNames = request.getFileNames();
 		while(fileNames.hasNext()) {
@@ -147,26 +146,25 @@ public class CleanerControllerImpl implements CleanerController{
 
 		return fileList;
 	}
-	
+	@Override
 	@RequestMapping("/cleanerAddAcc.do")
 	public ModelAndView findAccByNullCleanerId(@ModelAttribute("AccommodationDTO") AccommodationDTO accDTO,
 	                                           HttpServletRequest request, HttpServletResponse response) {
 	    String viewName = (String) request.getAttribute("viewName");
 	    ModelAndView mav = new ModelAndView();
+	    response.setContentType("text/html;charset=utf-8");
 
 	    List<AccommodationDTO> accListByCleanerNull = service.findAccByNullCleanerId();
 	    String msg = "";
 
 	    if (accDTO.getCleaner_admin_id() == null || accDTO.getCleaner_admin_id().isEmpty()) {
-	        if (viewName == null) {
-	            viewName = "/admin/cleanerAssignForm"; // 뷰 이름 기본값 지정
-	        }
+	        
 	        mav.setViewName(viewName);
 
 	        String id = (String) session.getAttribute("adminId");
 	        if (id == null) {
 	            msg = "<script>";
-	            msg += "alert('세션이 만료되었거나 로그인 정보가 없습니다.');";
+	            msg += "alert('로그인 정보가 없습니다.');";
 	            msg += "location.href='/Urban_Village/member/loginForm.do';";
 	            msg += "</script>";
 	            mav.addObject("msg", msg);
@@ -186,21 +184,26 @@ public class CleanerControllerImpl implements CleanerController{
 
 	    return mav;
 	}
+	@Override
 	@RequestMapping("addCleanerId.do")
-	public ModelAndView addCleanerId(@ModelAttribute("AccommodationDTO")AccommodationDTO accDTO, @RequestParam("cleaner_admin_id")String cleaner_admin_id,
+	public ModelAndView addCleanerId(@ModelAttribute("AccommodationDTO")AccommodationDTO accDTO,@RequestParam("accommodation_id")String accommodation_id, @RequestParam("cleaner_admin_id")String cleaner_admin_id,
 			HttpServletRequest request, HttpServletResponse response) throws IOException {
-		int result = service.addCleanerId(cleaner_admin_id);
-		accDTO.setCleaner_admin_id(cleaner_admin_id);
+		accDTO.setAccommodation_id(accommodation_id);
+	    accDTO.setCleaner_admin_id(cleaner_admin_id);
+
+	    int result = service.addCleanerId(accDTO);
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 
 		if (result == 1) {
-			// 성공 시 알림 후 로그인 페이지로 이동
+			if(accDTO.getCleaner_admin_id() == cleaner_admin_id) {
+				
+			}
 			out.write("<script>");
 			out.write("alert('숙소관리자 배정에 성공했습니다!');");
 			out.write("location.href='/Urban_Village/cleaner/cleanerAddAcc.do';");
 			out.write("</script>");
 		} else {
-			// 실패 시 알림 후 다시 회원가입 폼으로
 			out.write("<script>");
 			out.write("alert('숙소관리자 배정에 실패했습니다.');");
 			out.write("location.href='/Urban_Village/cleaner/cleanerAddAcc.do';");
@@ -209,7 +212,28 @@ public class CleanerControllerImpl implements CleanerController{
 		return null;
 		
 	}
-	
+	@Override
+	@RequestMapping("cleanerIdDelete.do")
+	public ModelAndView cleanerIdDelete(@RequestParam("member_id")String cleaner_admin_id,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		int result = service.cleanerIdDelete(cleaner_admin_id);
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+
+		if (result == 1) {
+			out.write("<script>");
+			out.write("alert('지원자 정보 삭제에 성공했습니다!');");
+			out.write("location.href='/Urban_Village/admin/cleanerList.do';");
+			out.write("</script>");
+		} else {
+			out.write("<script>");
+			out.write("alert('지원자 정보 삭제에 실패했습니다.');");
+			out.write("location.href='/Urban_Village/cleaner/cleanerIdDelete.do';");
+			out.write("</script>");
+		}
+		return null;
+		
+	}
+	@Override
 	@RequestMapping("/jusoPopup") 
 	public void jusoPopup() { 
 		 // 뷰 이름 추출하는거라 절대절대 삭제하지마세유 내용 없는게 맞아요

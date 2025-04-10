@@ -27,6 +27,19 @@ public class CleanerDAOImpl implements CleanerDAO {
 		return session.selectList("mapper.cleaner.findAccByNullCleanerId");
 	}
 
+	
+	@Override
+	public int addCleanerId(AccommodationDTO accDTO) {
+		// TODO Auto-generated method stub
+		return session.insert("mapper.cleaner.addCleanerId", accDTO);
+	}
+
+	@Override
+	public int cleanerIdDelete(String cleaner_admin_id) {
+		// TODO Auto-generated method stub
+		return session.delete("mapper.cleaner.cleanerIdDelete", cleaner_admin_id);
+	}
+
 
 
 

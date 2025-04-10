@@ -102,9 +102,12 @@ public class AdminControllerImpl implements AdminController {
     	ModelAndView mav = new ModelAndView();
     	System.out.println(viewName);
         List<CleanerDTO> cleanerList = adminService.getCleanerList();
+        List<String> accCleanerId = adminService.getAccCleanerId();
         mav.setViewName(viewName);
         mav.addObject("cleanerList", cleanerList);
+        mav.addObject("accCleanerId", accCleanerId);
         return mav;
+        
     }
 
     @RequestMapping("/cleanerDetail.do")

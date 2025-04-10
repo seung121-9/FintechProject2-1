@@ -54,7 +54,7 @@ a:hover {
 </style>
 </head>
 <body>
-
+	<form action="${contextPath }/cleaner/cleanerIdDelete.do" method="post">
 	<div class="container">
 		<h2>클리너 지원자 상세 정보</h2>
 		
@@ -62,6 +62,7 @@ a:hover {
 			<tr>
 				<th>아이디</th>
 				<td id="c_member_id">${cleaner.member_id}</td>
+					<input type="hidden" name="member_id" value="${cleaner.member_id}">
 			</tr>
 			<tr>
 				<th>이름</th>
@@ -96,14 +97,14 @@ a:hover {
 				<td colspan="2" style="text-align: center; padding-top: 20px;">
 					<input type="button"  name="assignment" onclick="goToReservation()" value="숙소 배정하기"
 					style="background-color: #007BFF; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px; margin-right: 10px; cursor: pointer;">
-					<input type="button" name="delete" value="불합격"
+					<input type="submit" name="delete" value="불합격" onclick="goToDelete()"
 					style="background-color: #FF4C4C; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer;">
 				</td>
 			</tr>
 
 		</table>
 	</div>
-
+</form>
 </body>
 <script>
 function goToReservation() {
@@ -115,6 +116,11 @@ function goToReservation() {
 
     // 예약 페이지로 이동
     window.location.href = "/Urban_Village/cleaner/cleanerAddAcc.do";
+}
+function goToDelete() {
+	let member_id = document.getElementById("c_member_id").innerText;
+    localStorage.setItem('addAccMemberId', member_id);
+    window.location.href = "/Urban_Village/cleaner/cleanerIdDelete.do";
 }
 </script>
 </html>

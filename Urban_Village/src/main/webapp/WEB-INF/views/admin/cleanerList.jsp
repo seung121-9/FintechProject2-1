@@ -58,27 +58,36 @@
 	<h2>클리너 지원자 목록</h2>
 
 	<table class="table">
-	    <thead>
-	        <tr>
-	            <th>아이디</th>
-	            <th>이름</th>
-	            <th>전화번호</th>
-	            <th>등록일</th>
-	            <th>상세보기</th>
-	        </tr>
-	    </thead>
-	    <tbody>
-	        <c:forEach var="c" items="${cleanerList}">
-	            <tr>
-	                <td>${c.member_id}</td>
-	                <td>${c.memberName}</td>
-	                <td>${c.memberPhone}</td>
-	                <td>${c.regdate}</td>
-	                <td><a href="${contextPath}/admin/cleanerDetail.do?member_id=${c.member_id}">보기</a></td>
-	            </tr>
-	        </c:forEach>
-	    </tbody>
-	</table>
+        <thead>
+            <tr>
+                <th>아이디</th>
+                <th>이름</th>
+                <th>전화번호</th>
+                <th>등록일</th>
+                <th>상세보기</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="c" items="${cleanerList}">
+                <c:set var="isAssigned" value="false"/>
+                <c:forEach var="assignedId" items="${accCleanerId}">
+                    <%-- String 타입으로 직접 비교 --%>
+                    <c:if test="${c.member_id == assignedId}">
+                        <c:set var="isAssigned" value="true"/>
+                    </c:if>
+                </c:forEach>
+                <c:if test="${!isAssigned}">
+                    <tr>
+                        <td>${c.member_id}</td>
+                        <td>${c.memberName}</td>
+                        <td>${c.memberPhone}</td>
+                        <td>${c.regdate}</td>
+                        <td><a href="${contextPath}/admin/cleanerDetail.do?member_id=${c.member_id}">보기</a></td>
+                    </tr>
+                </c:if>
+            </c:forEach>
+        </tbody>
+    </table>
 </div>
 
 </body>

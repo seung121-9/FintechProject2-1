@@ -10,4 +10,5 @@ public interface AdminDAO {
 	boolean checkIfUserIdExists(String userId);
 	public List<CleanerDTO> selectCleanerList();
 	public CleanerDTO selectCleanerDetail(String member_id);
+	public List<String> getAccCleanerId();
 }

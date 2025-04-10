@@ -30,10 +30,19 @@ public class CleanerServiceImpl implements CleanerService {
 	}
 
 
+
+
 	@Override
-	public int addCleanerId(String cleaner_admin_id) {
+	public int addCleanerId(AccommodationDTO accDTO) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.addCleanerId(accDTO);
+	}
+
+
+	@Override
+	public int cleanerIdDelete(String cleaner_admin_id) {
+		// TODO Auto-generated method stub
+		return dao.cleanerIdDelete(cleaner_admin_id);
 	}
 
 

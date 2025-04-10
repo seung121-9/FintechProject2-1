@@ -76,5 +76,21 @@
      SELECT * FROM accommodation
     WHERE cleaner_admin_id IS NULL
 	</select>
+	
+	<update id="addCleanerId" parameterType="accDTO">
+    UPDATE accommodation
+    SET cleaner_admin_id = #{cleaner_admin_id}
+    WHERE accommodation_id = #{accommodation_id}
+	</update>
+	
+	<delete id="cleanerIdDelete" parameterType="string">
+    DELETE FROM cleaner WHERE member_id = #{member_id}
+	</delete>
+	<select id="getAccCleanerId" resultType="string">
+    SELECT cleaner_admin_id
+    FROM accommodation
+    WHERE cleaner_admin_id IS NOT NULL
+	</select>
+	
 
 </mapper>

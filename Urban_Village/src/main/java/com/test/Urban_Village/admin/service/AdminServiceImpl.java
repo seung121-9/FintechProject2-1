@@ -40,4 +40,10 @@ public class AdminServiceImpl implements AdminService {
 	    return dao.selectCleanerDetail(member_id);
 	}
 
+	@Override
+	public List<String> getAccCleanerId() {
+		// TODO Auto-generated method stub
+		return dao.getAccCleanerId();
+	}
+
 }

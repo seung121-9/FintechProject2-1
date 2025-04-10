@@ -14,7 +14,9 @@ public interface CleanerService {
 	List<AccommodationDTO> findAccByNullCleanerId();
 
 
-	int addCleanerId(String cleaner_admin_id);
+	int addCleanerId(AccommodationDTO accDTO);
+
+	int cleanerIdDelete(String cleaner_admin_id);
 
 
 	

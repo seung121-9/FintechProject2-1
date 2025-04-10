@@ -39,4 +39,10 @@ public class AdminDAOImpl implements AdminDAO {
 		return session.selectOne("mapper.cleaner.selectCleanerDetail", member_id);
 	}
 
+	@Override
+	public List<String> getAccCleanerId() {
+		// TODO Auto-generated method stub
+		return session.selectList("mapper.cleaner.getAccCleanerId");
+	}
+
 }

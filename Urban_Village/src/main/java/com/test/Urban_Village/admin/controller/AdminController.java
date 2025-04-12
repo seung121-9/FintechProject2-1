@@ -22,4 +22,8 @@ public interface AdminController {
 				String action,
 				HttpServletRequest request,
 				HttpServletResponse response);
+
+	public ModelAndView cleanerDetail(String memberId, HttpServletRequest request, HttpServletResponse response);
+
+	public ModelAndView cleanerList(HttpServletRequest request, HttpServletResponse response);
 }

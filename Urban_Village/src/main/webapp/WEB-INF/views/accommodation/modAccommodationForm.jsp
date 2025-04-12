@@ -74,6 +74,11 @@ long currentTimestamp = System.currentTimeMillis();
 						style="max-width: 100px; max-height: 100px; margin-right: 5px;"
 						alt="기존 숙소 이미지">
 				</c:forEach>
+				<c:forEach var="img" items="${images}">
+   <div>${img}</div>  <!-- 디버깅용 -->
+</c:forEach>
+
+				
 			</div>
 
 			<button type="button" class="btn btn-warning mt-3"

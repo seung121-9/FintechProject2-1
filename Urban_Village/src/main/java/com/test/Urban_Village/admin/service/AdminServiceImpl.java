@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.test.Urban_Village.accommodation.dto.AccommodationDTO;
+import com.test.Urban_Village.accommodation.dto.AccommodationIdDTO;
 import com.test.Urban_Village.admin.dao.AdminDAO;
 import com.test.Urban_Village.admin.dao.AdminDAOImpl;
 import com.test.Urban_Village.admin.dto.AdminDTO;
@@ -44,6 +46,30 @@ public class AdminServiceImpl implements AdminService {
 	public List<String> getAccCleanerId() {
 		// TODO Auto-generated method stub
 		return dao.getAccCleanerId();
+	}
+
+	@Override
+	public int hostAccBest(AccommodationIdDTO accIdDTO) {
+		// TODO Auto-generated method stub
+		return dao.hostAccBest(accIdDTO);
+	}
+
+	@Override
+	public List<AccommodationIdDTO> accIdList(AccommodationIdDTO accIdDTO) {
+		// TODO Auto-generated method stub
+		return dao.accIdList(accIdDTO);
+	}
+
+	@Override
+	public int deleteHostAccBest(AccommodationIdDTO accIdDTO) {
+		// TODO Auto-generated method stub
+		 return dao.deleteHostAccBest(accIdDTO);
+	}
+
+	@Override
+	public List<AccommodationDTO> accExceptBest(AccommodationDTO accDTO) {
+		// TODO Auto-generated method stub
+		return dao.accExceptBest(accDTO);
 	}
 
 }

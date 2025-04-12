@@ -211,7 +211,9 @@
 package com.test.Urban_Village.accommodation.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -390,6 +392,7 @@ public class AccommodationControllerImpl implements AccommodationController {
         ModelAndView mav = new ModelAndView();
         List<AccommodationDTO> accommodationList = service.accList();
         mav.addObject("accommodationList", accommodationList);
+        session.setAttribute("accommodationList", accommodationList);
         mav.setViewName("admin/accommodationList");
         return mav;
     }
@@ -475,4 +478,5 @@ public class AccommodationControllerImpl implements AccommodationController {
         }
         return resEntity;
     }
+    
 }

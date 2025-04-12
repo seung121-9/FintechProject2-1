@@ -4,7 +4,8 @@ package com.test.Urban_Village.accommodation.dto;
 public class AccommodationIdDTO {
     
     private String admin_id;           
-    private String accommodation_id;  
+    private String accommodation_id;
+    
 	public String getAdmin_id() {
 		return admin_id;
 	}

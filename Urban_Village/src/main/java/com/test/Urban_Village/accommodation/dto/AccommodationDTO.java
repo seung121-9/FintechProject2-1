@@ -1,104 +1,112 @@
 package com.test.Urban_Village.accommodation.dto;
 
+import java.util.List;
+
 public class AccommodationDTO {
-	
-	    private String accommodationId;      // ¼÷¼Ò °íÀ¯¹øÈ£
-	    private String adminId;              // °ü¸®ÀÚ ID
-	    private String accommodationName;    // ¼÷¼Ò ÀÌ¸§
-	    private String accommodationPhoto;   // ¼÷¼Ò »çÁø °æ·Î
-	    private String cleanerAdminId;       // Ã»¼Ò °ü¸®ÀÚ ID
-	    private int capacity;                // ÃÖ´ë ÀÎ¿ø ¼ö
-	    private int roomCount;               // ¹æ °³¼ö
-	    private int bathroomCount;           // È­Àå½Ç °³¼ö
-	    private int bedCount;                // Ä§´ë ¼ö
-	    private String wifiAvail;            // ¿ÍÀÌÆÄÀÌ À¯¹«
-	    private String reviewData;           // ¸®ºä µ¥ÀÌÅÍ
-	    
-	    public String getAccommodationId() {
-	        return accommodationId;
-	    }
 
-	    public void setAccommodationId(String accommodationId) {
-	        this.accommodationId = accommodationId;
-	    }
-
-	    public String getAdminId() {
-	        return adminId;
-	    }
-
-	    public void setAdminId(String adminId) {
-	        this.adminId = adminId;
-	    }
-
-	    public String getAccommodationName() {
-	        return accommodationName;
-	    }
-
-	    public void setAccommodationName(String accommodationName) {
-	        this.accommodationName = accommodationName;
-	    }
-
-	    public String getAccommodationPhoto() {
-	        return accommodationPhoto;
-	    }
-
-	    public void setAccommodationPhoto(String accommodationPhoto) {
-	        this.accommodationPhoto = accommodationPhoto;
-	    }
-
-	    public String getCleanerAdminId() {
-	        return cleanerAdminId;
-	    }
-
-	    public void setCleanerAdminId(String cleanerAdminId) {
-	        this.cleanerAdminId = cleanerAdminId;
-	    }
-
-	    public int getCapacity() {
-	        return capacity;
-	    }
-
-	    public void setCapacity(int capacity) {
-	        this.capacity = capacity;
-	    }
-
-	    public int getRoomCount() {
-	        return roomCount;
-	    }
-
-	    public void setRoomCount(int roomCount) {
-	        this.roomCount = roomCount;
-	    }
-
-	    public int getBathroomCount() {
-	        return bathroomCount;
-	    }
-
-	    public void setBathroomCount(int bathroomCount) {
-	        this.bathroomCount = bathroomCount;
-	    }
-
-	    public int getBedCount() {
-	        return bedCount;
-	    }
-
-	    public void setBedCount(int bedCount) {
-	        this.bedCount = bedCount;
-	    }
-
-	    public String getWifiAvail() {
-	        return wifiAvail;
-	    }
-
-	    public void setWifiAvail(String wifiAvail) {
-	        this.wifiAvail = wifiAvail;
-	    }
-
-	    public String getReviewData() {
-	        return reviewData;
-	    }
-
-	    public void setReviewData(String reviewData) {
-	        this.reviewData = reviewData;
-	    }
+    private String accommodation_id;     // ìˆ™ì†Œ ê³ ìœ ë²ˆí˜¸
+    private String admin_id;             // ê´€ë¦¬ì ID
+    private String accommodation_name;   // ìˆ™ì†Œ ì´ë¦„
+    private String accommodation_photo;  // ìˆ™ì†Œ ëŒ€í‘œ ì‚¬ì§„
+    private String cleaner_admin_id;     // ì²­ì†Œ ê´€ë¦¬ì ID
+    private int capacity;                // ìµœëŒ€ ìˆ˜ìš© ì¸ì›
+    private int room_count;              // ë°© ê°œìˆ˜
+    private int bathroom_count;          // ìš•ì‹¤ ê°œìˆ˜
+    private int bed_count;               // ì¹¨ëŒ€ ê°œìˆ˜
+    private String wifi_avail;           // ì™€ì´íŒŒì´ ì—¬ë¶€
+    private String review_data;          // ë¦¬ë·° ë°ì´í„°
+    private int price;                   // ê°€ê²©
+    private List<String> imageList;
+    
+    public List<String> getImageList() {
+		return imageList;
 	}
+
+	public void setImageList(List<String> imageList) {
+		this.imageList = imageList;
+	}
+
+	@Override
+    public String toString() {
+        return "AccommodationDTO{" +
+                "accommodation_id='" + accommodation_id + '\'' +
+                ", accommodation_name='" + accommodation_name + '\'' +
+                ", price=" + price +
+                ", accommodation_photo='" + accommodation_photo + '\'' +
+                ", room_count=" + room_count +
+                '}';
+    }
+
+    public String getAccommodation_id() {
+        return accommodation_id;
+    }
+    public void setAccommodation_id(String accommodation_id) {
+        this.accommodation_id = accommodation_id;
+    }
+    public String getAdmin_id() {
+        return admin_id;
+    }
+    public void setAdmin_id(String admin_id) {
+        this.admin_id = admin_id;
+    }
+    public String getAccommodation_name() {
+        return accommodation_name;
+    }
+    public void setAccommodation_name(String accommodation_name) {
+        this.accommodation_name = accommodation_name;
+    }
+    public String getAccommodation_photo() {
+        return accommodation_photo;
+    }
+    public void setAccommodation_photo(String accommodation_photo) {
+        this.accommodation_photo = accommodation_photo;
+    }
+    public String getCleaner_admin_id() {
+        return cleaner_admin_id;
+    }
+    public void setCleaner_admin_id(String cleaner_admin_id) {
+        this.cleaner_admin_id = cleaner_admin_id;
+    }
+    public int getCapacity() {
+        return capacity;
+    }
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+    public int getRoom_count() {
+        return room_count;
+    }
+    public void setRoom_count(int room_count) {
+        this.room_count = room_count;
+    }
+    public int getBathroom_count() {
+        return bathroom_count;
+    }
+    public void setBathroom_count(int bathroom_count) {
+        this.bathroom_count = bathroom_count;
+    }
+    public int getBed_count() {
+        return bed_count;
+    }
+    public void setBed_count(int bed_count) {
+        this.bed_count = bed_count;
+    }
+    public String getWifi_avail() {
+        return wifi_avail;
+    }
+    public void setWifi_avail(String wifi_avail) {
+        this.wifi_avail = wifi_avail;
+    }
+    public String getReview_data() {
+        return review_data;
+    }
+    public void setReview_data(String review_data) {
+        this.review_data = review_data;
+    }
+    public int getPrice() {
+        return price;
+    }
+    public void setPrice(int price) {
+        this.price = price;
+    }
+}

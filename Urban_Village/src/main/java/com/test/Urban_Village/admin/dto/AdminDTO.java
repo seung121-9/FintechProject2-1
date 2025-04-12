@@ -2,68 +2,58 @@ package com.test.Urban_Village.admin.dto;
 
 public class AdminDTO {
 
-	    private String adminId;           // °ü¸®ÀÚ ID
-	    private String pwd;               // ºñ¹Ğ¹øÈ£
-	    private String email;             // ÀÌ¸ŞÀÏ
-	    private String name;              // °ü¸®ÀÚ ÀÌ¸§
-	    private String phoneNumber;       // °ü¸®ÀÚ ÀüÈ­¹øÈ£
-	    private String organization;      // ¼Ò¼Ó ±â°ü
-	    private String location;          // ¼Ò¼Ó À§Ä¡
+	    private String admin_id;           // ê´€ë¦¬ì ID
+	    private String pwd;               // ë¹„ë°€ë²ˆí˜¸
+	    private String email;             // ì´ë©”ì¼
+	    private String name;              // ê´€ë¦¬ì ì´ë¦„
+	    private String phone_number;       // ê´€ë¦¬ì ì „í™”ë²ˆí˜¸
+	    private String organization;      // ì†Œì† ê¸°ê´€
+	    private String location;          // ì†Œì† ìœ„ì¹˜
+		public String getAdmin_id() {
+			return admin_id;
+		}
+		public void setAdmin_id(String admin_id) {
+			this.admin_id = admin_id;
+		}
+		public String getPwd() {
+			return pwd;
+		}
+		public void setPwd(String pwd) {
+			this.pwd = pwd;
+		}
+		public String getEmail() {
+			return email;
+		}
+		public void setEmail(String email) {
+			this.email = email;
+		}
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public String getPhone_number() {
+			return phone_number;
+		}
+		public void setPhone_number(String phone_number) {
+			this.phone_number = phone_number;
+		}
+		public String getOrganization() {
+			return organization;
+		}
+		public void setOrganization(String organization) {
+			this.organization = organization;
+		}
+		public String getLocation() {
+			return location;
+		}
+		public void setLocation(String location) {
+			this.location = location;
+		}
+
 	    
-	    public String getAdminId() {
-	        return adminId;
-	    }
+}
 
-	    public void setAdminId(String adminId) {
-	        this.adminId = adminId;
-	    }
 
-	    public String getPwd() {
-	        return pwd;
-	    }
-
-	    public void setPwd(String pwd) {
-	        this.pwd = pwd;
-	    }
-
-	    public String getEmail() {
-	        return email;
-	    }
-
-	    public void setEmail(String email) {
-	        this.email = email;
-	    }
-
-	    public String getName() {
-	        return name;
-	    }
-
-	    public void setName(String name) {
-	        this.name = name;
-	    }
-
-	    public String getPhoneNumber() {
-	        return phoneNumber;
-	    }
-
-	    public void setPhoneNumber(String phoneNumber) {
-	        this.phoneNumber = phoneNumber;
-	    }
-
-	    public String getOrganization() {
-	        return organization;
-	    }
-
-	    public void setOrganization(String organization) {
-	        this.organization = organization;
-	    }
-
-	    public String getLocation() {
-	        return location;
-	    }
-
-	    public void setLocation(String location) {
-	        this.location = location;
-	    }
-	}
 

@@ -25,7 +25,7 @@ public class ViewNameInterceptor extends HandlerInterceptorAdapter {
 	    String uri = request.getRequestURI();
 	    int end = uri.lastIndexOf(".");
 	    
-	    return uri.substring(start, end);  // ¿¹: "/urban/joinMember" -> "urban/joinMember"
+	    return uri.substring(start, end);  // "/urban/joinMember" -> "urban/joinMember"
 	}
 
 

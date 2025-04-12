@@ -73,4 +73,25 @@ public class MemberServiceImpl implements MemberService {
 			return dao.reservationGetUserId(loginId);
 		}
 		
+		@Override
+		   public int deleteMember(String id) {
+		      return dao.deleteMember(id);
+		   }
+		
+		  @Override
+		   public List<PayDTO> getDailySales() {
+		      List<PayDTO> dailySalesList = dao.getDailySales();
+		       System.out.println("일별 매출 데이터 (서비스): " + dailySalesList); // 추가
+		       return dao.getDailySales();
+		   }
+
+		   @Override
+		   public List<PayDTO> getMonthlySales() {
+		       return dao.getMonthlySales();
+		   }
+
+		   @Override
+		   public List<PayDTO> getYearlySales() {
+		       return dao.getYearlySales();
+		   }
 	}

@@ -324,5 +324,103 @@ public class MemberControllerImpl implements MemberController {
 		}
 		return mav;
 	}
+	@RequestMapping("/deleteMemberForm.do")
+    public ModelAndView deleteMemberForm(HttpServletRequest request, HttpServletResponse response) {
+       String viewName = (String) request.getAttribute("viewName");
+       ModelAndView mav = new ModelAndView(viewName);
+       return mav;
+    }
 
+    // 회원 탈퇴 처리
+	@Override
+    @RequestMapping(value = "/deleteMember.do", method = RequestMethod.POST)
+    public void deleteMember(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpServletRequest request, HttpServletResponse response) throws IOException {
+       response.setContentType("text/html;charset=utf-8");
+       PrintWriter out = response.getWriter();
+       HttpSession session = request.getSession(false);
+
+       if (session == null || session.getAttribute("loginId") == null) {
+          out.println("<script>");
+          out.println("alert('로그인 정보가 없습니다.');");
+          out.println("location.href='" + request.getContextPath() + "/member/loginForm.do';");
+          out.println("</script>");
+          return;
+       }
+
+       String loggedInId = (String) session.getAttribute("loginId");
+
+       if (!loggedInId.equals(id)) {
+          out.println("<script>");
+          out.println("alert('잘못된 접근입니다.');");
+          out.println("location.href='" + request.getContextPath() + "/member/myInfo.do?id=" + loggedInId + "';");
+          out.println("</script>");
+          return;
+       }
+
+       MemberDTO member = service.login(id, pwd);
+
+       if (member != null) {
+          int result = service.deleteMember(id);
+          if (result > 0) {
+             session.invalidate(); // 회원 탈퇴 성공 시 세션 무효화
+             out.println("<script>");
+             out.println("alert('회원 탈퇴가 완료되었습니다.');");
+             out.println("location.href='" + request.getContextPath() + "/';"); // 메인 페이지로 이동
+             out.println("</script>");
+          } else {
+             out.println("<script>");
+             out.println("alert('회원 탈퇴 처리 중 오류가 발생했습니다.');");
+             out.println("history.back();"); // 이전 페이지로 이동
+             out.println("</script>");
+          }
+       } else {
+          out.println("<script>");
+          out.println("alert('아이디 또는 비밀번호가 일치하지 않습니다. 다시 확인해주세요.');");
+          out.println("history.back();"); // 이전 페이지로 이동
+          out.println("</script>");
+       }
+    }
+	
+	// 매출
+    @Override
+     @RequestMapping("/salesForm.do")
+     public ModelAndView salesForm(HttpServletRequest request, HttpServletResponse response) {
+         ModelAndView mav = new ModelAndView("/member/salesForm.do"); // Tiles 정의 이름 사용
+         return mav;
+     }
+
+    @Override
+    @RequestMapping("/getDailySales.do")
+    public ModelAndView getDailySales(HttpServletRequest request, HttpServletResponse response) {
+        List<PayDTO> dailySalesList = service.getDailySales();
+        System.out.println("일별 매출 데이터 (컨트롤러): " + dailySalesList); // 추가
+        ModelAndView mav = new ModelAndView("/member/salesForm.do");
+        mav.addObject("dailySalesList", dailySalesList);
+        mav.addObject("selectedTab", "daily");
+        return mav;
+    }
+    
+    
+
+    @Override
+    @RequestMapping("/getMonthlySales.do")
+    public ModelAndView getMonthlySales(HttpServletRequest request, HttpServletResponse response) {
+        List<PayDTO> monthlySalesList = service.getMonthlySales();
+        ModelAndView mav = new ModelAndView("/member/salesForm.do");
+        mav.addObject("monthlySalesList", monthlySalesList);
+        mav.addObject("selectedTab", "monthly");
+        return mav;
+    }
+
+    @Override
+    @RequestMapping("/getYearlySales.do")
+    public ModelAndView getYearlySales(HttpServletRequest request, HttpServletResponse response) {
+        List<PayDTO> yearlySalesList = service.getYearlySales();
+        ModelAndView mav = new ModelAndView("/member/salesForm.do");
+        mav.addObject("yearlySalesList", yearlySalesList);
+        mav.addObject("selectedTab", "yearly");
+        return mav;
+    }
+    
+    
 }

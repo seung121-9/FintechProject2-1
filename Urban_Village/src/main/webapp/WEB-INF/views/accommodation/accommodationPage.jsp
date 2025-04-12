@@ -38,6 +38,13 @@
 .hidden {
 	display: none;
 }
+.error-message {
+         font-size: 0.9em;
+         color: red;
+         margin-top: 4px;
+         margin-bottom: 8px;
+      }
+
 </style>
 </head>
 <body>
@@ -145,6 +152,7 @@
 	    let pricePerNight = Number("<c:out value='${sessionScope.accommodation.price}' />");
 
 	    if (checkin && checkout) {
+	    	
 	        let nights = (new Date(checkout) - new Date(checkin)) / (1000 * 60 * 60 * 24);
 	        if (nights > 0) {
 	            let totalPrice = nights * pricePerNight;
@@ -205,6 +213,48 @@
         let pricePerNight = Number("<c:out value='${sessionScope.accommodation.price}' />");
         let nights = (new Date(checkout) - new Date(checkin)) / (1000 * 60 * 60 * 24);
         let totalPrice = nights > 0 ? nights * pricePerNight : 0;
+        let hasError = false;
+
+     // 기존에 등록된 error-message 삭제
+        $(".error-message").remove();
+
+        if (!checkin) {
+           if ($("#checkin").next(".error-message").length === 0) {
+              $("<p class='error-message'>체크인 날짜를 선택해주세요.</p>").insertAfter($("#checkin"));
+           }
+           $("#checkin").focus();
+           hasError = true;
+        }
+
+        if (!checkout) {
+           if ($("#checkout").next(".error-message").length === 0) {
+              $("<p class='error-message'>체크아웃 날짜를 선택해주세요.</p>").insertAfter($("#checkout"));
+           }
+           $("#checkout").focus();
+           hasError = true;
+        } else if (checkin && checkout && (checkin >= checkout)) {
+           if ($("#checkout").next(".error-message").length === 0) {
+              $("<p class='error-message'>체크아웃 날짜는 체크인 날짜 이후여야 합니다.</p>").insertAfter($("#checkout"));
+           }
+           $("#checkout").focus();
+           hasError = true;
+        }
+
+        if (!guests || isNaN(guests) || Number(guests) < 1) {
+           if ($("#guests").next(".error-message").length === 0) {
+              $("<p class='error-message'>인원수를 선택해주세요.</p>").insertAfter($("#guests"));
+           }
+           $("#guests").focus();
+           hasError = true;
+        }
+
+        if (hasError) {
+           return;
+        }
+
+        let nights = (new Date(checkout) - new Date(checkin)) / (1000 * 60 * 60 * 24);
+        let totalPrice = nights > 0 ? nights * pricePerNight * Number(guests) : 0;
+
 
         // 로컬 스토리지 저장
         localStorage.setItem('reservationCheckin', checkin);

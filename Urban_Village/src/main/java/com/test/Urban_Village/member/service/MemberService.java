@@ -16,4 +16,8 @@ public interface MemberService {
 	public List<MemberDTO> getUserInfoById(String id);
 	int updateUserInfo(MemberDTO member);
 	public List<PayDTO> reservationGetUserId(String loginId);
+	int deleteMember(String id);
+	List<PayDTO> getDailySales();
+	List<PayDTO> getMonthlySales();
+	List<PayDTO> getYearlySales();
 }

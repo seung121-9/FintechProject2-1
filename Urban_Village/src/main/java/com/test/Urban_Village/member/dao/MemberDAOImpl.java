@@ -72,6 +72,25 @@ public class MemberDAOImpl implements MemberDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("mapper.member.reservationGetUserId", loginId);
 	}
+	 @Override
+	   public int deleteMember(String id) {
+	      return sqlSession.delete("mapper.member.deleteMember", id);
+	   }
+	// 매출
+	   @Override
+	   public List<PayDTO> getDailySales() {
+	      List<PayDTO> dailySalesList = sqlSession.selectList("mapper.member.selectDailySales");
+	       System.out.println("일별 매출 데이터 (DAO): " + dailySalesList.get(0).getTotal_sales()); // 추가
+	       return dailySalesList;
+	   }
 
+	   @Override
+	   public List<PayDTO> getMonthlySales() {
+	       return sqlSession.selectList("mapper.member.selectMonthlySales");
+	   }
 
+	   @Override
+	   public List<PayDTO> getYearlySales() {
+	       return sqlSession.selectList("mapper.member.selectYearlySales");
+	   }
 }

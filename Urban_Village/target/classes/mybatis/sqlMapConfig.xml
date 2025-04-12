@@ -14,9 +14,9 @@
 			<typeAlias type="com.test.Urban_Village.accommodation.dto.AccommodationIdDTO"
 			alias="accIdDTO" />
 			<typeAlias type="com.test.Urban_Village.admin.dto.AdminDTO" alias="AdminDTO"/>
-			<!-- <typeAlias type="com.test.Urban_Village.wishList.dto.WishListDTO" alias="WishListDTO"/> -->
 			<typeAlias type="com.test.Urban_Village.cleaner.dto.CleanerDTO" alias="cleanerDTO"/>
-			
+			<typeAlias type="com.test.Urban_Village.wishList.dto.WishListDTO" alias="WishListDTO"/>
+			<typeAlias type="com.test.Urban_Village.member.dto.PayDTO" alias="mem_payDTO" />
 	</typeAliases>
 	
 </configuration>

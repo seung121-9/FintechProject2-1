@@ -33,4 +33,10 @@ public interface MemberController {
 	public ModelAndView reservationHistory(HttpServletRequest request, HttpServletResponse response);
 	ModelAndView reservation(String accommodation_id, String reservation_id, Date checkin_date, Date checkout_date,
 			int guest_count, double total_price, HttpServletRequest request, HttpServletResponse response);
+	void deleteMember(String id, String pwd, HttpServletRequest request, HttpServletResponse response)
+			throws IOException;
+	ModelAndView salesForm(HttpServletRequest request, HttpServletResponse response);
+	ModelAndView getDailySales(HttpServletRequest request, HttpServletResponse response);
+	ModelAndView getMonthlySales(HttpServletRequest request, HttpServletResponse response);
+	ModelAndView getYearlySales(HttpServletRequest request, HttpServletResponse response);
 }

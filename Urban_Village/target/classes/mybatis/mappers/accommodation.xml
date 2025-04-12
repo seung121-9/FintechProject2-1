@@ -83,4 +83,5 @@
           wifi_avail = #{wifi_avail}
         WHERE accommodation_id = #{accommodation_id}
     </update>
+  
 </mapper>

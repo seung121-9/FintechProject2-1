@@ -91,6 +91,46 @@
                 }
             }
         }
+        
+        function validateForm() {
+            const form = document.forms[0];
+
+            // 필수값 확인
+            if (form.admin_id.value.trim() === "") {
+                alert("관리자 ID를 입력해주세요.");
+                form.admin_id.focus();
+                return false;
+            }
+            if (form.accommodation_name.value.trim() === "") {
+                alert("숙소 이름을 입력해주세요.");
+                form.accommodation_name.focus();
+                return false;
+            }
+            if (form["accommodation_photo[]"].files.length === 0) {
+                alert("숙소 사진을 하나 이상 선택해주세요.");
+                return false;
+            }
+
+            // 숫자 필드 확인
+            const numberFields = ["capacity", "room_count", "bathroom_count", "bed_count", "price"];
+            for (let field of numberFields) {
+                const value = form[field].value.trim();
+                if (value === "" || isNaN(value) || parseInt(value) <= 0) {
+                    alert(field + " 항목은 0보다 큰 숫자여야 합니다.");
+                    form[field].focus();
+                    return false;
+                }
+            }
+
+            // 와이파이 선택 확인
+            if (form.wifi_avail.value === "") {
+                alert("와이파이 여부를 선택해주세요.");
+                form.wifi_avail.focus();
+                return false;
+            }
+
+            return true;
+        }
     </script>
 </head>
 <body>

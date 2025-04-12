@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
-   request.setCharacterEncoding("utf-8");
+    request.setCharacterEncoding("utf-8");
 %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
@@ -17,19 +17,118 @@
 <title></title>
 <%-- <link rel="stylesheet"
     href="${pageContext.request.contextPath}/resources/css/style.css"> --%>
-<script>
-    function toggleHeart(icon) {
-        if (icon.classList.contains("liked")) {
-            icon.innerHTML = "&#9825;"; // 빈 하트
-            icon.classList.remove("liked");
-        } else {
-            icon.innerHTML = "&#9829;"; // 채워진 하트
-            icon.classList.add("liked");
-        }
-    }
-    function name() {
+<style>
+.heart-icon {
+    cursor: pointer;
+    font-size: 20px;
+    color: lightgray; /* 기본 하트 색상 */
+}
 
+.heart-icon.liked {
+    color: red; /* 찜했을 때 하트 색상 */
+}
+
+.accommodation {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.accommodation > a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+.accommodation img {
+    max-width: 100px;
+    margin-right: 10px;
+}
+
+.details {
+    flex-grow: 1;
+}
+
+.categories-container {
+    margin-bottom: 20px;
+}
+
+.categories a {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+}
+</style>
+
+<script>
+    function toggleWishlist(icon, memberId, accommodationId) {
+        event.stopPropagation(); // 부모 요소의 onclick 이벤트 막기
+
+        let isLiked = icon.classList.contains("liked");
+        let url = isLiked ? "${contextPath}/wishList/remove.do" : "${contextPath}/wishList/add.do";
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                memberId: memberId,
+                accommodationId: accommodationId
+            },
+            success: function(response) {
+                if (response === "1") {
+                    icon.classList.toggle("liked");
+                    icon.innerHTML = isLiked ? "&#9825;" : "&#9829;";
+                    let message = isLiked ? "위시리스트에서 제거되었습니다." : "위시리스트에 추가되었습니다.";
+                    alert(message);
+                } else if (response === "0") {
+                    let message = isLiked ? "위시리스트 제거에 실패했습니다." : "위시리스트 추가에 실패했습니다.";
+                    alert(message);
+                } else {
+                    alert("로그인 후 이용해주세요.");
+                }
+            },
+            error: function(error) {
+                console.error("Error toggling wishlist:", error);
+                alert("서버와 통신 중 오류가 발생했습니다.");
+            }
+        });
     }
+
+    $(document).ready(function() {
+        // 페이지 로딩 시 각 숙소의 찜 여부 확인
+        $(".accommodation").each(function() {
+            let accommodationId = $(this).data("accommodation-id");
+            let heartIcon = $(this).find(".heart-icon");
+            let memberId = "${loginId}"; // 세션에서 로그인 아이디 가져오기
+
+            if (memberId) {
+                $.ajax({
+                    url: "${contextPath}/wishList/check.do",
+                    type: "GET",
+                    data: {
+                        memberId: memberId,
+                        accommodationId: accommodationId
+                    },
+                    success: function(response) {
+                        if (response === "true") {
+                            heartIcon.addClass("liked");
+                            heartIcon.html("&#9829;");
+                        }
+                    },
+                    error: function(error) {
+                        console.error("Error checking wishlist:", error);
+                    }
+                });
+            }
+        });
+    });
 </script>
 <head>
 <script
@@ -42,29 +141,30 @@
 
         <div class="categories-container">
             <div class="categories">
-                <a href="#">김천 ㆍ 칠곡 ㆍ 고령 ㆍ 성주</a> <a href="#">구미 ㆍ 상주 ㆍ 의성 ㆍ 문경</a> <a
-                    href="#">예천 ㆍ 안동 ㆍ 영주 ㆍ 봉화</a> <a href="#">영양 ㆍ 울진 ㆍ 영덕 ㆍ 청송</a> <a href="#">포항 ㆍ 영천 ㆍ 경주 ㆍ 경산</a>
-                <a href="#">울릉 ㆍ 청도 ㆍ 독도</a>
-                   
+                <a href="#">최고의 전망</a> <a href="#">호잇</a> <a href="#">유량</a> <a
+                    href="#">한적</a> <a href="#">최고</a> <a href="#">공원</a> <a href="#">한옥</a>
+                <a href="#">소형주택</a> <a href="#">인기급상</a> <a href="#">Luxe</a> <a
+                    href="#">독채</a>
             </div>
         </div>
             <div class="accommodations">
     <c:forEach items="${accommodationList}" var="accommodation">
-        <div class="accommodation">
+        <div class="accommodation"
+             onclick="location.href='${contextPath}/accommodation/accommodationPage.do?accommodation_id=${accommodation.accommodation_id}'"
+             data-accommodation-id="${accommodation.accommodation_id}">
             <a href="${pageContext.request.contextPath}/accommodation/accommodationPage.do?accommodation_id=${accommodation.accommodation_id}">
                 <span class="heart-icon"
-                        onclick="event.stopPropagation(); toggleHeart(this)">&#9825;</span>
-                 <!-- DB에 저장된 콤마로 구분된 이미지 파일명을 배열로 변환하고 첫 번째 이미지만 출력 -->
+                      onclick="event.stopPropagation(); toggleWishlist(this, '${loginId}', '${accommodation.accommodation_id}')">&#9825;</span>
                     <c:set var="imageStr" value="${accommodation.accommodation_photo}" />
                     <c:set var="images" value="${fn:split(imageStr, ',')}" />
-                    <img src="${contextPath}/download.do?imageFileName=${images[0]}&accommodation_id=${accommodation.accommodation_id}&timestamp=<%= System.currentTimeMillis() %>" 
+                    <img src="${contextPath}/download.do?imageFileName=${images[0]}&accommodation_id=${accommodation.accommodation_id}&timestamp=<%= System.currentTimeMillis() %>"
                          alt="${accommodation.accommodation_name}" style="max-width: 200px; margin: 5px;">
                     <div class="details">
-                    <h3>${accommodation.accommodation_name}</h3>
-                    <p>★ 5.0 ${accommodation.capacity}</p>
-                    <p>₩ ${accommodation.price} / 박</p>
-                    <p>게스트 한마디: 정말 예쁘고 깔끔한 곳....</p>
-                </div>
+                        <h3>${accommodation.accommodation_name}</h3>
+                        <p>★ 5.0 ${accommodation.capacity}</p>
+                        <p>₩ ${accommodation.price} / 박</p>
+                        <p>게스트 한마디: 정말 예쁘고 깔끔한 곳....</p>
+                    </div>
             </a>
         </div>
     </c:forEach>
@@ -72,74 +172,6 @@
 
 <%-- <div id="accommodationDetails" style="display: none;"></div> --%>
 
-            <div class="accommodation">
-                <span class="heart-icon" onclick="toggleHeart(this)">&#9825;</span>
-                <a href="${pageContext.request.contextPath}/accommodation/accommodationPage.do?accommodation_id=A1"> <img
-                    src="${pageContext.request.contextPath}/resources/image/image1.jpg"
-                    alt="숙소 이미지">
-                    <div class="details">
-                        <h3>한국 Gangha-myeon, Yangpy...</h3>
-                        <p>★ 5.0 한국 가평군</p>
-                        <p>4월 12일 - 18일</p>
-                        <p>₩ 183,729 / 박</p>
-                        <p>게스트 한마디: 정말 예쁘고 깔끔한 곳....</p>
-                    </div>
-                </a>
-            </div>
-            <div class="accommodation">
-                <span class="heart-icon" onclick="toggleHeart(this)">&#9825;</span>
-                <a href="${pageContext.request.contextPath}/accommodation/accommodationPage.do?accommodation_id=A2"> <img
-                    src="${pageContext.request.contextPath}/resources/image/image3.jpg"
-                    alt="숙소 이미지">
-                    <div class="details">
-                        <h3>한국 Gapyeong-eup, Gapyeo...</h3>
-                        <p>★ 4.6 한국 가평군</p>
-                        <p>4월 20일 - 25일</p>
-                        <p>₩ 303,553 / 박</p>
-                        <p>게스트 한마디: 장보고 바로 오기 편했어요...</p>
-                    </div>
-                </a>
-            </div>
-            <div class="accommodation">
-                <span class="heart-icon" onclick="toggleHeart(this)">&#9825;</span>
-                <a href="${pageContext.request.contextPath}/accommodation/accommodationPage.do?accommodation_id=A3"> <img
-                    src="${pageContext.request.contextPath}/resources/image/image4.jpg"
-                    alt="숙소 이미지">
-                    <div class="details">
-                        <h3>한국 Okcheon-myeon, Yangp...</h3>
-                        <p>★ 4.86 한국 가평군</p>
-                        <p>5월 7일 - 12일</p>
-                        <p>₩ 184,871 / 박</p>
-                    </div>
-                </a>
-            </div>
-            <div class="accommodation">
-                <span class="heart-icon" onclick="toggleHeart(this)">&#9825;</span>
-                <a href="${pageContext.request.contextPath}/accommodation/accommodationPage.do?accommodation_id=A4"> <img
-                    src="${pageContext.request.contextPath}/resources/image/image5.jpg"
-                    alt="숙소 이미지">
-                    <div class="details">
-                        <h3>한국 Gangha-myeon, Yangpy...</h3>
-                        <p>★ 4.95 한국 가평군</p>
-                        <p>6월 1일 - 6일</p>
-                        <p>₩ 155,376 / 박</p>
-                    </div>
-                </a>
-            </div>
-            <div class="accommodation">
-                <span class="heart-icon" onclick="toggleHeart(this)">&#9825;</span>
-                <a href="${pageContext.request.contextPath}/accommodation/accommodationPage.do?accommodation_id=A5"> <img
-                    src="${pageContext.request.contextPath}/resources/image/image6.jpg"
-                    alt="숙소 이미지">
-                    <div class="details">
-                        <h3>한국 Gangha-myeon, Yangpy...</h3>
-                        <p>★ 4.95 한국 가평군</p>
-                        <p>4월 12일 - 17일</p>
-                        <p>₩ 183,729 / 박</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
+
 </body>
 </html>

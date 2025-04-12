@@ -241,6 +241,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.test.Urban_Village.accommodation.dto.AccommodationDTO;
 import com.test.Urban_Village.accommodation.service.AccommodationService;
+import com.test.Urban_Village.review.dto.ReviewDTO;
+import com.test.Urban_Village.review.service.ReviewService;
 
 @Controller
 @RequestMapping("/accommodation")
@@ -249,20 +251,35 @@ public class AccommodationControllerImpl implements AccommodationController {
     AccommodationService service;
     @Autowired
     HttpSession session;
+    @Autowired
+    ReviewService rService;
 
     private static final String TEMP_DIR = "D:\\image\\temp\\";
     private static final String DEST_DIR = "D:\\image\\addImage\\";
     private static final String ACCOMMODATION_IMAGE_REPO = "D:\\image\\addImage\\"; // 업데이트 시 이미지 저장 경로
-
+    
     @Override
     @RequestMapping("/accommodationPage.do")
-    public ModelAndView accommodationPage(@RequestParam("accommodation_id") String accommodation_id, HttpServletResponse response, HttpServletRequest request) {
+    public ModelAndView accommodationPage(@RequestParam("accommodation_name")String accommodationName,@RequestParam("accommodation_id") String accommodation_id, HttpServletResponse response, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         String viewName = (String) request.getAttribute("viewName");
         mav.setViewName(viewName);
 
         AccommodationDTO accommodation = service.findAccommodationId(accommodation_id);
         session.setAttribute("accommodation", accommodation);
+        try {
+            List<ReviewDTO> reviews = rService.getReviewsByAccommodationId(accommodationName);
+            if (reviews == null || reviews.isEmpty()) {
+                System.out.println("No reviews found for accommodation: " + accommodationName);
+            } else {
+                System.out.println("Fetched reviews: " + reviews);
+            }
+            System.out.println("Fetched reviews: " + reviews); // 디버깅 로그 추가
+           mav.addObject("reviews", reviews);
+        } catch (Exception e) {
+            System.out.println("Error fetching reviews: " + e.getMessage());
+            e.printStackTrace();
+        }
         return mav;
     }
 
@@ -366,14 +383,7 @@ public class AccommodationControllerImpl implements AccommodationController {
         return resEnt;
     }
 
-    @Override
-    @RequestMapping(value = "/accommodationPage", method = RequestMethod.GET)
-    public ModelAndView accommodationPage(@RequestParam("accommodation_id") String accommodationId) {
-        AccommodationDTO accommodation = service.findAccommodationId(accommodationId);
-        ModelAndView mav = new ModelAndView("accommodation/accommodationPage");
-        mav.addObject("accommodation", accommodation);
-        return mav;
-    }
+  
 
     @Override
     @RequestMapping("/main.do")
@@ -478,5 +488,8 @@ public class AccommodationControllerImpl implements AccommodationController {
         }
         return resEntity;
     }
+
+    
+    
     
 }

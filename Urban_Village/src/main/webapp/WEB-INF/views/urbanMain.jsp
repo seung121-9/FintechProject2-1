@@ -152,7 +152,7 @@
         <div class="accommodation"
              onclick="location.href='${contextPath}/accommodation/accommodationPage.do?accommodation_id=${accommodation.accommodation_id}'"
              data-accommodation-id="${accommodation.accommodation_id}">
-            <a href="${pageContext.request.contextPath}/accommodation/accommodationPage.do?accommodation_id=${accommodation.accommodation_id}">
+            <a href="${pageContext.request.contextPath}/accommodation/accommodationPage.do?accommodation_id=${accommodation.accommodation_id}&accommodation_name=${accommodation.accommodation_name}">
                 <span class="heart-icon"
                       onclick="event.stopPropagation(); toggleWishlist(this, '${loginId}', '${accommodation.accommodation_id}')">&#9825;</span>
                     <c:set var="imageStr" value="${accommodation.accommodation_photo}" />

@@ -1,6 +1,8 @@
 package com.test.Urban_Village.reservation.controller;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.Urban_Village.accommodation.service.AccommodationService;
@@ -108,7 +111,21 @@ public class ReservationControllerImpl implements ReservationController {
 		}
 		return mav;
 	}
-
+	@RequestMapping("delReservation")
+    public ModelAndView delReservation(@RequestParam("reservation_id") String reservation_id,
+                               HttpServletRequest request,
+                               HttpServletResponse response) throws IOException {
+       int result = service.delReservation(reservation_id);
+       response.setContentType("text/html;charset=utf-8");
+      PrintWriter out = response.getWriter();
+       if(result == 1) {
+          out.write("<script>");
+         out.write("alert('예약 취소 되었습니다!');");
+         out.write("location.href='/Urban_Village/reservation/reservationHistory.do';");
+         out.write("</script>");
+       }
+       return null;
+    }
 	
 
 }

@@ -5,6 +5,7 @@
 <%
     request.setCharacterEncoding("utf-8");
 %>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -131,6 +132,30 @@
 
             return true;
         }
+        
+        function checkAccommodationName() {
+            var accommodationName = $("#accommodationName").val();
+            if (accommodationName === "") {
+                alert("숙소 이름을 입력하세요.");
+                return;
+            }
+
+            $.ajax({
+                url: "${contextPath}/accommodation/checkName.do",
+                method: "POST",
+                data: { name: accommodationName },
+                success: function(response) {
+                    if (response.exists) {
+                        alert("숙소 이름이 이미 존재합니다.");
+                    } else {
+                        alert("사용 가능한 숙소 이름입니다.");
+                    }
+                },
+                error: function() {
+                    alert("숙소 이름 중복 체크 중 오류가 발생했습니다.");
+                }
+            });
+        }
     </script>
 </head>
 <body>
@@ -139,7 +164,10 @@
             <h2>숙소 등록</h2>
             <input type="text" name="accommodation_id" value="등록후 숙소 아이디가 자동으로 생성됩니다." class="input-field" required readonly>
             <input type="text" name="admin_id" class="input-field" placeholder="관리자 ID" required>
-            <input type="text" name="accommodation_name" class="input-field" placeholder="숙소 이름" required>
+           <div style="display: flex; gap: 10px;">
+                <input type="text" id="accommodationName" name="accommodation_name" class="input-field" placeholder="숙소 이름" required style="flex: 1;">
+                <button type="button" class="submit-button" style="flex: 0 1 150px;" onclick="checkAccommodationName()">중복체크</button>
+            </div>
             <input type="file" name="accommodation_photo[]" class="input-field" placeholder="숙소 사진 경로" required onchange="previewImages(event)" multiple>
             <div id="imagePreviewContainer"></div>
             <input type="text" name="cleaner_admin_id" class="input-field" placeholder="청소 관리자 ID (선택)">

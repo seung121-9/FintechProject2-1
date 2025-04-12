@@ -36,5 +36,9 @@ public class ReservationDAOImpl implements ReservationDAO {
 		return sqlSession.selectList("mapper.member.reservationGetUserId", loginId);
 	}
 
-
+	@Override
+	   public int delReservation(String reservation_id) {
+	      // TODO Auto-generated method stub
+	      return sqlSession.delete("mapper.reservation.delReservation", reservation_id);
+	   }
 }

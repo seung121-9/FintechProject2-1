@@ -14,7 +14,9 @@
 		<result property="total_price" column="total_price"></result>
 	</resultMap>
 
-
+	<delete id="delReservation" parameterType="string">
+       delete from pay where reservation_id = #{reservation_id}
+    </delete>
 	<insert id="addPay" parameterType="payDTO">
 		INSERT INTO pay
 		(accommodation_id, id, reservation_id, checkin_date, checkout_date, guest_count,

@@ -39,4 +39,10 @@ public class ReservationserviceImpl implements ReservationService {
 			return dao.reservationGetUserId(loginId);
 		}
 		
+		@Override
+		   public int delReservation(String reservation_id) {
+		      // TODO Auto-generated method stub
+		      return dao.delReservation(reservation_id);
+		   }
+		
 	}

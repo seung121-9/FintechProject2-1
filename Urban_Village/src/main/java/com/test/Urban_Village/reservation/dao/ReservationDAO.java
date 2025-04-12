@@ -11,4 +11,5 @@ public interface ReservationDAO {
 	public void addPay(PayDTO payDto);
 	public List<PayDTO> payList();
 	public List<PayDTO> reservationGetUserId(String loginId);
+	public int delReservation(String reservation_id);
 }

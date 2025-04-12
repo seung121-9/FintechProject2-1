@@ -17,6 +17,7 @@
 			<typeAlias type="com.test.Urban_Village.cleaner.dto.CleanerDTO" alias="cleanerDTO"/>
 			<typeAlias type="com.test.Urban_Village.wishList.dto.WishListDTO" alias="WishListDTO"/>
 			<typeAlias type="com.test.Urban_Village.member.dto.PayDTO" alias="mem_payDTO" />
+			<typeAlias type="com.test.Urban_Village.review.dto.ReviewDTO" alias="reviewDTO"/>
 	</typeAliases>
 	
 </configuration>

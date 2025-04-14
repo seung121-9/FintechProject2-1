@@ -163,7 +163,7 @@
                         <h3>${accommodation.accommodation_name}</h3>
                         <p>★ 5.0 ${accommodation.capacity}</p>
                         <p>₩ ${accommodation.price} / 박</p>
-                        <p>게스트 한마디: 정말 예쁘고 깔끔한 곳....</p>
+                        <p>★ 호스트 추천 숙소 ★</p>
                     </div>
             </a>
         </div>

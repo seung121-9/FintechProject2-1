@@ -454,7 +454,7 @@
         }
 
         let nights = (new Date(checkout) - new Date(checkin)) / (1000 * 60 * 60 * 24);
-        let totalPrice = nights > 0 ? nights * pricePerNight * Number(guests) : 0;
+        let totalPrice = nights > 0 ? nights * pricePerNight : 0;
 
         // 로컬 스토리지 저장
         localStorage.setItem('reservationCheckin', checkin);

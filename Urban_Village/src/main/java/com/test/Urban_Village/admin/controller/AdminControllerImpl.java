@@ -143,6 +143,9 @@ public class AdminControllerImpl implements AdminController {
 			mav.addObject("accExceptBest",accExceptBestList);
 			mav.setViewName(viewName);
 			
+			String viewName2 = "urbanMain";
+			mav.setViewName(viewName2);
+			mav.addObject("accExceptBest", accExceptBestList);
 			
 		return mav;
 	}

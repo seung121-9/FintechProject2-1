@@ -32,7 +32,7 @@ public class AdminControllerImpl implements AdminController {
 	@Autowired
 	HttpSession session;
 	@Autowired
-    CleanerService cleanerService;
+	CleanerService cleanerService;
 
 	@Override
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
@@ -45,7 +45,7 @@ public class AdminControllerImpl implements AdminController {
 		AdminDTO admin = adminService.login(id, pwd); // AdminService의 login 메서드 사용
 		if (admin != null) {
 			System.out.println("로그인 성공");
-			
+
 			session.setAttribute("isAdmin", true);
 			session.setAttribute("adminInfo", admin);
 			mav.setViewName("redirect:/");
@@ -96,93 +96,84 @@ public class AdminControllerImpl implements AdminController {
 		System.out.println("viewName"+viewName);
 		return	mav;
 	}
-	
+
 	@Override
-    @RequestMapping("/cleanerList.do")
-    public ModelAndView cleanerList(HttpServletRequest request,
+	@RequestMapping("/cleanerList.do")
+	public ModelAndView cleanerList(HttpServletRequest request,
 			HttpServletResponse response) {
-    	String viewName = (String) request.getAttribute("viewName");
-    	ModelAndView mav = new ModelAndView();
-    	System.out.println(viewName);
-        List<CleanerDTO> cleanerList = adminService.getCleanerList();
-        List<String> accCleanerId = adminService.getAccCleanerId();
-        mav.setViewName(viewName);
-        mav.addObject("cleanerList", cleanerList);
-        mav.addObject("accCleanerId", accCleanerId);
-        return mav;
-        
-    }
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		System.out.println(viewName);
+		List<CleanerDTO> cleanerList = adminService.getCleanerList();
+		List<String> accCleanerId = adminService.getAccCleanerId();
+		mav.setViewName(viewName);
+		mav.addObject("cleanerList", cleanerList);
+		mav.addObject("accCleanerId", accCleanerId);
+		return mav;
+
+	}
 	@Override
-    @RequestMapping("/cleanerDetail.do")
-    public ModelAndView cleanerDetail(@RequestParam("member_id") String memberId, HttpServletRequest request,
+	@RequestMapping("/cleanerDetail.do")
+	public ModelAndView cleanerDetail(@RequestParam("member_id") String memberId, HttpServletRequest request,
 			HttpServletResponse response) {
-    	String viewName = (String) request.getAttribute("viewName");
-    	ModelAndView mav = new ModelAndView();
-        CleanerDTO cleaner = adminService.getCleanerDetail(memberId);
-    	mav.setViewName(viewName);
-    	mav.addObject("cleaner", cleaner);
-        return mav;
-    }
-	
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		CleanerDTO cleaner = adminService.getCleanerDetail(memberId);
+		mav.setViewName(viewName);
+		mav.addObject("cleaner", cleaner);
+		return mav;
+	}
+
 	@RequestMapping("/hostAccBest.do")
 	public ModelAndView hostAccBest(@ModelAttribute("AccommodationDTO")AccommodationDTO accDTO,@ModelAttribute("AccommodationIdDTO")AccommodationIdDTO accIdDTO, HttpServletRequest request,
 			HttpServletResponse response) {
-			ModelAndView mav = new ModelAndView();
-			String viewName = (String) request.getAttribute("ViewName");
-			String adminId = (String) session.getAttribute("adminId");
-			
-			System.out.println("관리자 로그인 아이디 :" + adminId );
-			accIdDTO.setAdmin_id(adminId);
-			System.out.println("합쳐진 아이디 " + accIdDTO.getAdmin_id());
-			
-			List<AccommodationIdDTO> hostBestAccIdList = adminService.accIdList(accIdDTO);
-			mav.addObject("hostBestAccIdList",hostBestAccIdList);
-			accDTO.setAdmin_id(adminId);
-			List<AccommodationDTO> accExceptBestList = adminService.accExceptBest(accDTO);
-			mav.addObject("accExceptBest",accExceptBestList);
-			mav.setViewName(viewName);
-			
-		return mav;
-	}
-	public ModelAndView bestAccList (@ModelAttribute("AccommodationIdDTO")AccommodationIdDTO accIdDTO, HttpServletRequest request,
-			HttpServletResponse response) {
-		List<AccommodationIdDTO> hostBestAccIdList = adminService.accIdList(accIdDTO);
 		ModelAndView mav = new ModelAndView();
-		String viewName = (String) request.getAttribute("urbanMain");
+		String viewName = (String) request.getAttribute("ViewName");
+		String adminId = (String) session.getAttribute("adminId");
+
+		System.out.println("관리자 로그인 아이디 :" + adminId );
+		accIdDTO.setAdmin_id(adminId);
+		System.out.println("합쳐진 아이디 " + accIdDTO.getAdmin_id());
+
+		List<AccommodationIdDTO> hostBestAccIdList = adminService.accIdList(accIdDTO);
 		mav.addObject("hostBestAccIdList",hostBestAccIdList);
+		accDTO.setAdmin_id(adminId);
+		List<AccommodationDTO> accExceptBestList = adminService.accExceptBest(accDTO);
+		mav.addObject("accExceptBest",accExceptBestList);
 		mav.setViewName(viewName);
+
 		return mav;
-		
 	}
+
 	@RequestMapping("/hostAccBestButton.do")
 	public ModelAndView hostAccBestButton(@ModelAttribute("AccommodationIdDTO")AccommodationIdDTO accIdDTO,@RequestParam("accommodation_id")String accommodation_id, HttpServletRequest request,
 			HttpServletResponse response) {
-			ModelAndView mav = new ModelAndView();
-			String viewName = (String) request.getAttribute("ViewName");
-			
-			String adminId = (String) session.getAttribute("adminId");
-			System.out.println("관리자 로그인 아이디 :" + adminId );
-			accIdDTO.setAdmin_id(adminId);
-			
-			accIdDTO.setAccommodation_id(accommodation_id);
-			int result = adminService.hostAccBest(accIdDTO);
-			
-			return new ModelAndView("redirect:/admin/hostAccBest.do");
-	}
-	
-	@RequestMapping("/delHostAccBest.do")
-	public ModelAndView delHostAccBest(@RequestParam("accommodation_id") String accommodation_id,
-	                                   HttpServletRequest request,
-	                                   HttpServletResponse response,
-	                                   HttpSession session) {
-	    String adminId = (String) session.getAttribute("adminId");
-	    System.out.println("관리자 로그인 아이디 :" + adminId);
-	    AccommodationIdDTO accIdDTO = new AccommodationIdDTO();
-	    accIdDTO.setAdmin_id(adminId);
-	    accIdDTO.setAccommodation_id(accommodation_id);
-	    int result = adminService.deleteHostAccBest(accIdDTO);
-	    return new ModelAndView("redirect:/admin/hostAccBest.do");
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("ViewName");
+
+		String adminId = (String) session.getAttribute("adminId");
+		System.out.println("관리자 로그인 아이디 :" + adminId );
+		accIdDTO.setAdmin_id(adminId);
+
+		accIdDTO.setAccommodation_id(accommodation_id);
+		int result = adminService.hostAccBest(accIdDTO);
+
+		return new ModelAndView("redirect:/admin/hostAccBest.do");
 	}
 
-	
+	@RequestMapping("/delHostAccBest.do")
+	public ModelAndView delHostAccBest(@RequestParam("accommodation_id") String accommodation_id,
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session) {
+		String adminId = (String) session.getAttribute("adminId");
+		System.out.println("관리자 로그인 아이디 :" + adminId);
+		AccommodationIdDTO accIdDTO = new AccommodationIdDTO();
+		accIdDTO.setAdmin_id(adminId);
+		accIdDTO.setAccommodation_id(accommodation_id);
+		int result = adminService.deleteHostAccBest(accIdDTO);
+		return new ModelAndView("redirect:/admin/hostAccBest.do");
+	}
+
+
 }

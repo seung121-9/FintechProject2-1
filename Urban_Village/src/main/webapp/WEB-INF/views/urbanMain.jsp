@@ -74,7 +74,8 @@
   animation: blink 1s infinite;
 }
 </style>
-
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     function toggleWishlist(icon, memberId, accommodationId) {
         event.stopPropagation(); // 부모 요소의 onclick 이벤트 막기
@@ -139,8 +140,6 @@
     });
 </script>
 <head>
-<script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 </head>
 
@@ -169,8 +168,8 @@
                     <img src="${contextPath}/download.do?imageFileName=${images[0]}&accommodation_id=${accommodation.accommodation_id}&timestamp=<%= System.currentTimeMillis() %>"
                          alt="${accommodation.accommodation_name}" style="max-width: 200px; margin: 5px;">
                     <div class="details">
-                        <c:forEach var="bestAcc" items="${sessionScope.hostBestAccIdList}">
-    						<c:if test="${accommodation.accommodation_id == bestAcc.accommodation_id}">
+                       <c:forEach var="bestAcc" items="${hostBestAccIdList}">
+    						<c:if test="${accommodation.accommodation_id eq bestAcc.accommodation_id}">
                					 <p class="blink-text">★ 호스트 추천 숙소 ★</p>
             				</c:if>
 						</c:forEach>
@@ -181,6 +180,7 @@
             </a>
         </div>
     </c:forEach>
+</div>
 </div>
 </body>
 </html>

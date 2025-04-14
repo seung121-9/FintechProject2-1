@@ -17,4 +17,5 @@ public interface AdminService {
 	public List<AccommodationIdDTO> accIdList(AccommodationIdDTO accIdDTO);
 	public int deleteHostAccBest(AccommodationIdDTO accIdDTO);
 	public List<AccommodationDTO> accExceptBest(AccommodationDTO accDTO);
+	public List<AccommodationIdDTO> accIdListAll(AccommodationIdDTO accIdDTO);
 }

@@ -71,4 +71,7 @@
 		WHERE admin_id = #{admin_id}
 		)
 	</select>
+	<select id="accIdListAll" parameterType="accIdDTO" resultMap="accIdResult">
+	SELECT * FROM accommodationId
+	</select>
 </mapper>

@@ -71,4 +71,10 @@ public class AdminDAOImpl implements AdminDAO {
 		return session.selectList("mapper.admin.accExceptBest", accDTO);
 	}
 
+	@Override
+	public List<AccommodationIdDTO> accIdListAll(AccommodationIdDTO accIdDTO) {
+		// TODO Auto-generated method stub
+		return session.selectList("mapper.admin.accIdListAll", accIdDTO);
+	}
+
 }

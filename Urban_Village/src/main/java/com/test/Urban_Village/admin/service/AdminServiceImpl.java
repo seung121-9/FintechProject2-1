@@ -72,4 +72,10 @@ public class AdminServiceImpl implements AdminService {
 		return dao.accExceptBest(accDTO);
 	}
 
+	@Override
+	public List<AccommodationIdDTO> accIdListAll(AccommodationIdDTO accIdDTO) {
+		// TODO Auto-generated method stub
+		return dao.accIdListAll(accIdDTO);
+	}
+
 }

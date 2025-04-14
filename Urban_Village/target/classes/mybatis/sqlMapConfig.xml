@@ -7,6 +7,7 @@
 	<typeAliases>
 		<typeAlias type="com.test.Urban_Village.member.dto.MemberDTO"
 			alias="memberDTO" />
+<<<<<<< HEAD
 			<typeAlias type="com.test.Urban_Village.reservation.dto.PayDTO"
 			alias="payDTO" />
 			<typeAlias type="com.test.Urban_Village.accommodation.dto.AccommodationDTO"
@@ -20,4 +21,7 @@
 			<typeAlias type="com.test.Urban_Village.review.dto.ReviewDTO" alias="reviewDTO"/>
 	</typeAliases>
 	
+=======
+	</typeAliases>
+>>>>>>> branch 'master' of https://github.com/seung121-9/FintechProject2-1.git
 </configuration>

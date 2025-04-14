@@ -19,7 +19,13 @@ public class WishListDAOImpl implements WishListDAO{
 	@Override
 	public int insertWishlist(WishListDTO WDTO) {
 		// TODO Auto-generated method stub
-		return session.insert(NAMESPACE + "insertWishlist", WDTO);
+		  // 중복 체크
+	    WishListDTO existingWishlist = session.selectOne(NAMESPACE + "selectWishlistByMemberIdAndAccommodationId", WDTO);
+	    if (existingWishlist != null) {
+	        return 0; // 이미 찜 목록에 있는 경우 0 반환
+	    }
+	    // 중복이 없으면 삽입
+	    return session.insert(NAMESPACE + "insertWishlist", WDTO);
 	}
 
 	@Override

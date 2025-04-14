@@ -9,4 +9,5 @@ public interface WishListService {
 	int removeWishlist(WishListDTO WishListDTO);
 	List<WishListDTO> getWishlistByMemberId(String memberId);
 	WishListDTO checkWishlist(WishListDTO WishListDTO);
+	boolean isLiked(String memberId, String accommodationId);
 }

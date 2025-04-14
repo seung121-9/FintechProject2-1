@@ -26,6 +26,7 @@ public class WishListControllerImpl implements WishListController {
 
     @Override
     @RequestMapping(value = "/add.do", method = RequestMethod.POST)
+    
     @ResponseBody
     public String addWishlist(@RequestParam("memberId") String memberId,
                               @RequestParam("accommodationId") String accommodationId,
@@ -50,18 +51,6 @@ public class WishListControllerImpl implements WishListController {
         return String.valueOf(result); // 성공/실패 여부를 문자열로 반환 (JSON 등으로 변경 가능)
     }
 
-	/*
-	 * @Override
-	 * 
-	 * @RequestMapping("/wishList.do") public ModelAndView
-	 * getWishlist(@RequestParam("memberId") String memberId, HttpServletRequest
-	 * request, HttpServletResponse response) { String viewName = (String)
-	 * request.getAttribute("viewName"); List<WishListDTO> wishlist =
-	 * WService.getWishlistByMemberId(memberId); ModelAndView mav = new
-	 * ModelAndView(); mav.setViewName(viewName); // 위시리스트 페이지 View 이름 설정
-	 * mav.addObject("wishlist", wishlist); return mav; }
-	 */
-    
     @Override
     @RequestMapping("/wishList.do")
     public ModelAndView getWishlist(@RequestParam("memberId") String memberId,

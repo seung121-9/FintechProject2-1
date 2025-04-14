@@ -16,6 +16,7 @@ import com.test.Urban_Village.accommodation.dto.AccommodationDTO;
 import com.test.Urban_Village.accommodation.dto.AccommodationIdDTO;
 import com.test.Urban_Village.accommodation.service.AccommodationService;
 import com.test.Urban_Village.admin.service.AdminService;
+import com.test.Urban_Village.wishList.service.WishListService;
 
 @Controller
 public class MainController {
@@ -24,6 +25,8 @@ public class MainController {
 	AccommodationService service;
 	@Autowired
 	AdminService adminService;
+	@Autowired
+	WishListService wishListService;
 
 	@RequestMapping(value= {"/", "/main"}) 
 	public ModelAndView main(HttpSession session,@ModelAttribute("AccommodationIdDTO") AccommodationIdDTO accIdDTO, @ModelAttribute AccommodationDTO accDTO) {
@@ -31,11 +34,14 @@ public class MainController {
 	    session.setAttribute("accommodationList", accommodationList);
 	    ModelAndView mav = new ModelAndView();
 	    List<AccommodationIdDTO> hostBestAccIdList = adminService.accIdListAll(accIdDTO);
+	    String memberId = (String) session.getAttribute("loginId");
+        if (memberId != null) {
+            for (AccommodationDTO acc : accommodationList) {
+                boolean liked = wishListService.isLiked(memberId, acc.getAccommodation_id());
+                acc.setLiked(liked);  // AccommodationDTO에 setLiked(boolean) 필요
+            }
+        }
 	    mav.addObject("hostBestAccIdList", hostBestAccIdList);
-	    for(AccommodationIdDTO accIdDTO2 : hostBestAccIdList) {
-	    System.out.println("호스트 추천 숙소??" + accIdDTO2.getAccommodation_id());
-	    System.out.println("호스트 추천 숙소 관리자 아이디"+ accIdDTO2.getAdmin_id());
-	    }
 	    mav.setViewName("urbanMain");
 	    return mav;
 	}

@@ -255,7 +255,7 @@ public class AccommodationControllerImpl implements AccommodationController {
     HttpSession session;
     @Autowired
     ReviewService rService;
-
+    
     private static final String TEMP_DIR = "D:\\image\\temp\\";
     private static final String DEST_DIR = "D:\\image\\addImage\\";
     private static final String ACCOMMODATION_IMAGE_REPO = "D:\\image\\addImage\\"; // 업데이트 시 이미지 저장 경로
@@ -388,11 +388,12 @@ public class AccommodationControllerImpl implements AccommodationController {
   
 
     @Override
-    @RequestMapping("/main.do")
+    @RequestMapping(value= {"/", "/main"})
     public ModelAndView main(HttpServletResponse response, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         List<AccommodationDTO> accommodationList = service.accList();
         mav.addObject("accommodationList", accommodationList);
+        
         mav.setViewName("urbanMain");
         return mav;
     }

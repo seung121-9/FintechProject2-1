@@ -17,6 +17,17 @@ public class AccommodationDTO {
     private String review_data;          // 리뷰 데이터
     private int price;                   // 가격
     private List<String> imageList;
+
+    private boolean liked;
+
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public void setLiked(boolean liked) {
+        this.liked = liked;
+    }
+
     
     public List<String> getImageList() {
 		return imageList;

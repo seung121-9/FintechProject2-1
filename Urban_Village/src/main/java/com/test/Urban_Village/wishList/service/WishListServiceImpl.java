@@ -37,5 +37,12 @@ public class WishListServiceImpl implements WishListService{
 		// TODO Auto-generated method stub
 		return WDAO.selectWishlistByMemberIdAndAccommodationId(WishListDTO);
 	}
+	@Override
+	public boolean isLiked(String memberId, String accommodationId) {
+	    WishListDTO dto = new WishListDTO();
+	    dto.setMemberId(memberId);
+	    dto.setAccommodationId(accommodationId);
+	    return WDAO.selectWishlistByMemberIdAndAccommodationId(dto) != null;
+	}
 
 }

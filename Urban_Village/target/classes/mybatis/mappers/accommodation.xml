@@ -83,5 +83,10 @@
           wifi_avail = #{wifi_avail}
         WHERE accommodation_id = #{accommodation_id}
     </update>
+  <select id="checkAccommodationName" parameterType="string" resultType="string">
+    SELECT accommodation_name
+    FROM accommodation
+    WHERE accommodation_name = #{name}
+</select>
   
 </mapper>

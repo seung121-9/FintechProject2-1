@@ -57,5 +57,10 @@ public void updateAccommodation(Map<String, Object> accommodationMap) {
 	dao.updateAccommodation(accommodationMap);
 }
 
+@Override
+public boolean checkAccommodationName(String name) {
+    return dao.checkAccommodationName(name);
+}
+
 
 }

@@ -26,6 +26,8 @@ public interface AccommodationDAO {
 
 	void updateAccommodation(Map<String, Object> accommodationMap);
 
+	boolean checkAccommodationName(String name);
+
 	
 
 

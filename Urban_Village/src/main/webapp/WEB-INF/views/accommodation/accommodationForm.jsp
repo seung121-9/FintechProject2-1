@@ -5,7 +5,6 @@
 <%
     request.setCharacterEncoding("utf-8");
 %>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -67,6 +66,7 @@
             margin-bottom: 10px;
         }
     </style>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script>
         function previewImages(event) {
             var output = document.getElementById('imagePreviewContainer');

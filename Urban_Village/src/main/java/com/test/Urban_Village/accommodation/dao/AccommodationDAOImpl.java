@@ -64,5 +64,11 @@ public void updateAccommodation(Map<String, Object> accommodationMap) {
 	session.update("mapper.accommodation.updateAccommodation", accommodationMap);
 }
 
+@Override
+public boolean checkAccommodationName(String name) {
+    String result = session.selectOne("mapper.accommodation.checkAccommodationName", name);
+    return result != null;
+}
+
 
 }

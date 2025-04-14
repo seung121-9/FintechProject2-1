@@ -15,8 +15,6 @@
     <meta http-equiv="Expires" content="0" />
 
 <title></title>
-<%-- <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/resources/css/style.css"> --%>
 <style>
 .heart-icon {
     cursor: pointer;
@@ -64,6 +62,16 @@
     border-radius: 5px;
     text-decoration: none;
     color: black;
+}
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.blink-text {
+  color: red;
+  animation: blink 1s infinite;
 }
 </style>
 
@@ -137,6 +145,7 @@
 </head>
 
 <body>
+
     <div class="container">
 
         <div class="categories-container">
@@ -147,12 +156,12 @@
                     href="#">독채</a>
             </div>
         </div>
-            <div class="accommodations">
+<div class="accommodations">
     <c:forEach items="${accommodationList}" var="accommodation">
         <div class="accommodation"
              onclick="location.href='${contextPath}/accommodation/accommodationPage.do?accommodation_id=${accommodation.accommodation_id}'"
              data-accommodation-id="${accommodation.accommodation_id}">
-            <a href="${pageContext.request.contextPath}/accommodation/accommodationPage.do?accommodation_id=${accommodation.accommodation_id}&accommodation_name=${accommodation.accommodation_name}">
+            <a href="${pageContext.request.contextPath}/accommodation/accommodationPage.do?accommodation_id=${accommodation.accommodation_id}&accommodation_name=${accommodation.accommodation_name} ">
                 <span class="heart-icon"
                       onclick="event.stopPropagation(); toggleWishlist(this, '${loginId}', '${accommodation.accommodation_id}')">&#9825;</span>
                     <c:set var="imageStr" value="${accommodation.accommodation_photo}" />
@@ -160,18 +169,18 @@
                     <img src="${contextPath}/download.do?imageFileName=${images[0]}&accommodation_id=${accommodation.accommodation_id}&timestamp=<%= System.currentTimeMillis() %>"
                          alt="${accommodation.accommodation_name}" style="max-width: 200px; margin: 5px;">
                     <div class="details">
+                        <c:forEach var="bestAcc" items="${sessionScope.hostBestAccIdList}">
+    						<c:if test="${accommodation.accommodation_id == bestAcc.accommodation_id}">
+               					 <p class="blink-text">★ 호스트 추천 숙소 ★</p>
+            				</c:if>
+						</c:forEach>
                         <h3>${accommodation.accommodation_name}</h3>
-                        <p>★ 5.0 ${accommodation.capacity}</p>
+                        <p>★ 5.0 </p>
                         <p>₩ ${accommodation.price} / 박</p>
-                        <p>★ 호스트 추천 숙소 ★</p>
                     </div>
             </a>
         </div>
     </c:forEach>
 </div>
-
-<%-- <div id="accommodationDetails" style="display: none;"></div> --%>
-
-
 </body>
 </html>

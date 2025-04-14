@@ -137,19 +137,23 @@ public class AdminControllerImpl implements AdminController {
 			
 			List<AccommodationIdDTO> hostBestAccIdList = adminService.accIdList(accIdDTO);
 			mav.addObject("hostBestAccIdList",hostBestAccIdList);
-			
 			accDTO.setAdmin_id(adminId);
 			List<AccommodationDTO> accExceptBestList = adminService.accExceptBest(accDTO);
 			mav.addObject("accExceptBest",accExceptBestList);
 			mav.setViewName(viewName);
 			
-			String viewName2 = "urbanMain";
-			mav.setViewName(viewName2);
-			mav.addObject("accExceptBest", accExceptBestList);
-			
 		return mav;
 	}
-	
+	public ModelAndView bestAccList (@ModelAttribute("AccommodationIdDTO")AccommodationIdDTO accIdDTO, HttpServletRequest request,
+			HttpServletResponse response) {
+		List<AccommodationIdDTO> hostBestAccIdList = adminService.accIdList(accIdDTO);
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("urbanMain");
+		mav.addObject("hostBestAccIdList",hostBestAccIdList);
+		mav.setViewName(viewName);
+		return mav;
+		
+	}
 	@RequestMapping("/hostAccBestButton.do")
 	public ModelAndView hostAccBestButton(@ModelAttribute("AccommodationIdDTO")AccommodationIdDTO accIdDTO,@RequestParam("accommodation_id")String accommodation_id, HttpServletRequest request,
 			HttpServletResponse response) {

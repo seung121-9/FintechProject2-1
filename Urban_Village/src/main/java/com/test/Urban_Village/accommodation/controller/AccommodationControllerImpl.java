@@ -215,6 +215,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -235,6 +236,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -441,7 +443,7 @@ public class AccommodationControllerImpl implements AccommodationController {
         ResponseEntity<String> resEntity = null;
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "text/html; charset=utf-8");
-
+        
         try {
             Enumeration<String> enu = multipartRequest.getParameterNames();
             while (enu.hasMoreElements()) {
@@ -450,10 +452,21 @@ public class AccommodationControllerImpl implements AccommodationController {
                 accommodationMap.put(name, value);
             }
 
-            // 이미지 파일 처리 (기존 이미지 삭제 후 새로 업로드)
+         // 이미지 파일 처리 (기존 이미지 삭제 후 새로 업로드)
             List<MultipartFile> mFiles = multipartRequest.getFiles("accommodation_photo[]");
             List<String> fileList = new ArrayList<>();
+
+            boolean hasValidFile = false;
             if (mFiles != null && !mFiles.isEmpty()) {
+                for (MultipartFile file : mFiles) {
+                    if (file != null && !file.isEmpty()) {
+                        hasValidFile = true;
+                        break;
+                    }
+                }
+            }
+
+            if (hasValidFile) {
                 File destDir = new File(DEST_DIR + accommodationMap.get("accommodation_id"));
                 destDir.mkdirs();
                 FileUtils.cleanDirectory(destDir); // 기존 이미지 폴더 비우기
@@ -477,19 +490,34 @@ public class AccommodationControllerImpl implements AccommodationController {
             service.updateAccommodation(accommodationMap);
 
             String accommodation_id = (String) accommodationMap.get("accommodation_id");
-            String message = "<script>alert('숙소 정보를 수정했습니다.'); location.href='" + request.getContextPath() + "/accommodation/accommodationPage.do?accommodation_id=" + accommodation_id + "';</script>";
+            String accommodation_name = (String) accommodationMap.get("accommodation_name");
+            String message = "<script>alert('숙소 정보를 수정했습니다.'); location.href='" 
+            	    + request.getContextPath() 
+            	    + "/accommodation/accommodationPage.do?accommodation_id=" 
+            	    + accommodation_id 
+            	    + "&accommodation_name=" 
+            	    + accommodation_name 
+            	    + "';</script>";
             resEntity = new ResponseEntity<>(message, headers, HttpStatus.CREATED);
-
+            
         } catch (Exception e) {
             String accommodation_id = multipartRequest.getParameter("accommodation_id");
-            String message = "<script>alert('오류가 발생했습니다. 다시 시도해주세요.'); location.href='" + request.getContextPath() + "/accommodation/accommodationPage.do?accommodation_id=" + accommodation_id + "';</script>";
+            String message = "<script>alert('오류가 발생했습니다. 다시 시도해주세요.'); location.href='" + request.getContextPath() + "/accommodation/accommodationPage.do?accommodation_id=" + accommodation_id +"?accommodation_name=" + accommodation_id + "';</script>";
             resEntity = new ResponseEntity<>(message, headers, HttpStatus.CREATED);
             e.printStackTrace();
         }
         return resEntity;
     }
 
-    
+    @ResponseBody
+    @RequestMapping(value = "/checkName.do", method = RequestMethod.POST)
+    public Map<String, Boolean> checkName(@RequestParam("name") String accommodationName) {
+        Map<String, Boolean> response = new HashMap<>();
+        boolean exists = service.checkAccommodationName(accommodationName);
+        response.put("exists", exists);
+        return response;
+    }
+
     
     
 }

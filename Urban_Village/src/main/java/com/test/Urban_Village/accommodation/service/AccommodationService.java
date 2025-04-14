@@ -16,6 +16,7 @@ public interface AccommodationService {
 	int delAccommodation(String accommodation_id);
 	List<AccommodationDTO> idFindByAccList(String accommodation_id);
 	void updateAccommodation(Map<String, Object> accommodationMap);
+	boolean checkAccommodationName(String accommodationName);
 
 
 }

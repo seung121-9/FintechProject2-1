@@ -21,11 +21,11 @@
 .heart-icon {
     cursor: pointer;
     font-size: 20px;
-    color: lightgray; /* 기본 하트 색상 */
+    color: lightgray !important; /* 기본 하트 색상 */
 }
 
 .heart-icon.liked {
-    color: red; /* 찜했을 때 하트 색상 */
+    color: red !important; /* 찜했을 때 하트 색상 */
 }
 
 .accommodation {
@@ -66,10 +66,11 @@
     color: black;
 }
 </style>
-
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     function toggleWishlist(icon, memberId, accommodationId) {
-        event.stopPropagation(); // 부모 요소의 onclick 이벤트 막기
+    	event.stopPropagation(); // 부모 요소의 onclick 이벤트 막기
 
         let isLiked = icon.classList.contains("liked");
         let url = isLiked ? "${contextPath}/wishList/remove.do" : "${contextPath}/wishList/add.do";
@@ -130,10 +131,6 @@
         });
     });
 </script>
-<head>
-<script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-</head>
 </head>
 
 <body>
@@ -150,9 +147,9 @@
             <div class="accommodations">
     <c:forEach items="${accommodationList}" var="accommodation">
         <div class="accommodation"
-             onclick="location.href='${contextPath}/accommodation/accommodationPage.do?accommodation_id=${accommodation.accommodation_id}'"
+             <%-- onclick="location.href='${contextPath}/accommodation/accommodationPage.do?accommodation_id=${accommodation.accommodation_id}'" --%>
              data-accommodation-id="${accommodation.accommodation_id}">
-            <a href="${pageContext.request.contextPath}/accommodation/accommodationPage.do?accommodation_id=${accommodation.accommodation_id}&accommodation_name=${accommodation.accommodation_name}">
+            <a href="${contextPath}/accommodation/accommodationPage.do?accommodation_id=${accommodation.accommodation_id}&accommodation_name=${accommodation.accommodation_name}">
                 <span class="heart-icon"
                       onclick="event.stopPropagation(); toggleWishlist(this, '${loginId}', '${accommodation.accommodation_id}')">&#9825;</span>
                     <c:set var="imageStr" value="${accommodation.accommodation_photo}" />
@@ -168,6 +165,7 @@
             </a>
         </div>
     </c:forEach>
+</div>
 </div>
 
 <%-- <div id="accommodationDetails" style="display: none;"></div> --%>

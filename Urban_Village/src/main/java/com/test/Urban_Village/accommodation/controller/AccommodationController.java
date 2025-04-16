@@ -33,11 +33,14 @@ public interface AccommodationController {
 	ModelAndView accommodationPage(String accommodationName, String accommodation_id, HttpServletResponse response,
 			HttpServletRequest request);
 
-	String accommodationList(Model model);
 
 
 
 	ModelAndView modAccommodationList(HttpServletResponse response, HttpServletRequest request);
+
+
+
+	String accommodationList(Model model);
 
 
 

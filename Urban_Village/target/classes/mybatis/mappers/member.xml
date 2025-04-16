@@ -14,7 +14,6 @@
 		<result property="email" column="email"></result>
 	</resultMap>
 
-<<<<<<< HEAD
 	<resultMap type="payDTO" id="payResult">
 		<result property="reservation_id" column="reservation_id"></result>
 		<result property="id" column="id"></result>
@@ -111,20 +110,4 @@ WHERE
    <select id="selectYearlySales" resultMap="mem_payResult">
        SELECT sales_year, total_sales FROM yearly_sales_view ORDER BY sales_year DESC
    </select>
-=======
-	<select id="selectAllMemberList" resultMap="memResult">
-		select * from member order by id desc
-	</select>
-	<select id="login" parameterType="memberDTO" resultMap="memResult">
-		select * from member where id=#{id} and pwd=#{pwd}
-	</select>
-	
-	<insert id="join">
-      INSERT INTO member (id, pwd, email, birth, gender, phonenumber, name,regdate)
-        VALUES (#{id}, #{pwd}, #{email}, #{birth}, #{gender}, #{phonenumber}, #{name},sysdate)
-   </insert>
-   <select id="countMemberById" parameterType="string" resultType="int">
-        SELECT COUNT(*) FROM member WHERE id = #{id}
-    </select>
->>>>>>> branch 'master' of https://github.com/seung121-9/FintechProject2-1.git
 </mapper> 

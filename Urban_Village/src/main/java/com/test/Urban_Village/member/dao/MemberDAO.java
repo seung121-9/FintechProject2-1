@@ -20,4 +20,7 @@ public interface MemberDAO {
 	List<PayDTO> getDailySales();
 	List<PayDTO> getMonthlySales();
 	List<PayDTO> getYearlySales();
+	public int findPwdForId(String member_id);
+	List<MemberDTO> searchMembersById(String id);
+	public String findEmailById(String member_id);
 }

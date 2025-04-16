@@ -28,6 +28,10 @@ public interface AccommodationDAO {
 
 	boolean checkAccommodationName(String name);
 
+	boolean checkName(String accommodation_name);
+
+	List<AccommodationDTO> searchByRegions(List<String> regions);
+
 	
 
 

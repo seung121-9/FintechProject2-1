@@ -12,4 +12,5 @@ public interface ReviewDAO {
 	String getLastInsertedReviewId();
 	public int insertReview(Map<String, Object> reviewMap) throws Exception;
 	List<ReviewDTO> getReviewsByAccommodationId(String accommodationId);
+	Double getAverageRatingByAccommodationId(String accommodationId);
 }

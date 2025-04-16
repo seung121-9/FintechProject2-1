@@ -110,4 +110,13 @@ WHERE
    <select id="selectYearlySales" resultMap="mem_payResult">
        SELECT sales_year, total_sales FROM yearly_sales_view ORDER BY sales_year DESC
    </select>
+   <select id="findPwdForId" parameterType="String" resultType="int">
+   SELECT COUNT(*) FROM member WHERE id = #{member_id}
+   </select>
+   <select id="searchMembersById" parameterType="string" resultMap="memResult">
+        SELECT * FROM member WHERE id LIKE '%' || #{id} || '%'
+    </select>
+    <select id="findEmailById" resultType="String">
+    SELECT email FROM member WHERE id = #{member_id}
+	</select>
 </mapper> 

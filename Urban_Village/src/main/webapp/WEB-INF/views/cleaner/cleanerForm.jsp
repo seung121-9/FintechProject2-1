@@ -73,61 +73,8 @@
 		</form>
 	</div>
 </body>
-<script>
 <script type="text/javascript">
-function searchAddress() {
-    const keyword = document.getElementById("addressKeyword").value;
-    if (!keyword.trim()) {
-        alert("주소를 입력하세요.");
-        return;
-    }
-
-    const confmKey = "devU01TX0FVVEgyMDI1MDQwOTExMzEwMDExNTYzMDA=";
-    const apiURL = "https://business.juso.go.kr/addrlink/addrLinkApi.do"
-        + "?confmKey=" + confmKey
-        + "&currentPage=1"
-        + "&countPerPage=10"
-        + "&keyword=" + encodeURIComponent(keyword)
-        + "&resultType=json";
-
-    fetch(apiURL)
-        .then(response => response.json())
-        .then(data => {
-            const resultsBox = document.getElementById("addressResults");
-            resultsBox.innerHTML = "";
-
-            if (data.results && data.results.juso && data.results.juso.length > 0) {
-                data.results.juso.forEach(addr => {
-                    const div = document.createElement("div");
-                    div.classList.add("border-bottom", "py-1", "cursor-pointer");
-                    div.style.cursor = "pointer";
-                    div.innerHTML = `<strong>${addr.roadAddr}</strong> <br><small>${addr.jibunAddr}</small>`;
-                    div.onclick = function () {
-                        document.getElementById("address").value = addr.roadAddr;
-                        resultsBox.innerHTML = "";
-                    };
-                    resultsBox.appendChild(div);
-                });
-            } else {
-                resultsBox.innerHTML = "<div class='text-muted'>검색 결과가 없습니다.</div>";
-            }
-        })
-        .catch(err => {
-            console.error("주소 검색 오류:", err);
-            alert("주소 검색 중 오류가 발생했습니다.");
-        });
-}
-</script>
-<script type="text/javascript">
-   /*  function execDaumPostcode() {
-        const width = 570;
-        const height = 420;
-        const left = (window.screen.width / 2) - (width / 2);
-        const top = (window.screen.height / 2) - (height / 2);
-        window.open("${contextPath}/cleaner/jusoPopup.jsp", "jusoPopup",
-            `width=${width}, height=${height}, left=${left}, top=${top}, scrollbars=yes`
-        );
-    } */
+ 
     function execDaumPostcode() {
         const width = 570;
         const height = 420;

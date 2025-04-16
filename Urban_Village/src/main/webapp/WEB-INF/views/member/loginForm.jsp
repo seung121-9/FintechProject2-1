@@ -212,7 +212,10 @@
                 </div>
 
                 <div class="signup-link">
-                    계정이 없으신가요? <a href="/Urban_Village/member/signup.jsp">회원가입</a>
+                    계정이 없으신가요? <a href="/Urban_Village/member/joinMember.do">회원가입</a>
+                </div>
+                <div class="signup-link">
+                    비밀번호를 잊으셨나요? <a href="/Urban_Village/member/findPwd.do">암호찾기</a>
                 </div>
             </form>
         </div>

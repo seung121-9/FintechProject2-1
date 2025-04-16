@@ -69,6 +69,16 @@ public boolean checkAccommodationName(String name) {
     String result = session.selectOne("mapper.accommodation.checkAccommodationName", name);
     return result != null;
 }
+@Override
+public boolean checkName(String accommodation_name) {
+   int count = session.selectOne("mapper.accommodation.countName", accommodation_name);
+   return count > 0;
+}
 
+@Override
+//지역 검색
+public List<AccommodationDTO> searchByRegions(List<String> regions) {
+    return session.selectList("mapper.accommodation.searchByRegions", regions);
+}
 
 }

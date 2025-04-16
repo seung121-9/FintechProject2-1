@@ -33,6 +33,8 @@ public class AdminControllerImpl implements AdminController {
 	HttpSession session;
 	@Autowired
 	CleanerService cleanerService;
+	
+	
 
 	@Override
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
@@ -68,7 +70,7 @@ public class AdminControllerImpl implements AdminController {
 			HttpServletRequest request,
 			HttpServletResponse response)
 					throws Exception {
-		HttpSession session = request.getSession(false);
+		session = request.getSession(false);
 		ModelAndView mav = new ModelAndView();
 		Boolean isLogin = (Boolean) session.getAttribute("isLogin");
 		if(session != null && session.getAttribute("isAdmin") != null) {
@@ -89,7 +91,6 @@ public class AdminControllerImpl implements AdminController {
 	HttpServletResponse response) {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
 		session.setAttribute("action", action);
 		mav.setViewName("admin/loginForm"); // 관리자 로그인 폼 뷰 이름
 		mav.addObject("viewName",viewName);
@@ -173,6 +174,12 @@ public class AdminControllerImpl implements AdminController {
 		accIdDTO.setAccommodation_id(accommodation_id);
 		int result = adminService.deleteHostAccBest(accIdDTO);
 		return new ModelAndView("redirect:/admin/hostAccBest.do");
+	}
+	
+	@RequestMapping("/helpCenter.do")
+	public ModelAndView startMain (HttpServletResponse response, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("/helpCenter/helpCenter");
+		return mav;
 	}
 
 

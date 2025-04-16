@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>내 정보</title>
+<title></title>
 <link rel="stylesheet"
    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <style>
@@ -30,11 +30,17 @@ body {
    align-items: flex-start;
 }
 
-.logo {
+.divlogo {
    color: #FF385C;
    font-size: 24px;
    font-weight: bold;
    margin-bottom: 20px;
+}
+.logo {
+   font-size: 24px;
+   font-weight: bold;
+   text-decoration: none;
+   color: #333;
 }
 
 .sidebar button {
@@ -53,9 +59,8 @@ body {
    background: #FF385C;
    color: white;
 }
-
 .content {
-   margin-left: 500px;
+   margin-left: 750px;
    padding: 40px;
 }
 
@@ -70,6 +75,16 @@ body {
 .info-box label {
    font-weight: bold;
 }
+.footer {
+   background-color: #f8f8f8;
+   padding: 20px;
+   text-align: center;
+   border-top: 1px solid #ddd;
+   font-size: 0.8em;
+   color: #777;
+   margin-left: 250px;
+}
+
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -136,12 +151,12 @@ body {
 </head>
 <body>
    <div class="sidebar">
-      <div class="logo">Airbnb</div>
-      <button class="btn">내정보 확인</button>
-      <button class="btn">위시리스트</button>
-      <button class="btn">직원채용</button>
+      <div class="divlogo"><a href="/Urban_Village/" class="logo"> Urban&Village </a></div>
+	  <button style="background: #FF385C; color: white;" class="btn" onclick="location.href='${contextPath }/member/myInfo.do?id=${loginId}'">내정보 확인</button>
+      <button class="btn" onclick="location.href='${contextPath }/wishList/wishList.do?memberId=${loginId}'">위시리스트</button>
+      <button class="btn" onclick="location.href='${contextPath }/cleaner/cleanerForm.do'">구직지원</button>
       <button class="btn" onclick="location.href='${contextPath}/member/deleteMemberForm.do'">회원탈퇴</button>
-      <button class="btn">예약확인하기</button>
+      <button class="btn" onclick="location.href='${contextPath}/reservation/reservationHistory.do'">예약확인하기</button>
    </div>
    <div class="content">
       <h2>내 정보 페이지</h2>
@@ -187,10 +202,25 @@ body {
                      class="form-control" id="name" name="name"
                      value="${memberList[0].name}">
                </div>
+              
                <button type="submit" class="btn btn-primary">수정하기</button>
             </c:if>
          </form>
       </div>
    </div>
+   <div class="footer">
+	<div class="footer-links">
+		<a href="#">© 2025 Urban&Villiage, Inc.</a> <a href="#">개인 정보 처리
+			방침</a> <a href="#">쿠키 정책</a> <a href="#">이용 약관</a> <a href="#">사이트 맵</a>
+		<a href="#">한국의 변경된 환불 정책</a> <a href="#">회사 세부 정보</a>
+	</div>
+	<div class="footer-details">
+		웹사이트: Urban&Villiage Ireland UC, private unlimited company, 8 Hanover
+		Quay, Dublin 2, D02 DP23 Ireland. (Dermot Clark, Allan Pättwell,
+		Andrea Finnegan, VAT 번호: IE9827384L) <a href="mailto:naver.com">알아서
+			찾아보쇼</a>. 사이트, 010-1111-1111. 호스팅 서비스 제공업체가 아닙니다. 본 서비스에서 이루어지는 숙박 계약의
+		당사자가 아닙니다. 이용자에게 숙소를 제공하는 호스트에게 있습니다.
+	</div>
+</div>
 </body>
 </html>

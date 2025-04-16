@@ -94,4 +94,20 @@ public class MemberServiceImpl implements MemberService {
 		   public List<PayDTO> getYearlySales() {
 		       return dao.getYearlySales();
 		   }
-	}
+
+		@Override
+		public int findPwdForId(String member_id) {
+			// TODO Auto-generated method stub
+			return dao.findPwdForId(member_id);
+		}
+		@Override
+	      public List<MemberDTO> searchMembersById(String id) {
+	            return dao.searchMembersById(id);
+	      }
+
+		@Override
+		public String findEmailById(String member_id) {
+			// TODO Auto-generated method stub
+			return dao.findEmailById(member_id);
+		}
+}

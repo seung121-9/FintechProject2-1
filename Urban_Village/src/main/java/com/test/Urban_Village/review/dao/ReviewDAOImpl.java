@@ -42,4 +42,8 @@ public class ReviewDAOImpl implements ReviewDAO{
     public List<ReviewDTO> getReviewsByAccommodationId(String accommodationName) {
         return session.selectList("mapper.review.getReviewsByAccommodationId", accommodationName);
     }
+    @Override
+    public Double getAverageRatingByAccommodationId(String accommodationId) {
+        return session.selectOne("mapper.review.getAverageRatingByAccommodationId", accommodationId);
+    }
 }

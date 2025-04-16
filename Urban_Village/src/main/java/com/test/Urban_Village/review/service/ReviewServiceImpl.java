@@ -42,5 +42,9 @@ public class ReviewServiceImpl implements ReviewService {
     public List<ReviewDTO> getReviewsByAccommodationId(String accommodationId) {
         return dao.getReviewsByAccommodationId(accommodationId);
     }
+    @Override
+    public Double getAverageRatingByAccommodationId(String accommodationId) {
+        return dao.getAverageRatingByAccommodationId(accommodationId);
+    }
     
 }

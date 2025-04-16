@@ -12,6 +12,8 @@ public interface ReviewService {
 
 	List<ReviewDTO> getReviewsByAccommodationId(String accommodation_id);
 
+	Double getAverageRatingByAccommodationId(String accommodationId);
+
 	
 
 

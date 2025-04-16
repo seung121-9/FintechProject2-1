@@ -93,4 +93,21 @@ public class MemberDAOImpl implements MemberDAO {
 	   public List<PayDTO> getYearlySales() {
 	       return sqlSession.selectList("mapper.member.selectYearlySales");
 	   }
+
+	@Override
+	public int findPwdForId(String member_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.member.findPwdForId", member_id);
+	}
+	
+	@Override
+    public List<MemberDTO> searchMembersById(String id) {
+        return sqlSession.selectList("mapper.member.searchMembersById", id);
+    }
+
+	@Override
+	public String findEmailById(String member_id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.member.findEmailById", member_id);
+	}
 }

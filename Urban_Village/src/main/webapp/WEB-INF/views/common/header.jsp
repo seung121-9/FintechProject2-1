@@ -159,15 +159,17 @@
 
    <!-- 헤더 시작 -->
    <div class="header">
-      <!-- 로고 -->
-      <a href="/Urban_Village/" class="logo"> Urban&Village </a>
 
-      <!-- 검색창 -->
-      <div class="search-bar">
-         <input type="text" placeholder="여행지를 검색하세요">
-         <button>검색</button>
-      </div>
-
+    <!-- 로고 -->
+   	<a href="/Urban_Village/" class="logo"> Urban&Village </a>
+	
+	<form method="get"
+         action="${contextPath}/accommodation/searchAccommodation">
+         <div class="search-bar">
+            <input type="text" name="keyword" placeholder="여행지를 검색하세요">
+            <button>검색</button>
+         </div>
+  	 </form>
       <!-- 사용자 메뉴 -->
       <div class="user-menu">
          <c:choose>
@@ -184,9 +186,9 @@
                <div id="dropdownMenu" class="dropdown-content">
                   <a href="${contextPath}/reservation/reservationHistory.do">여행(예약확인)</a> <a href="${contextPath }/wishList/wishList.do?memberId=${loginId}">위시리스트</a>
                   <hr>
-                  <a href="#">호스트 추천보기</a> <a href="${contextPath }/member/myInfo.do?id=${loginId}">계정</a> <a href="${contextPath }/cleaner/cleanerForm.do">구직지원</a>
+                   <a href="${contextPath }/member/myInfo.do?id=${loginId}">계정</a> <a href="${contextPath }/cleaner/cleanerForm.do">구직지원</a>
                   <hr>
-                  <a href="#">도움말 센터</a> <a href="${contextPath }/member/logout.do">로그아웃</a>
+                  <a href="${contextPath }/admin/helpCenter.do">도움말 센터</a> <a href="${contextPath }/member/logout.do">로그아웃</a>
                </div>
             </c:when>
             <c:when test="${isAdmin == true}">
@@ -200,11 +202,11 @@
 
                <!-- 드롭다운 메뉴 -->
                <div id="dropdownMenu" class="dropdown-content">
-                  <a href="${contextPath }/accommodation/accommodationForm.do">숙소 추가</a> <a href="${contextPath }/accommodation/accommodationList.do">숙소 수정/삭제</a> <a href="${contextPath }/admin/hostAccBest.do">호스트 추천등록</a> <a href="${contextPath }/admin/cleanerList.do">지원자 현황</a>
+                  <a href="${contextPath }/accommodation/accommodationForm.do">숙소 추가</a> <a href="${contextPath }/accommodation/modAccommodationList.do">숙소 수정/삭제</a> <a href="${contextPath }/admin/hostAccBest.do">호스트 추천등록</a> <a href="${contextPath }/admin/cleanerList.do">지원자 현황</a>
                   <hr>
                   <a href="${contextPath }/member/joinMember.do">계정</a> <a href="${contextPath}/member/salesForm.do">매출</a>
                   <hr>
-                  <a href="#">회원 관리</a> <a href="${contextPath }/member/logout.do">로그아웃</a>
+                  <a href="${contextPath }/member/urbanMemberList.do">회원 관리</a> <a href="${contextPath }/member/logout.do">로그아웃</a>
                </div>
             </c:when>
             <c:otherwise>

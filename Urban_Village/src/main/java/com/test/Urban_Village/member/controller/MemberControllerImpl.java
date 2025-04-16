@@ -47,15 +47,28 @@ public class MemberControllerImpl implements MemberController {
 
 
 	@Override
-	@RequestMapping("urbanMemberList.do")
-	public ModelAndView urbanMemberList(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView();
-		String viewName = (String) request.getAttribute("viewName");
-		List<MemberDTO> membersList = service.listMembers();
-		mav.addObject("membersList", membersList); 
-		mav.setViewName(viewName);
-		return mav;
-	}
+	   @RequestMapping("urbanMemberList.do")
+	   public ModelAndView urbanMemberList(HttpServletRequest request, HttpServletResponse response) {
+	       ModelAndView mav = new ModelAndView();
+	       String viewName = (String) request.getAttribute("viewName");
+
+	       String searchId = request.getParameter("keyword"); // 검색어 가져오기
+
+	       List<MemberDTO> membersList;
+
+	       if (searchId != null && !searchId.trim().isEmpty()) {
+	           // 아이디로 검색
+	           membersList = service.searchMembersById(searchId);
+	       } else {
+	           // 전체 회원 목록
+	           membersList = service.listMembers();
+	       }
+
+	       mav.addObject("membersList", membersList);
+	       mav.addObject("searchId", searchId); // JSP에서 검색어 유지
+	       mav.setViewName(viewName);
+	       return mav;
+	   }
 
 	// 로그인 폼 보여주는 메서드
 	@Override
@@ -181,6 +194,7 @@ public class MemberControllerImpl implements MemberController {
 		String viewName = (String) request.getAttribute("viewName");
 		mav.setViewName(viewName);
 		mav.addObject("memberList", memberList);
+		System.out.println(viewName);
 		return mav;
 	}
 
@@ -422,5 +436,60 @@ public class MemberControllerImpl implements MemberController {
         return mav;
     }
     
+    @RequestMapping("/findPwd.do")
+    public ModelAndView findPwd (HttpServletRequest request, HttpServletResponse response) {
+    	ModelAndView mav = new ModelAndView();
+    	String viewName = (String) request.getAttribute("viewName");
+    	mav.setViewName(viewName);
+    	return mav;
+    }
+    
+    @RequestMapping("/findId.do")
+    public ModelAndView findId (HttpServletRequest request, HttpServletResponse response) {
+    	ModelAndView mav = new ModelAndView();
+    	String viewName = (String) request.getAttribute("viewName");
+    	mav.setViewName(viewName);
+
+    	return mav;
+    }
+    
+    @RequestMapping("/findPwdForId.do")
+    public int findPwdForId (@RequestParam("member_id")String member_id ,HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	int result = service.findPwdForId(member_id);
+		response.setContentType("text/html;charset=utf-8");
+    	PrintWriter out = response.getWriter();
+    	if (result > 0) {
+            out.println("<script>");
+            out.println("alert('아이디가 확인되었습니다.');");
+            out.println("location.href='" + request.getContextPath() +  "/email/sendMemberPwd.do?member_id=" + member_id + "';");//이메일 찾기로 이동함 
+            out.println("</script>");
+         } else {
+            out.println("<script>");
+            out.println("alert('아이디가 존재하지 않습니다. 아이디 찾기를 진행하세요');");
+            out.println("location.href='" + request.getContextPath() + "/member/findId.do';"); // 아이디 찾기로 이동함
+            out.println("</script>");
+         }
+    	
+    	return 0;
+    }
+  
+    @RequestMapping("/checkCode.do")
+    public void checkCode (@RequestParam("code")int code,@RequestParam("member_id")String member_id,HttpServletRequest request, HttpServletResponse response) throws IOException {
+    	int pwdCode = (Integer) session.getAttribute("pwdCode");
+    	System.out.println(pwdCode);
+		response.setContentType("text/html;charset=utf-8");
+    	PrintWriter out = response.getWriter();
+    	if(code == pwdCode) {
+    		out.println("<script>");
+            out.println("alert('정보수정 페이지로 이동합니다.');");
+            out.println("location.href='" + request.getContextPath() + "/member/myInfo.do?id=" + member_id + "';");
+            out.println("</script>");
+    	} else {
+    		out.println("<script>");
+            out.println("alert('코드가 잘못 되었습니다. 코드를 다시 입력하세요.');");
+            out.println("location.href='" + request.getContextPath() + "/email/sendMemberPwd.do?member_id=" + member_id + "';");
+            out.println("</script>");
+    	}
+    }
     
 }

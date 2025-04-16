@@ -13,6 +13,7 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/views/common/footer.jsp"></put-attribute>
 	</definition>
+	
 
 	<definition name="urbanMain" extends="mainLayout">
 		<put-attribute name="title" value="Urban_Village"></put-attribute>
@@ -60,18 +61,6 @@
 			value="/WEB-INF/views/reservation/reservationForm.jsp"></put-attribute>
 	</definition>
 
-	<definition name="/reservation/reservationHistory"
-		extends="mainLayout">
-		<put-attribute name="title" value="예약내역"></put-attribute>
-		<put-attribute name="body"
-			value="/WEB-INF/views/reservation/reservationHistory.jsp"></put-attribute>
-	</definition>
-
-	<definition name="/member/myInfo" extends="mainLayout">
-		<put-attribute name="title" value="내정보페이지"></put-attribute>
-		<put-attribute name="body"
-			value="/WEB-INF/views/member/myInfo.jsp"></put-attribute>
-	</definition>
 	
 	<definition name="/admin/cleanerList" extends="mainLayout">
 		<put-attribute name="title" value="지원자현황"></put-attribute>
@@ -85,37 +74,25 @@
 			value="/WEB-INF/views/admin/cleanerDetail.jsp"></put-attribute>
 	</definition>
 	
-	<definition name="/cleaner/cleanerForm" extends="mainLayout">
-		<put-attribute name="title" value="지원자정보"></put-attribute>
-		<put-attribute name="body"
-			value="/WEB-INF/views/cleaner/cleanerForm.jsp"></put-attribute>
-	</definition>
-	
 	<definition name="/accommodation/accommodationList" extends="mainLayout">
-		<put-attribute name="title" value="지원자정보"></put-attribute>
+		<put-attribute name="title" value="숙소리스트"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/accommodationList.jsp"></put-attribute>
 	</definition>
-	
-	<definition name="/wishList/wishListadd"
-      extends="mainLayout">
-      <put-attribute name="title" value="위시리스트" />
-      <put-attribute name="body"
-         value="/WEB-INF/views/wishList/wishListadd.jsp" />
-   </definition>
-
-  <definition name="/member/deleteMember.do"
-      extends="mainLayout">
-      <put-attribute name="title" value="회원 삭제" />
-      <put-attribute name="body"
-         value="/WEB-INF/views/member/deleteMemberForm.jsp" />
-   </definition>
    
    <definition name="/member/salesForm.do" extends="mainLayout">
       <put-attribute name="title" value="매출 현황"></put-attribute>
       <put-attribute name="body"
          value="/WEB-INF/views/member/salesForm.jsp"></put-attribute>
    </definition>
-	
+   
+   <definition name="/accommodation/searchResults"
+      extends="mainLayout">
+      <put-attribute name="title" value="검색"></put-attribute>
+      <put-attribute name="body"
+         value="/WEB-INF/views/accommodation/searchResults.jsp"></put-attribute>
+   </definition>
+  
+   
 	
 </tiles-definitions>

@@ -208,7 +208,15 @@
 			<version>0.4.8</version>
 		</dependency>
 		
-		<!-- Java email 관련 -->
+		
+		<!-- 스프링 이메일 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>javax.mail-api</artifactId>
@@ -217,7 +225,7 @@
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
-			<version>1.5.3</version>
+			<version>1.5.4</version>
 		</dependency>
 			
 		<!-- JSON -->

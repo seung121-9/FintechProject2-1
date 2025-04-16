@@ -17,10 +17,28 @@ public class AccommodationDTO {
     private String review_data;          // 리뷰 데이터
     private int price;                   // 가격
     private List<String> imageList;
-
+    private String accommodation_address;
+    private double averageRating;
     private boolean liked;
 
-    public boolean isLiked() {
+    
+    public String getAccommodation_address() {
+		return accommodation_address;
+	}
+
+	public void setAccommodation_address(String accommodation_address) {
+		this.accommodation_address = accommodation_address;
+	}
+
+	public double getAverageRating() {
+		return averageRating;
+	}
+
+	public void setAverageRating(double averageRating) {
+		this.averageRating = averageRating;
+	}
+
+	public boolean isLiked() {
         return liked;
     }
 

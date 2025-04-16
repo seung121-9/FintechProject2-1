@@ -61,6 +61,15 @@ public void updateAccommodation(Map<String, Object> accommodationMap) {
 public boolean checkAccommodationName(String name) {
     return dao.checkAccommodationName(name);
 }
+@Override
+public boolean checkName(String accommodation_name) {
+   // TODO Auto-generated method stub
+   return dao.checkName(accommodation_name);
+}
 
+@Override
+public List<AccommodationDTO> searchAddress(List<String> regions) {
+    return dao.searchByRegions(regions);
+}
 
 }

@@ -93,6 +93,13 @@ long currentTimestamp = System.currentTimeMillis();
 				</div>
 
 				<div class="mb-3">
+					<label for="accommodation_address" class="form-label">숙소 주소</label> <input
+						type="text" class="form-control" id="accommodation_address"
+						name="accommodation_address"
+						value="${accommodation.accommodation_address}" readonly required>
+				</div>
+				
+				<div class="mb-3">
 					<label for="accommodation_name" class="form-label">숙소 이름</label> <input
 						type="text" class="form-control" id="accommodation_name"
 						name="accommodation_name"

@@ -1,3 +1,14 @@
+/* body {
+   font-family: sans-serif;
+   margin: 0;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+   Ensure body takes at least the full viewport height
+}
+
+ */
 body {
    font-family: sans-serif;
    margin: 0;
@@ -5,12 +16,21 @@ body {
    display: flex;
    flex-direction: column;
    min-height: 100vh;
-   /* Ensure body takes at least the full viewport height */
 }
 
-.main-layout {
+#main-layout {
    display: flex;
-   min-height: 100vh;
+   flex-grow: 1;
+   flex-shrink: 0;
+   min-height: calc(100vh - 120px); /* 헤더+푸터 높이 고려 */
+}
+
+#side {
+   width: 250px;
+   background: white;
+   padding: 20px;
+   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+   flex-shrink: 0;
 }
 
 .container {

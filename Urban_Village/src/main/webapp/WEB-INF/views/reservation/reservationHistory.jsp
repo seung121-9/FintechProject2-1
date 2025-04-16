@@ -21,7 +21,7 @@
             display: flex;
             justify-content: center;
         }
-        .container {
+        .containerHistory {
             width: 100%;
             max-width: 800px;
             background: #fff;
@@ -74,7 +74,7 @@
             font-weight: bold;
             font-size: 16px;
         }
-        .btn {
+        .btnReview {
             display: inline-block;
             margin-top: 15px;
             padding: 10px 20px;
@@ -106,7 +106,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="containerHistory">
         <h1>예약 내역</h1>
         <c:if test="${empty reservations}">
             <div class="empty-reservations">
@@ -169,7 +169,7 @@
                         </button>
                     </c:when>
                     <c:when test="${reservation.checkout_date < today}">
-                        <a href="${contextPath}/review/write?reservation_id=${reservation.reservation_id}&accommodation_name=${reservation.accommodation_name}&accommodation_id=${reservation.accommodation_id}" class="btn">후기 작성</a>
+                        <a href="${contextPath}/review/write?reservation_id=${reservation.reservation_id}&accommodation_name=${reservation.accommodation_name}&accommodation_id=${reservation.accommodation_id}" class="btnReview">후기 작성</a>
                     </c:when>
                     <c:otherwise>
                     	<p>사용중입니다.</p>

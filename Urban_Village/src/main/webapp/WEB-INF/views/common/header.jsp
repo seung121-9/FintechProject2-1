@@ -186,7 +186,7 @@
                <div id="dropdownMenu" class="dropdown-content">
                   <a href="${contextPath}/reservation/reservationHistory.do">여행(예약확인)</a> <a href="${contextPath }/wishList/wishList.do?memberId=${loginId}">위시리스트</a>
                   <hr>
-                   <a href="${contextPath }/member/myInfo.do?id=${loginId}">계정</a> <a href="${contextPath }/cleaner/cleanerForm.do">구직지원</a>
+                   <a href="${contextPath }/member/myInfo.do?id=${loginId}">내정보확인</a> <a href="${contextPath }/cleaner/cleanerForm.do">구직지원</a>
                   <hr>
                   <a href="${contextPath }/admin/helpCenter.do">도움말 센터</a> <a href="${contextPath }/member/logout.do">로그아웃</a>
                </div>
@@ -202,9 +202,10 @@
 
                <!-- 드롭다운 메뉴 -->
                <div id="dropdownMenu" class="dropdown-content">
-                  <a href="${contextPath }/accommodation/accommodationForm.do">숙소 추가</a> <a href="${contextPath }/accommodation/modAccommodationList.do">숙소 수정/삭제</a> <a href="${contextPath }/admin/hostAccBest.do">호스트 추천등록</a> <a href="${contextPath }/admin/cleanerList.do">지원자 현황</a>
+                  <a href="${contextPath }/accommodation/accommodationForm.do">숙소 추가</a> <a href="${contextPath }/accommodation/modAccommodationList.do">숙소 수정/삭제</a> <a href="${contextPath }/admin/hostAccBest.do">호스트 추천등록</a>
                   <hr>
-                  <a href="${contextPath }/member/joinMember.do">계정</a> <a href="${contextPath}/member/salesForm.do">매출</a>
+                  <a href="${contextPath }/admin/cleanerList.do">지원자 현황</a>
+                  <a href="${contextPath}/member/salesForm.do">매출</a>
                   <hr>
                   <a href="${contextPath }/member/urbanMemberList.do">회원 관리</a> <a href="${contextPath }/member/logout.do">로그아웃</a>
                </div>
